@@ -2,7 +2,7 @@ require 'rake'
 
 desc "Hook our dotfiles into system-standard positions."
 task :install do
-  linkables = Dir.glob('*/**{.sym}')
+  linkables = Dir.glob('*/**{.symlink}')
 
   skip_all = false
   overwrite_all = false
@@ -12,7 +12,7 @@ task :install do
     overwrite = false
     backup = false
 
-    file = linkable.split('/').last.split('.sym').last
+    file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
     if File.exists?(target) || File.symlink?(target)
@@ -36,9 +36,9 @@ end
 
 task :uninstall do
 
-  Dir.glob('**/*.sym').each do |linkable|
+  Dir.glob('**/*.symlink').each do |linkable|
 
-    file = linkable.split('/').last.split('.sym').last
+    file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
     # Remove all symlinks created during installation
