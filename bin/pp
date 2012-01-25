@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+
+object = eval ARGF.read
+pp object
+
+# EOF

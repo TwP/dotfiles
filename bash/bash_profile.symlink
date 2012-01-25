@@ -1,0 +1,99 @@
+# ~/.bash_profile
+# Execuged by login shells
+
+# shortcut to this dotfiles path is $DOTS
+DOTS="$HOME/.dotfiles"
+
+# macports install location
+MACPORTS="/opt/local"
+
+# ==== Java Setup ====
+#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+export M2_HOME=/usr/share/maven
+export M2=$M2_HOME/bin
+export M2_REPO=$HOME/.m2/repository
+export CATALINA_HOME=/Library/Tomcat
+
+# ==== Amazon EC2 Setup ====
+export EC2_HOME=$HOME/.ec2
+export EC2_PRIVATE_KEY=$EC2_HOME/dojo4.pk.pem
+export EC2_CERT=$EC2_HOME/dojo4.cert.pem
+
+# ==== PostgreSQL Setup ====
+export PSQL_HOME=$MACPORTS/lib/postgresql90
+
+# ==== PATH setup ====
+PATH="/usr/bin:/usr/sbin:/bin:/sbin"
+[ -d '/usr/local'     ] && PATH="$PATH:/usr/local/bin"
+[ -d '/usr/X11'       ] && PATH="$PATH:/usr/X11/bin"
+[ -d '/Developer/usr' ] && PATH="$PATH:/Developer/usr/bin"
+[ -d $MACPORTS        ] && PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
+[ -d $DOTS            ] && PATH="$DOTS/bin:$PATH"
+export PATH=$PATH:$EC2_HOME/bin:$PSQL_HOME/bin
+
+MANPATH="/usr/share/man"
+[ -d '/usr/local'     ] && MANPATH="$MANPATH:/usr/local/share/man"
+[ -d '/usr/X11'       ] && MANPATH="$MANPATH:/usr/X11/share/man"
+[ -d '/Developer/usr' ] && MANPATH="$MANPATH:/Developer/usr/share/man"
+[ -d $MACPORTS        ] && MANPATH="$MACPORTS/share/man:$MANPATH"
+export MANPATH
+
+export FIGNORE=".o:DS_Store"
+export EDITOR=$(type -P vim || type -P vi || type -P nano)
+export PAGER=/usr/bin/less
+export TEMP=/tmp
+
+for file in $DOTS/*.bash $DOTS/**/*.bash
+do
+  if [[ -a $file ]] ; then source $file ; fi
+done
+
+# autocompletion options
+complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+
+# prompt and colors
+__p_status ()
+{
+  if [[ "$1" = "0" ]]; then
+    printf "\e[32m%s\e[0m" "$2"
+  else
+    printf "\e[31m%s\e[0m" "$2"
+  fi
+}
+
+__p_prompt ()
+{
+  STATUS=$?
+
+  P_USER='\[\e[34m\]\u\[\e[0m\]'
+  P_HOST='\[\e[33m\]\h\[\e[0m\]'
+  P_CWD='\[\e[36m\]\w\[\e[0m\]'
+  P_RVM="{\[\e[35m\]\$(rvm-prompt i v g)\[\e[0m\]}"
+  P_GIT="\$(__git_ps1 \"(\[\e[32m\]%s\[\e[0m\])\") \[\e[33m\]\$(__git_dirty)\[\e[0m\]"
+
+  # setup the prompt
+  export PS1="\$(__p_status $STATUS '╭ ')${P_USER}@${P_HOST}:${P_CWD} ${P_RVM}${P_GIT}\n\$(__p_status $STATUS '╰ ➙ ')"
+
+  # set the title bar of the terminal
+  echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"
+}
+
+if [ "$PS1" ] ; then
+  # Colorize directory listsings
+  export CLICOLOR=1
+  export LSCOLORS="gxfxcxdxbxegedabagacad"
+
+  # Add colors to grep
+  export GREP_OPTIONS='--color=auto'
+  export GREP_COLOR='1;32'
+
+  # MySQL prompt
+  export MYSQL_PS1='\u@\h \d \c> '
+
+  PROMPT_COMMAND=__p_prompt
+fi
+
+if [[ -a $HOME/.bashrc ]] ; then source $HOME/.bashrc ; fi
+
+# EOF

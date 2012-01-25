@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+movies = '/Volumes/Mandos/Movies'
+iTunes = ENV['HOME'] + '/Music/iTunes/iTunes Music/Movies'
+
+Dir.glob(iTunes + '/*').each do |dir|
+  basedir = File.basename dir
+
+  Dir.glob(dir + '/*') do |movie|
+    next if File.symlink? movie
+
+    puts "moving #{movie.inspect}"
+
+    dest = File.join(movies, basedir, File.basename(movie))
+    FileUtils.mkdir_p(File.dirname(dest))
+    FileUtils.cp movie, dest
+
+    puts "creating symlink"
+    FileUtils.ln_s dest, movie, :force => true
+
+    raise 'Ooops!' unless File.symlink? movie
+  end
+end
