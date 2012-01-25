@@ -1,5 +1,5 @@
 # ~/.bash_profile
-# Execuged by login shells
+# Executed by login shells
 
 # shortcut to this dotfiles path is $DOTS
 DOTS="$HOME/.dotfiles"
