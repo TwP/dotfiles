@@ -2,7 +2,7 @@
 # Executed by login shells
 
 # shortcut to this dotfiles path is $DOTS
-DOTS="$HOME/.dotfiles"
+export DOTS="$HOME/.dotfiles"
 
 # macports install location
 MACPORTS="/opt/local"

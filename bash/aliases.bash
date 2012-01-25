@@ -42,7 +42,7 @@ alias scl='screen -list'
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 alias vi='/opt/local/bin/vim'
-alias vim="$HOME/bin/mvim"
+alias vim="$DOTS/bin/mvim"
 
 alias tomcat-start="$CATALINA_HOME/bin/startup.sh"
 alias tomcat-stop="$CATALINA_HOME/bin/shutdown.sh"
@@ -257,19 +257,19 @@ ciro () { mysql5 -u ciro -h 10.10.12.100 -D ci_sentiment_db -p; }
 
 # Colorize Functions
 # ------------------
-cmake   () { make $* 2>&1 | awk -f ~/bin/make.awk; }
+cmake   () { make $* 2>&1 | awk -f $DOTS/bin/make.awk; }
 
-#check   () { cvs -n up $* 2>&1 | awk -f ~/bin/cvs.awk; }
-#cvsup   () { cvs up -Pd $* 2>&1 | awk -f ~/bin/cvs.awk; }
-#cvsdiff () { cvs diff -c $* 2>&1 | awk -f ~/bin/cdiff.awk; }
+#check   () { cvs -n up $* 2>&1 | awk -f $DOTS/bin/cvs.awk; }
+#cvsup   () { cvs up -Pd $* 2>&1 | awk -f $DOTS/bin/cvs.awk; }
+#cvsdiff () { cvs diff -c $* 2>&1 | awk -f $DOTS/bin/cdiff.awk; }
 
-cdiff    () { diff -c $* 2>&1 | awk -f ~/bin/cdiff.awk; }
+cdiff    () { diff -c $* 2>&1 | awk -f $DOTS/bin/cdiff.awk; }
 
-check    () { svn st $* 2>&1 | awk -f ~/bin/svn.awk; }
-svnup    () { svn up $* 2>&1 | awk -f ~/bin/svn.awk; }
-svndiff  () { svn diff $* -x -c 2>&1 | awk -f ~/bin/cdiff.awk; }
-update   () { svn up $* 2>&1 | awk -f ~/bin/svn.awk; }
-sdiff    () { svn diff $* -x -c 2>&1 | awk -f ~/bin/cdiff.awk; }
+check    () { svn st $* 2>&1 | awk -f $DOTS/bin/svn.awk; }
+svnup    () { svn up $* 2>&1 | awk -f $DOTS/bin/svn.awk; }
+svndiff  () { svn diff $* -x -c 2>&1 | awk -f $DOTS/bin/cdiff.awk; }
+update   () { svn up $* 2>&1 | awk -f $DOTS/bin/svn.awk; }
+sdiff    () { svn diff $* -x -c 2>&1 | awk -f $DOTS/bin/cdiff.awk; }
 
 # rsync Functions
 # ---------------
