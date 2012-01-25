@@ -51,9 +51,8 @@ alias mysqlstart='sudo mysqld_safe5 &'
 alias mysqlstop='mysqladmin5 -u root -p shutdown'
 alias mysqlstatus='ps -ax | grep mysql'
 
-PG_CTL='sudo -u postgres -- /opt/local/lib/postgresql90/bin/pg_ctl'
+PG_CTL="sudo -u postgres -- $PSQL_HOME/bin/pg_ctl"
 PG_DB='/opt/local/var/db/postgresql90/defaultdb'
-alias psql='/opt/local/lib/postgresql90/bin/psql'
 alias pgstart="$PG_CTL start -D $PG_DB"
 alias pgstop="$PG_CTL stop -D $PG_DB"
 alias pgstatus="$PG_CTL status -D $PG_DB"
@@ -79,12 +78,10 @@ function stuff {
 }
 
 function ql {
-  qlmanage -p "$@" &> /dev/null &
-}
-
-function qld {
-  pkill qlmanage
-}
+    qlmanage -p "$@" & pid=$!
+    read -sn1
+    kill $pid; wait $pid
+} 2>/dev/null
 
 function p {
     if [ -n "$1" ]; then
@@ -132,6 +129,16 @@ function pint {
 
 function findr {
     find . -name '*.rb' -print0 | xargs -0 grep "$*"
+}
+
+# from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
+function v {
+    if [ $# == 0 ] ; then
+      mvim
+    else
+      mvim --servername $(basename $(pwd)) \
+           --remote-tab-silent "$@" 1>/dev/null 2>&1
+    fi
 }
 
 # These are some functions that are useful for dealing with git branches
