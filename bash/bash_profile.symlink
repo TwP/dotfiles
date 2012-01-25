@@ -14,6 +14,7 @@ export M2_HOME=/usr/share/maven
 export M2=$M2_HOME/bin
 export M2_REPO=$HOME/.m2/repository
 export CATALINA_HOME=/Library/Tomcat
+export CASSANDRA_HOME=/usr/local/share/datastax/apache-cassandra-0.8.9
 
 # ==== Amazon EC2 Setup ====
 export EC2_HOME=$HOME/.ec2
@@ -30,12 +31,13 @@ PATH="/usr/bin:/usr/sbin:/bin:/sbin"
 [ -d '/Developer/usr' ] && PATH="$PATH:/Developer/usr/bin"
 [ -d $MACPORTS        ] && PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
 [ -d $DOTS            ] && PATH="$DOTS/bin:$PATH"
-export PATH=$PATH:$EC2_HOME/bin:$PSQL_HOME/bin
+export PATH=$PATH:$EC2_HOME/bin:$PSQL_HOME/bin:$CASSANDRA_HOME/bin
 
 MANPATH="/usr/share/man"
 [ -d '/usr/local'     ] && MANPATH="$MANPATH:/usr/local/share/man"
 [ -d '/usr/X11'       ] && MANPATH="$MANPATH:/usr/X11/share/man"
 [ -d '/Developer/usr' ] && MANPATH="$MANPATH:/Developer/usr/share/man"
+[ -d "$HOME/.rvm"     ] && MANPATH="$MANPATH:$HOME/.rvm/man"
 [ -d $MACPORTS        ] && MANPATH="$MACPORTS/share/man:$MANPATH"
 export MANPATH
 
@@ -53,27 +55,20 @@ done
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 # prompt and colors
-__p_status ()
-{
-  if [[ "$1" = "0" ]]; then
-    printf "\e[32m%s\e[0m" "$2"
-  else
-    printf "\e[31m%s\e[0m" "$2"
-  fi
-}
+__p_prompt () {
+  status=$?
 
-__p_prompt ()
-{
-  STATUS=$?
+  local user='\[\e[34m\]\u\[\e[0m\]'
+  local host='\[\e[33m\]\h\[\e[0m\]'
+  local cwd='\[\e[36m\]\w\[\e[0m\]'
+  local rvm="{\[\e[35m\]\$(rvm-prompt i v g)\[\e[0m\]}"
+  local git="\$(__git_ps1 \"(\[\e[32m\]%s\[\e[0m\])\") \[\e[33m\]\$(__git_dirty)\[\e[0m\]"
 
-  P_USER='\[\e[34m\]\u\[\e[0m\]'
-  P_HOST='\[\e[33m\]\h\[\e[0m\]'
-  P_CWD='\[\e[36m\]\w\[\e[0m\]'
-  P_RVM="{\[\e[35m\]\$(rvm-prompt i v g)\[\e[0m\]}"
-  P_GIT="\$(__git_ps1 \"(\[\e[32m\]%s\[\e[0m\])\") \[\e[33m\]\$(__git_dirty)\[\e[0m\]"
+  local start='`if [[ $status = "0" ]]; then echo "\[\e[32m\]╭ \[\e[0m\]"; else echo "\[\e[31m\]╭ \[\e[0m\]"; fi`'
+  local end='`if [[ $status = "0" ]]; then echo "\[\e[32m\]╰ ➙ \[\e[0m\]"; else echo "\[\e[31m\]╰ ➙ \[\e[0m\]"; fi`'
 
   # setup the prompt
-  export PS1="\$(__p_status $STATUS '╭ ')${P_USER}@${P_HOST}:${P_CWD} ${P_RVM}${P_GIT}\n\$(__p_status $STATUS '╰ ➙ ')"
+  export PS1="${start}${user}@${host}:${cwd} ${rvm}${git}\n${end}"
 
   # set the title bar of the terminal
   echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"
