@@ -55,25 +55,6 @@ done
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 # prompt and colors
-__p_prompt () {
-  status=$?
-
-  local user='\[\e[34m\]\u\[\e[0m\]'
-  local host='\[\e[33m\]\h\[\e[0m\]'
-  local cwd='\[\e[36m\]\w\[\e[0m\]'
-  local rvm="{\[\e[35m\]\$(rvm-prompt i v g)\[\e[0m\]}"
-  local git="\$(__git_ps1 \"(\[\e[32m\]%s\[\e[0m\])\") \[\e[33m\]\$(__git_dirty)\[\e[0m\]"
-
-  local start='`if [[ $status = "0" ]]; then echo "\[\e[32m\]╭ \[\e[0m\]"; else echo "\[\e[31m\]╭ \[\e[0m\]"; fi`'
-  local end='`if [[ $status = "0" ]]; then echo "\[\e[32m\]╰ ➙ \[\e[0m\]"; else echo "\[\e[31m\]╰ ➙ \[\e[0m\]"; fi`'
-
-  # setup the prompt
-  export PS1="${start}${user}@${host}:${cwd} ${rvm}${git}\n${end}"
-
-  # set the title bar of the terminal
-  echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"
-}
-
 if [ "$PS1" ] ; then
   # Colorize directory listsings
   export CLICOLOR=1
@@ -86,7 +67,30 @@ if [ "$PS1" ] ; then
   # MySQL prompt
   export MYSQL_PS1='\u@\h \d \c> '
 
-  PROMPT_COMMAND=__p_prompt
+  prompt="
+    status=\$?
+    leader='╭ '
+    trailer='╰ ➙ '
+
+    user='\[$Blue\]\u\[$Reset\]'
+    host='\[$Yellow\]\h\[$Reset\]'
+    cwd='\[$Cyan\]\w\[$Reset\]'
+    rvm=\"{\[$Magenta\]\$(rvm-prompt i v g)\[$Reset\]}\"
+    git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
+
+    prompt=\"\${user}@\${host}:\${cwd} \${rvm}\${git}\"
+
+    if [[ \$status = \"0\" ]] ; then
+      prompt=\"\[$Green\]\${leader}\[$Reset\]\${prompt}\n\[$Green\]\${trailer}\[$Reset\]\"
+    else
+      prompt=\"\[$Red\]\${leader}\[$Reset\]\${prompt}\n\[$Red\]\${trailer}\[$Reset\]\"
+    fi
+
+    echo -e \"\${prompt}\"
+  "
+  export PS1="\$(${prompt})"
+
+  PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"'
 fi
 
 if [[ -a $HOME/.bashrc ]] ; then source $HOME/.bashrc ; fi
