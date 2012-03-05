@@ -14,7 +14,7 @@ export M2_HOME=/usr/share/maven
 export M2=$M2_HOME/bin
 export M2_REPO=$HOME/.m2/repository
 export CATALINA_HOME=/Library/Tomcat
-export CASSANDRA_HOME=/usr/local/share/datastax/apache-cassandra-0.8.9
+export CASSANDRA_HOME=$HOME/.datastax/apache-cassandra-1.0.8
 
 # ==== Amazon EC2 Setup ====
 export EC2_HOME=$HOME/.ec2
