@@ -1,4 +1,0 @@
-#!/bin/bash
-
-BDISK=`/usr/sbin/diskutil list | awk '$3=="Backup" {print $6}'`
-/usr/sbin/diskutil unmount $BDISK > /dev/null

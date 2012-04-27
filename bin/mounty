@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# This handy little script is used to mount or unmount a drive by name on OS X
+# Lion. I use this script within SuperDuper! to mount my backup drive before
+# scheduled backups are run. The backup drive is configured so that it will
+# not automount when the drive is connected to the machine; hence the need for
+# this script.
+#
+# To configure a drive so it will not automount
+#
+# 1) Obtain the UUID of the drive
+#
+#        diskutil info <drive_name>
+#
+# 2) Edit the /etc/fstab file using the `vifs' command and add this line
+#
+#        UUID=D3735E28-4D1E-3517-B787-5A6649F7389B   none    hfs rw,noauto
+#
+#    where the UUID is the one returned from the `diskutil' command in step 1
+#
+# ----------------------------------------------------------------------------
+
+usage() {
+cat << EOF
+
+usage: mounty [-h] [-m|-u] <drive_name>
+
+This script will mount or unmount a drive by name.
+
+OPTIONS:
+  -h    Show this message
+  -m    Mount the disk
+  -u    Unmount the disk
+
+EOF
+}
+
+ACTION=
+
+while getopts ':hmu' OPTION; do
+  case $OPTION in
+    h)
+      usage
+      exit 0
+      ;;
+    m)
+      ACTION='mount'
+      ;;
+    u)
+      ACTION='unmount'
+      ;;
+    \?)
+      usage
+      exit 1
+      ;;
+  esac
+  shift $((OPTIND-1))
+done
+
+DRIVENAME=$*
+
+if [[ -z $ACTION ]] | [[ -z $DRIVENAME ]]; then
+  usage
+  exit 1
+fi
+
+AWKARGS="\$3==\"${DRIVENAME}\" {print \$6}"
+DISK=`/usr/sbin/diskutil list | awk "$AWKARGS"`
+
+/usr/sbin/diskutil $ACTION $DISK > /dev/null 2>&1
+
