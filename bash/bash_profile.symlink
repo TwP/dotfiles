@@ -15,6 +15,7 @@ export M2=$M2_HOME/bin
 export M2_REPO=$HOME/.m2/repository
 export CATALINA_HOME=/Library/Tomcat
 export CASSANDRA_HOME=$HOME/.datastax/apache-cassandra-1.0.8
+export ES_HOME=/usr/local/elasticsearch
 
 # ==== Amazon EC2 Setup ====
 export EC2_HOME=$HOME/.ec2
@@ -24,23 +25,30 @@ export EC2_CERT=$EC2_HOME/dojo4.cert.pem
 # ==== PostgreSQL Setup ====
 export PSQL_HOME=$MACPORTS/lib/postgresql90
 
+# ==== MySQL Setup ====
+export MYSQL_HOME=/usr/local/mysql-5.5.23-osx10.6-x86_64
+
+# ==== GitHub Setup ====
+export GITHUB_HOME=$HOME/GitHub
+
 # ==== PATH setup ====
 PATH="/usr/bin:/usr/sbin:/bin:/sbin"
 [ -d '/usr/local'     ] && PATH="$PATH:/usr/local/bin"
 [ -d '/usr/X11'       ] && PATH="$PATH:/usr/X11/bin"
 [ -d '/Developer/usr' ] && PATH="$PATH:/Developer/usr/bin"
+[ -d "$HOME/.rbenv"   ] && PATH="$PATH:$HOME/.rbenv/bin"
 [ -d $MACPORTS        ] && PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
 [ -d $DOTS            ] && PATH="$DOTS/bin:$PATH"
-export PATH=$PATH:$EC2_HOME/bin:$PSQL_HOME/bin:$CASSANDRA_HOME/bin
+export PATH=$PATH:$EC2_HOME/bin:$MYSQL_HOME/bin:$PSQL_HOME/bin:$ES_HOME/bin:$CASSANDRA_HOME/bin
 
 MANPATH="/usr/share/man"
 [ -d '/usr/local'     ] && MANPATH="$MANPATH:/usr/local/share/man"
 [ -d '/usr/X11'       ] && MANPATH="$MANPATH:/usr/X11/share/man"
 [ -d '/Developer/usr' ] && MANPATH="$MANPATH:/Developer/usr/share/man"
-[ -d "$HOME/.rvm"     ] && MANPATH="$MANPATH:$HOME/.rvm/man"
 [ -d $MACPORTS        ] && MANPATH="$MACPORTS/share/man:$MANPATH"
 export MANPATH
 
+export DYLD_LIBRARY_PATH=$MYSQL_HOME/lib
 export FIGNORE=".o:DS_Store"
 export EDITOR=$(type -P vim || type -P vi || type -P nano)
 export PAGER=/usr/bin/less
@@ -50,6 +58,8 @@ for file in $DOTS/*.bash $DOTS/**/*.bash
 do
   if [[ -a $file ]] ; then source $file ; fi
 done
+
+if [[ -s $HOME/.rbenv/bin/rbenv ]] ; then eval "$(rbenv init -)" ; fi
 
 # autocompletion options
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
@@ -75,10 +85,10 @@ if [ "$PS1" ] ; then
     user='\[$Blue\]\u\[$Reset\]'
     host='\[$Yellow\]\h\[$Reset\]'
     cwd='\[$Cyan\]\w\[$Reset\]'
-    rvm=\"{\[$Magenta\]\$(rvm-prompt i v g)\[$Reset\]}\"
+    ruby=\"{\[$Magenta\]\$(rbenv version-name)\[$Reset\]}\"
     git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
 
-    prompt=\"\${user}@\${host}:\${cwd} \${rvm}\${git}\"
+    prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
 
     if [[ \$status = \"0\" ]] ; then
       prompt=\"\[$Green\]\${leader}\[$Reset\]\${prompt}\n\[$Green\]\${trailer}\[$Reset\]\"
