@@ -34,7 +34,6 @@ alias lg='cd ~/work/logtastic'
 
 alias pd='pushd'
 alias pp='popd'
-alias rl='rvm list'
 
 alias scr='screen -D -R'
 alias scl='screen -list'

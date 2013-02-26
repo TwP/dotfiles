@@ -51,7 +51,6 @@ MANPATH="/usr/share/man"
 [ -d $HOMEBREW        ] && MANPATH="$HOMEBREW/share/man:$MANPATH"
 [ -d '/usr/X11'       ] && MANPATH="$MANPATH:/usr/X11/share/man"
 [ -d '/Developer/usr' ] && MANPATH="$MANPATH:/Developer/usr/share/man"
-[ -d "$HOME/.rvm"     ] && MANPATH="$MANPATH:$HOME/.rvm/man"
 [ -d $MACPORTS        ] && MANPATH="$MACPORTS/share/man:$MANPATH"
 export MANPATH
 
@@ -90,10 +89,11 @@ if [ "$PS1" ] ; then
     user='\[$Blue\]\u\[$Reset\]'
     host='\[$Yellow\]\h\[$Reset\]'
     cwd='\[$Cyan\]\w\[$Reset\]'
-    ruby=\"{\[$Magenta\]\$(rvm-prompt i v g)\[$Reset\]}\"
+    #ruby=\"{\[$Magenta\]\$(rvm-prompt i v g)\[$Reset\]}\"
     git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
 
-    prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
+    #prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
+    prompt=\"\${user}@\${host}:\${cwd} \${git}\"
 
     if [[ \$status = \"0\" ]] ; then
       prompt=\"\[$Green\]\${leader}\[$Reset\]\${prompt}\n\[$Green\]\${trailer}\[$Reset\]\"
