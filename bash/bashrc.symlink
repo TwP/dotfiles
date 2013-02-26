@@ -1,6 +1,9 @@
 # ~/.bashrc
 # Executed by login and subshells
 
+# rvm-install added line:
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
 if [[ -a $HOME/.localrc ]] ; then source $HOME/.localrc ; fi
 
 # EOF

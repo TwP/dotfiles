@@ -12,7 +12,7 @@ alias find='/usr/bin/find'
 
 alias gdf='git difftool -y'
 alias gdh='git diff HEAD'
-alias git-doc='heel -r /opt/local/share/doc/git-core'
+alias git-doc="heel -r $HOMEBREW/share/doc/git-doc"
 alias gka='gitk --all 2>&1 > /dev/null &'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
@@ -41,18 +41,17 @@ alias scl='screen -list'
 
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
-alias vi='/opt/local/bin/vim'
 alias vim="$DOTS/bin/mvim"
 
 alias tomcat-start="$CATALINA_HOME/bin/startup.sh"
 alias tomcat-stop="$CATALINA_HOME/bin/shutdown.sh"
 
-alias mysqlstart='sudo mysqld_safe5 &'
-alias mysqlstop='mysqladmin5 -u root -p shutdown'
+alias mysqlstart='sudo mysqld_safe &'
+alias mysqlstop='mysqladmin -u root -p shutdown'
 alias mysqlstatus='ps -ax | grep mysql'
 
 PG_CTL="sudo -u postgres -- $PSQL_HOME/bin/pg_ctl"
-PG_DB='/opt/local/var/db/postgresql90/defaultdb'
+PG_DB="$MACPORTS/var/db/postgresql90/defaultdb"
 alias pgstart="$PG_CTL start -D $PG_DB"
 alias pgstop="$PG_CTL stop -D $PG_DB"
 alias pgstatus="$PG_CTL status -D $PG_DB"
@@ -85,7 +84,7 @@ function ql {
 
 function p {
     if [ -n "$1" ]; then
-        ps -O ppid -U $USER | grep "$1" | grep -v grep
+        ps -O ppid -U $USER | grep -v grep | grep "$1"
     else
         ps -O ppid -U $USER
     fi
@@ -140,6 +139,8 @@ function v {
            --remote-tab-silent "$@" 1>/dev/null 2>&1
     fi
 }
+
+function g { cd ~/GitHub/$@; }
 
 # These are some functions that are useful for dealing with git branches
 # ----------------------------------------------------------------------
