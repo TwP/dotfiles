@@ -76,7 +76,7 @@ if [ "$PS1" ] ; then
     user='\[$Blue\]\u\[$Reset\]'
     host='\[$Yellow\]\h\[$Reset\]'
     cwd='\[$Cyan\]\w\[$Reset\]'
-    ruby=\"{\[$Magenta\]\$(rbenv_version)\[$Reset\]}\"
+    ruby=\"{\[$Magenta\]\$(ruby_version)\[$Reset\]}\"
     git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
 
     prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"

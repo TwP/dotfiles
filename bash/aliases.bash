@@ -55,11 +55,6 @@ alias pgstart="$PG_CTL start -D $PG_DB"
 alias pgstop="$PG_CTL stop -D $PG_DB"
 alias pgstatus="$PG_CTL status -D $PG_DB"
 
-
-function rbenv_version {
-  rbenv version 2> /dev/null | sed 's/\([^ ]*\).*/\1/'
-}
-
 function stuff {
     if [ -z "$1" ]; then
         echo "Usage: stuff [folder]"
