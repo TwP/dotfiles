@@ -49,6 +49,8 @@ alias mysqlstart='sudo mysqld_safe &'
 alias mysqlstop='mysqladmin -u root -p shutdown'
 alias mysqlstatus='ps -ax | grep mysql'
 
+alias nb='cd ~/Dropbox/Tim/notebook'
+
 PG_CTL="sudo -u postgres -- $PSQL_HOME/bin/pg_ctl"
 PG_DB="$MACPORTS/var/db/postgresql90/defaultdb"
 alias pgstart="$PG_CTL start -D $PG_DB"
