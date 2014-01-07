@@ -5,6 +5,21 @@ function rbenv_version {
 }
 alias ruby_version=rbenv_version
 
+function rbenv_manager_show {
+  echo "ruby version: $(rbenv_version)"
+  echo "gem home:     ${GEM_HOME}"
+}
+
+function rbenv_manager_current {
+  if [ -z "${RBM_ROOT}" ]; then
+    return 2
+  elif [ `expr $(pwd) : ${RBM_ROOT}` == "0" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 function rbenv_manager_reset {
   if [ -z "${RBM_ORIG_GEM_HOME}" ]; then
       unset GEM_HOME
@@ -22,10 +37,14 @@ function rbenv_manager_reset {
     export PATH=${RBM_ORIG_PATH}
   fi
 
+  unset RBM_ROOT
   unset RBM_ORIG_GEM_PATH
   unset RBM_ORIG_GEM_HOME
   unset RBM_ORIG_PATH
   unset RBENV_VERSION
+
+  echo "environment has been reset"
+  rbenv_manager_show
 }
 
 function rbenv_manager_setup {
@@ -35,18 +54,21 @@ function rbenv_manager_setup {
     export RBM_ORIG_PATH=${PATH:-}
   fi
 
-  local gem_dir="$(pwd)/vendor/gems/$(rbenv_version)"
+  export RBM_ROOT=$(pwd)
+  local gem_dir="${RBM_ROOT}/vendor/gems/$(rbenv_version)"
 
   export GEM_HOME=${gem_dir}
   export GEM_PATH=${gem_dir}:${RBM_ORIG_GEM_PATH}
   export PATH=${gem_dir}/bin:${RBM_ORIG_PATH}
+
+  rbenv_manager_show
 }
 
 function rbenv_manager {
   local version=${1:-}
 
-  if [ -z "$version" ]; then
-    echo "usage: rbenv_manager <version>|default|reset"
+  if [ "$version" == "--help" -o "$version" == "-h" ]; then
+    echo "usage: rbenv_manager <version>|reset|show"
     echo
     echo "  Switches gem home to a local vendor directory."
     echo "  The 'default' option uses the global rbenv ruby version."
@@ -54,11 +76,17 @@ function rbenv_manager {
     echo "  Use 'reset' to go back to normal."
     echo
     return
-  elif [ $version = "reset" ]; then
+
+  elif [ "$version" == "show" ]; then
+    rbenv_manager_show
+    return
+
+  elif [ "$version" == "reset" ]; then
     rbenv_manager_reset
     return
+
   else
-    if [ $version == "default" ]; then
+    if [ -z "$version" ]; then
       unset RBENV_VERSION
     else
       rbenv shell $version

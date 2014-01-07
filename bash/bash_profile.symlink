@@ -75,9 +75,20 @@ if [ "$PS1" ] ; then
 
     user='\[$Blue\]\u\[$Reset\]'
     host='\[$Yellow\]\h\[$Reset\]'
+#   cwd='\[$Cyan\]${PWD/#$HOME/~}\[$Reset\]'
     cwd='\[$Cyan\]\w\[$Reset\]'
-    ruby=\"{\[$Magenta\]\$(ruby_version)\[$Reset\]}\"
     git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
+
+    rbenv_manager_current
+    rbenv_status=\$?
+    ruby=\"{\[$Magenta\]\$(ruby_version)\[$Reset\]\"
+    if [[ \$rbenv_status = \"2\" ]] ; then
+      ruby=\"\${ruby}}\"
+    elif [[ \$rbenv_status = \"1\" ]] ; then
+      ruby=\"\${ruby} \[$Green\]✔\[$Reset\]}\"
+    else
+      ruby=\"\${ruby} \[$Red\]✘\[$Reset\]}\"
+    fi
 
     prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
 
