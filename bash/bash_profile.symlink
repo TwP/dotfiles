@@ -3,49 +3,26 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
-
-# homebrew install location
-# export HOMEBREW="/usr/local"
-
-# ==== Java Setup ====
-# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-# export M2_HOME=/usr/share/maven
-# export M2=$M2_HOME/bin
-# export M2_REPO=$HOME/.m2/repository
-# export ES_HOME=$HOMEBREW/elasticsearch
-
-# ==== Amazon EC2 Setup ====
-export EC2_HOME=$HOME/.ec2
-export EC2_PRIVATE_KEY=$EC2_HOME/dojo4.pk.pem
-export EC2_CERT=$EC2_HOME/dojo4.cert.pem
-
-# ==== Node.js Setup ====
-# export NODE_PATH=$NODE_PATH:$HOMEBREW/lib/node_modules
+export DROPBOX="$HOME/Dropbox"
 
 # ==== GitHub Setup ====
 # export GITHUB_HOME=$HOME/GitHub
 # export GITHUB_PATH=$GITHUB_HOME/github
 
 # ==== PATH setup ====
-# PATH="/usr/bin:/usr/sbin:/bin:/sbin"
-# [ -d $HOMEBREW        ] && PATH="$HOMEBREW/bin:$HOMEBREW/sbin:$PATH"
-# [ -d '/usr/X11'       ] && PATH="$PATH:/usr/X11/bin"
-# [ -d '/Developer/usr' ] && PATH="$PATH:/Developer/usr/bin"
-[ -d $DOTS            ] && PATH="$DOTS/bin:$PATH"
+[ -d $DOTS ] && PATH="$DOTS/bin:$PATH"
 export PATH
-# export PATH=$PATH:$EC2_HOME/bin:$MYSQL_HOME/bin:$PSQL_HOME/bin:$ES_HOME/bin
 
-# MANPATH="/usr/share/man"
-# [ -d $HOMEBREW        ] && MANPATH="$HOMEBREW/share/man:$MANPATH"
-# [ -d '/usr/X11'       ] && MANPATH="$MANPATH:/usr/X11/share/man"
-# [ -d '/Developer/usr' ] && MANPATH="$MANPATH:/Developer/usr/share/man"
-# export MANPATH
-
-export ACKRC=".ackrc"
 export EDITOR=$(type -P vim || type -P vi || type -P nano)
 export FIGNORE=".o:DS_Store"
 export PAGER=/usr/bin/less
 export TEMP=/tmp
+
+export HISTCONTROL=ignoredups;
+export HISTSIZE=10000;
+shopt -s histappend; # append not rewrite history
+
+export JAVA_HOME=/Library/Java/Home
 
 for file in $DOTS/*.bash $DOTS/**/*.bash
 do
