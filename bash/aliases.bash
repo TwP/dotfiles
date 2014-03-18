@@ -40,7 +40,6 @@ alias scl='screen -list'
 
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
-alias vim="$DOTS/bin/mvim"
 
 alias tomcat-start="$CATALINA_HOME/bin/startup.sh"
 alias tomcat-stop="$CATALINA_HOME/bin/shutdown.sh"
