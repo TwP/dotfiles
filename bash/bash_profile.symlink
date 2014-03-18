@@ -3,7 +3,7 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
-export DROPBOX="$HOME/Dropbox"
+export DROPBOX="$HOME/Dropbox/Tim/"
 
 # ==== GitHub Setup ====
 # export GITHUB_HOME=$HOME/GitHub
@@ -24,13 +24,17 @@ shopt -s histappend; # append not rewrite history
 
 export JAVA_HOME=/Library/Java/Home
 
+if [[ -a /opt/boxen/env.sh ]] ; then source /opt/boxen/env.sh ; fi
+
+# autocompletion options
+if [[ -f "$HOMEBREW_ROOT/etc/bash_completion" ]]; then
+  source "$HOMEBREW_ROOT/etc/bash_completion"
+fi
+
 for file in $DOTS/*.bash $DOTS/**/*.bash
 do
   if [[ -a $file ]] ; then source $file ; fi
 done
-
-# autocompletion options
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 # prompt and colors
 if [ "$PS1" ] ; then
@@ -45,6 +49,10 @@ if [ "$PS1" ] ; then
   # MySQL prompt
   export MYSQL_PS1='\u@\h \d \c> '
 
+  _git_dirty () {
+    git status 2> /dev/null | grep -c : | awk '{if ($1 > 0) print "⚡"}'
+  }
+
   prompt="
     status=\$?
     leader='╭ '
@@ -54,7 +62,7 @@ if [ "$PS1" ] ; then
     host='\[$Yellow\]\h\[$Reset\]'
 #   cwd='\[$Cyan\]${PWD/#$HOME/~}\[$Reset\]'
     cwd='\[$Cyan\]\w\[$Reset\]'
-    git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(__git_dirty)\[$Reset\]\"
+    git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(_git_dirty)\[$Reset\]\"
 
     rbenv_manager_current
     rbenv_status=\$?
@@ -83,6 +91,5 @@ if [ "$PS1" ] ; then
 fi
 
 if [[ -a $HOME/.bashrc ]] ; then source $HOME/.bashrc ; fi
-if [[ -a /opt/boxen/env.sh ]] ; then source /opt/boxen/env.sh ; fi
 
 # EOF
