@@ -3,11 +3,7 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
-export DROPBOX="$HOME/Dropbox/Tim/"
-
-# ==== GitHub Setup ====
-# export GITHUB_HOME=$HOME/GitHub
-# export GITHUB_PATH=$GITHUB_HOME/github
+export DROPBOX="$HOME/Dropbox/Tim/dotfiles"
 
 # ==== PATH setup ====
 [ -d $DOTS ] && PATH="$DOTS/bin:$PATH"
@@ -24,16 +20,17 @@ shopt -s histappend; # append not rewrite history
 
 export JAVA_HOME=/Library/Java/Home
 
-if [[ -a /opt/boxen/env.sh ]] ; then source /opt/boxen/env.sh ; fi
+if [ -f /opt/boxen/env.sh ] ; then source /opt/boxen/env.sh ; fi
 
 # autocompletion options
-if [[ -f "$HOMEBREW_ROOT/etc/bash_completion" ]]; then
+if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"
 fi
 
-for file in $DOTS/*.bash $DOTS/**/*.bash
-do
-  if [[ -a $file ]] ; then source $file ; fi
+for file in $DOTS/*.bash $DOTS/**/*.bash $DROPBOX/*.bash; do
+  if [ -f $file ]; then
+    source $file
+  fi
 done
 
 # prompt and colors
@@ -58,29 +55,29 @@ if [ "$PS1" ] ; then
     leader='╭ '
     trailer='╰ ➙ '
 
-    user='\[$Blue\]\u\[$Reset\]'
-    host='\[$Yellow\]\h\[$Reset\]'
-#   cwd='\[$Cyan\]${PWD/#$HOME/~}\[$Reset\]'
-    cwd='\[$Cyan\]\w\[$Reset\]'
-    git=\"\$(__git_ps1 \"(\[$Green\]%s\[$Reset\])\") \[$Yellow\]\$(_git_dirty)\[$Reset\]\"
+    user='${BLUE}\u${RESET}'
+    host='${YELLOW}\h${RESET}'
+#   cwd='${CYAN}${PWD/#$HOME/~}${RESET}'
+    cwd='${CYAN}\w${RESET}'
+    git=\"\$(__git_ps1 \"(${GREEN}%s${RESET})\") ${YELLOW}\$(_git_dirty)${RESET}\"
 
     rbenv_manager_current
     rbenv_status=\$?
-    ruby=\"{\[$Magenta\]\$(ruby_version)\[$Reset\]\"
+    ruby=\"{${MAGENTA}\$(ruby_version)${RESET}\"
     if [[ \$rbenv_status = \"2\" ]] ; then
       ruby=\"\${ruby}}\"
     elif [[ \$rbenv_status = \"1\" ]] ; then
-      ruby=\"\${ruby} \[$Green\]✔\[$Reset\]}\"
+      ruby=\"\${ruby} ${GREEN}✔ ${RESET}}\"
     else
-      ruby=\"\${ruby} \[$Red\]✘\[$Reset\]}\"
+      ruby=\"\${ruby} ${RED}✘ ${RESET}}\"
     fi
 
     prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
 
     if [[ \$status = \"0\" ]] ; then
-      prompt=\"\[$Green\]\${leader}\[$Reset\]\${prompt}\n\[$Green\]\${trailer}\[$Reset\]\"
+      prompt=\"${GREEN}\${leader}${RESET}\${prompt}\n${GREEN}\${trailer}${RESET}\"
     else
-      prompt=\"\[$Red\]\${leader}\[$Reset\]\${prompt}\n\[$Red\]\${trailer}\[$Reset\]\"
+      prompt=\"${RED}\${leader}${RESET}\${prompt}\n${RED}\${trailer}${RESET}\"
     fi
 
     echo -e \"\${prompt}\"
@@ -90,6 +87,6 @@ if [ "$PS1" ] ; then
   PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"'
 fi
 
-if [[ -a $HOME/.bashrc ]] ; then source $HOME/.bashrc ; fi
+if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 
 # EOF

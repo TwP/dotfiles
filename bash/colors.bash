@@ -1,14 +1,14 @@
 
 # Reset
-Reset='\e[0m'           # Text Reset
+RESET='\[\e[0m\]'           # Text Reset
 
 # Regular Colors
-Black='\e[0;30m'        # Black
-Red='\e[0;31m'          # Red
-Green='\e[0;32m'        # Green
-Yellow='\e[0;33m'       # Yellow
-Blue='\e[0;34m'         # Blue
-Magenta='\e[0;35m'      # Magenta
-Cyan='\e[0;36m'         # Cyan
-White='\e[0;37m'        # White
+BLACK='\[\e[0;30m\]'        # Black
+RED='\[\e[0;31m\]'          # Red
+GREEN='\[\e[0;32m\]'        # Green
+YELLOW='\[\e[0;33m\]'       # Yellow
+BLUE='\[\e[0;34m\]'         # Blue
+MAGENTA='\[\e[0;35m\]'      # Magenta
+CYAN='\[\e[0;36m\]'         # Cyan
+WHITE='\[\e[0;37m\]'        # White
 

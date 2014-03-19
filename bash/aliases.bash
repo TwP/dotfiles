@@ -36,97 +36,99 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 alias nb='cd ~/Dropbox/Tim/notebook'
 
 function stuff {
-    if [ -z "$1" ]; then
-        echo "Usage: stuff [folder]"
-        echo "  Compress the given 'folder' into a gzipped tar archive"
-        return 1
-    fi
+  if [ -z "$1" ]; then
+    echo "Usage: stuff [folder]"
+    echo "  Compress the given 'folder' into a gzipped tar archive"
+    return 1
+  fi
 
-    if [ -f "$1.tgz" ]; then
-        echo "  Stuffed file '$1.tgz' already exists"
-        return 1
-    else
-        echo "  Creating '$1.tar'"
-        tar -cvf "$1.tar" "$1"
-        echo "  Compressing '$1.tar'"
-        gzip -9 "$1.tar"
-        mv "$1.tar.gz" "$1.tgz"
-        echo "  Created '$1.tgz'"
-    fi
+  if [ -f "$1.tgz" ]; then
+    echo "  Stuffed file '$1.tgz' already exists"
+    return 1
+  else
+    echo "  Creating '$1.tar'"
+    tar -cvf "$1.tar" "$1"
+    echo "  Compressing '$1.tar'"
+    gzip -9 "$1.tar"
+    mv "$1.tar.gz" "$1.tgz"
+    echo "  Created '$1.tgz'"
+  fi
 }
 
 function ql {
-    qlmanage -p "$@" & pid=$!
-    read -sn1
-    kill $pid; wait $pid
+  qlmanage -p "$@" & pid=$!
+  read -sn1
+  kill $pid; wait $pid
 } 2>/dev/null
 
+function psg {
+  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+}
+
 function p {
-    if [ -n "$1" ]; then
-        ps -O ppid -U $USER | grep -v grep | grep "$1"
-    else
-        ps -O ppid -U $USER
-    fi
+  if [ -n "$1" ]; then
+    ps -O ppid -U $USER | grep -v grep | grep "$1"
+  else
+    ps -O ppid -U $USER
+  fi
 }
 
 function pkill {
-    if [ -z "$1" ]; then
-        echo "Usage: pkill [process name]"
-        return 1
-    fi
+  if [ -z "$1" ]; then
+    echo "Usage: pkill [process name]"
+    return 1
+  fi
 
-    local pid
-    pid=$(p $1 | awk '{ print $1 }')
+  local pid
+  pid=$(p $1 | awk '{ print $1 }')
 
-    if [ -n "$pid" ]; then
-        echo -n "Killing \"$1\" (process $pid)..."
-        kill -sigkill $pid
-        echo "done."
-    else
-        echo "Process \"$1\" not found."
-    fi
+  if [ -n "$pid" ]; then
+    echo -n "Killing \"$1\" (process $pid)..."
+    kill -sigkill $pid
+    echo "done."
+  else
+    echo "Process \"$1\" not found."
+  fi
 }
 
 function pint {
-    if [ -z "$1" ]; then
-        echo "Usage: pint [process name]"
-        return 1
-    fi
+  if [ -z "$1" ]; then
+    echo "Usage: pint [process name]"
+    return 1
+  fi
 
-    local pid
-    pid=$(p $1 | awk '{ print $1 }')
+  local pid
+  pid=$(p $1 | awk '{ print $1 }')
 
-    if [ -n "$pid" ]; then
-        echo -n "Sending INT to \"$1\" (process $pid)..."
-        kill -sigint $pid
-        echo "done."
-    else
-        echo "Process \"$1\" not found."
-    fi
+  if [ -n "$pid" ]; then
+    echo -n "Sending INT to \"$1\" (process $pid)..."
+    kill -sigint $pid
+    echo "done."
+  else
+    echo "Process \"$1\" not found."
+  fi
 }
 
 function findr {
-    find . -name '*.rb' -print0 | xargs -0 grep "$*"
+  find . -name '*.rb' -print0 | xargs -0 grep "$*"
 }
 
 # from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
 function v {
-    if [ $# == 0 ] ; then
-      mvim
-    else
-      mvim --servername $(basename $(pwd)) \
-           --remote-tab-silent "$@" 1>/dev/null 2>&1
-    fi
+  if [ $# == 0 ] ; then
+    mvim
+  else
+    mvim --servername $(basename $(pwd)) \
+         --remote-tab-silent "$@" 1>/dev/null 2>&1
+  fi
 }
-
-function g { cd ~/GitHub/$@; }
 
 # These are some functions that are useful for dealing with git branches
 # ----------------------------------------------------------------------
 
 # This function returns the name of the current git branch
 function gitb {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 # This function updates the current branch with the latest changes from the
@@ -143,15 +145,15 @@ function gitb {
 #   git rebase master
 #
 function gitu {
-    branch=`gitb`
-    if [ "$branch" != "master" ]; then
-        git checkout master
-    fi
-    git pull --rebase
-    if [ "$branch" != "master" ]; then
-        git checkout "$branch"
-        git rebase master
-    fi
+  branch=`gitb`
+  if [ "$branch" != "master" ]; then
+    git checkout master
+  fi
+  git pull --rebase
+  if [ "$branch" != "master" ]; then
+    git checkout "$branch"
+    git rebase master
+  fi
 }
 
 # This function pushes the changes from the current branch up to the origin
@@ -169,15 +171,15 @@ function gitu {
 #   git checkout $branch
 #
 function gitp {
-    branch=`gitb`
-    if [ "$branch" != "master" ]; then
-        git checkout master
-        git rebase "$branch"
-    fi
-    git push
-    if [ "$branch" != "master" ]; then
-        git checkout "$branch"
-    fi
+  branch=`gitb`
+  if [ "$branch" != "master" ]; then
+    git checkout master
+    git rebase "$branch"
+  fi
+  git push
+  if [ "$branch" != "master" ]; then
+    git checkout "$branch"
+  fi
 }
 
 # This function calls the "gitu" and the "gitp" functions in succession. This
@@ -187,7 +189,7 @@ function gitp {
 # linear.
 #
 function gitup {
-    gitu
-    gitp
+  gitu
+  gitp
 }
 
