@@ -67,7 +67,7 @@ function psg {
 
 function p {
   if [ -n "$1" ]; then
-    ps -O ppid -U $USER | grep -v grep | grep "$1"
+    ps -O ppid -U $USER | grep "$1" | grep -v grep
   else
     ps -O ppid -U $USER
   fi
