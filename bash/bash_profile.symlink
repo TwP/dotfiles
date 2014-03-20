@@ -26,7 +26,7 @@ if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"
 fi
 
-for file in $DOTS/*.bash $DOTS/**/*.bash; do
+for file in `find $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'`; do
   if [ -f $file ]; then
     source $file
   fi
