@@ -3,7 +3,6 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
-export DROPBOX="$HOME/Dropbox/Tim/dotfiles"
 
 # ==== PATH setup ====
 [ -d $DOTS ] && PATH="$DOTS/bin:$PATH"
@@ -27,7 +26,7 @@ if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"
 fi
 
-for file in $DOTS/*.bash $DOTS/**/*.bash $DROPBOX/*.bash; do
+for file in $DOTS/*.bash $DOTS/**/*.bash; do
   if [ -f $file ]; then
     source $file
   fi
