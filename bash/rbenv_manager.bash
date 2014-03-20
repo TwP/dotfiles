@@ -68,7 +68,7 @@ function rbenv_manager {
   local version=${1:-}
 
   if [ "$version" == "--help" -o "$version" == "-h" ]; then
-    echo "usage: rbenv_manager <version>|reset|show"
+    echo "usage: rbenv_manager <version>|reset|show|versions"
     echo
     echo "  Switches gem home to a local vendor directory."
     echo "  The 'default' option uses the global rbenv ruby version."
@@ -85,6 +85,10 @@ function rbenv_manager {
     rbenv_manager_reset
     return
 
+  elif [ "$version" == "versions" ]; then
+    rbenv versions
+    return
+
   else
     if [ -z "$version" ]; then
       unset RBENV_VERSION
@@ -93,10 +97,14 @@ function rbenv_manager {
     fi
 
     rbenv_manager_setup
-
-    if [ -x "script/bootstrap" ]; then
-      ./script/bootstrap
-    fi
   fi
 }
+
+function _rbm() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local rubies=$(rbenv completions global "$cur")
+  COMPREPLY=( $(compgen -W "$rubies" -- "$cur") )
+}
+
 alias rbm=rbenv_manager
+complete -F _rbm rbm
