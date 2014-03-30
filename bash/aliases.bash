@@ -35,6 +35,8 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 
 alias nb='cd ~/Dropbox/Tim/notebook'
 
+alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activities/2014/'
+
 function stuff {
   if [ -z "$1" ]; then
     echo "Usage: stuff [folder]"
