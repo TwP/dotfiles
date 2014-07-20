@@ -17,7 +17,7 @@ export HISTCONTROL=ignoredups;
 export HISTSIZE=10000;
 shopt -s histappend; # append not rewrite history
 
-export JAVA_HOME=/Library/Java/Home
+export JAVA_HOME=`/usr/libexec/java_home`
 
 if [ -f /opt/boxen/env.sh ] ; then source /opt/boxen/env.sh ; fi
 
