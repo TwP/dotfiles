@@ -19,8 +19,6 @@ shopt -s histappend; # append not rewrite history
 
 export JAVA_HOME=`/usr/libexec/java_home`
 
-export GOPATH="$HOME/work/gocode"
-
 if [ -f /opt/boxen/env.sh ] ; then source /opt/boxen/env.sh ; fi
 
 # autocompletion options
