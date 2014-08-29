@@ -5,7 +5,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 set rtp+=$GOROOT/misc/vim
-call vundle#rc()
+call vundle#begin()
 
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -16,240 +16,25 @@ Bundle 'tpope/vim-surround'
 " Bundle 'tpope/vim-rails'
 " Bundle 'tpope/vim-rake'
 " Bundle 'Lokaltog/vim-powerline'
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'edsono/vim-matchit'
 Bundle 'kien/ctrlp.vim'
+Bundle 'zerowidth/vim-copy-as-rtf'
 " Bundle 'rking/ag.vim'
 " Bundle 'kana/vim-textobj-user'
 " Bundle 'nelstrom/vim-textobj-rubyblock'
 " Bundle 'slim-template/vim-slim'
 
 "load ftplugins and indent files
+call vundle#end()
 filetype plugin indent on
 
-"allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-"store lots of :cmdline history
-set history=1000
-
-set showcmd     "show incomplete cmds down the bottom
-set showmode    "show current mode down the bottom
-
-set incsearch   "find the next match as we type the search
-set hlsearch    "hilight searches by default
-
-set nowrap      "dont wrap lines
-set linebreak   "wrap lines at convenient points
-
-"statusline setup
-set statusline=%f       "tail of the filename
-
-"display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
-
-"display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
-
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
-
-"display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
-
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-
-set statusline+=%{StatuslineLongLineWarning()}
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-set statusline+=%=      "left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-set laststatus=2
-
-"recalculate the trailing whitespace warning when idle, and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-
-"return '[\s]' if trailing white space is detected
-"return '' otherwise
-function! StatuslineTrailingSpaceWarning()
-    if !exists("b:statusline_trailing_space_warning")
-
-        if !&modifiable
-            let b:statusline_trailing_space_warning = ''
-            return b:statusline_trailing_space_warning
-        endif
-
-        if search('\s\+$', 'nw') != 0
-            let b:statusline_trailing_space_warning = '[\s]'
-        else
-            let b:statusline_trailing_space_warning = ''
-        endif
-    endif
-    return b:statusline_trailing_space_warning
-endfunction
-
-
-"return the syntax highlight group under the cursor ''
-function! StatuslineCurrentHighlight()
-    let name = synIDattr(synID(line('.'),col('.'),1),'name')
-    if name == ''
-        return ''
-    else
-        return '[' . name . ']'
-    endif
-endfunction
-
-"recalculate the tab warning flag when idle and after writing
-autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
-
-"return '[&et]' if &et is set wrong
-"return '[mixed-indenting]' if spaces and tabs are used to indent
-"return an empty string if everything is fine
-function! StatuslineTabWarning()
-    if !exists("b:statusline_tab_warning")
-        let b:statusline_tab_warning = ''
-
-        if !&modifiable
-            return b:statusline_tab_warning
-        endif
-
-        let tabs = search('^\t', 'nw') != 0
-
-        "find spaces that arent used as alignment in the first indent column
-        let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
-
-        if tabs && spaces
-            let b:statusline_tab_warning =  '[mixed-indenting]'
-        elseif (spaces && !&et) || (tabs && &et)
-            let b:statusline_tab_warning = '[&et]'
-        endif
-    endif
-    return b:statusline_tab_warning
-endfunction
-
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
-"return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
-"
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-function! StatuslineLongLineWarning()
-    if !exists("b:statusline_long_line_warning")
-
-        if !&modifiable
-            let b:statusline_long_line_warning = ''
-            return b:statusline_long_line_warning
-        endif
-
-        let long_line_lens = s:LongLines()
-
-        if len(long_line_lens) > 0
-            let b:statusline_long_line_warning = "[" .
-                        \ '#' . len(long_line_lens) . "," .
-                        \ 'm' . s:Median(long_line_lens) . "," .
-                        \ '$' . max(long_line_lens) . "]"
-        else
-            let b:statusline_long_line_warning = ""
-        endif
-    endif
-    return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-    let threshold = (&tw ? &tw : 80)
-    let spaces = repeat(" ", &ts)
-
-    let long_line_lens = []
-
-    let i = 1
-    while i <= line("$")
-        let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-        if len > threshold
-            call add(long_line_lens, len)
-        endif
-        let i += 1
-    endwhile
-
-    return long_line_lens
-endfunction
-
-"find the median of the given array of numbers
-function! s:Median(nums)
-    let nums = sort(a:nums)
-    let l = len(nums)
-
-    if l % 2 == 1
-        let i = (l-1) / 2
-        return nums[i]
-    else
-        return (nums[l/2] + nums[(l/2)-1]) / 2
-    endif
-endfunction
-
-"indent settings
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set autoindent
-
-"folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
-
-set wildmode=list:longest   "make cmdline tab completion similar to bash
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-
-"display tabs and trailing spaces
-set list
-set listchars=tab:»·,trail:·,nbsp:⋅
-
-set formatoptions-=o "dont continue comments when pushing o/O
-
-"vertical/horizontal scroll off settings
-set scrolloff=3
-set sidescrolloff=7
-set sidescroll=1
-
-"turn on syntax highlighting
-syntax on
-
-"some stuff to get the mouse going in term
-set mouse=a
-set ttymouse=xterm2
-
-"tell the term has 256 colors
-set t_Co=256
-
-"hide buffers when not displayed
-set hidden
+source $HOME/.vim/settings/basic.vim
+source $HOME/.vim/settings/statusline.vim
 
 "map to bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
@@ -306,11 +91,6 @@ noremap <D-R> :NERDTreeFind<CR>
 noremap <D-i> :TlistToggle<CR>
 nnoremap <D-8> :nohls<CR>
 inoremap <D-8> <C-o>:nohls<CR>
-set number
-
-colorscheme molokai
-set nobackup
-set dir=$TEMP
 
 let g:fuzzy_ignore = "gems*;pkg/*"
 let g:NERDSpaceDelims = 1
@@ -354,12 +134,6 @@ map <C-right> <C-w>L
 nnoremap <D-Esc> :set invfullscreen<CR>
 inoremap <D-Esc> <C-O>:set invfullscreen<CR>
 
-" set up word wrap stuff
-set wrap
-set linebreak
-set textwidth=78
-set wrapmargin=78
-
 " from http://pastie.org/359759 / evan phoenix
 function! CleverTab()
     if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
@@ -376,27 +150,5 @@ let g:html_number_lines=0
 " and to use a reasonable font
 let g:html_font="Andale Mono"
 
-" from https://gist.github.com/1096346 / nathan witmer
-"
-" copy the entire buffer or selected text as RTF
-" inspired by https://github.com/dharanasoft/rtf-highlight
-" but only uses commands available by default on OS X.
-"
-" To set html conversion options, :help TOhtml
-" And, undocumented, to set the font used,
-" let g:html_font="Your Preferred Font"
-"
-function! CopyRTF(line1,line2)
-  if !executable('textutil')
-    echoerr "crap! textutil not found"
-    return
-  endif
-
-  call tohtml#Convert2HTML(a:line1, a:line2)
-  silent exe "%!textutil -convert rtf -stdin -stdout | pbcopy"
-  silent bd!
-
-  echomsg "RTF copied to clipboard"
-endfunction
-
-command! -range=% CopyRTF :call CopyRTF(<line1>,<line2>)
+""" Disable folding in markdown files
+let g:vim_markdown_folding_disabled=1
