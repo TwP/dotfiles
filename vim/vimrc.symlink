@@ -36,18 +36,7 @@ filetype plugin indent on
 source $HOME/.vim/settings/basic.vim
 source $HOME/.vim/settings/editing.vim
 source $HOME/.vim/settings/statusline.vim
-source $HOME/.vim/settings/misc.vim
 source $HOME/.vim/settings/plugins.vim
-
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    end
-endfunction
+source $HOME/.vim/settings/autocommands.vim
+source $HOME/.vim/settings/misc.vim
 
