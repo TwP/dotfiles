@@ -105,6 +105,31 @@ imap <D-8> <Esc>8gt
 map  <D-9> 9gt
 imap <D-9> <Esc>9gt
 
+""" tab movement setup, via ara howard
+
+function TabMove(n)
+    let nr = tabpagenr()
+    let size = tabpagenr('$')
+    " do we want to go left?
+    if (a:n != 0)
+        let nr = nr - 2
+    endif
+    " crossed left border?
+    if (nr < 0)
+        let nr = size-1
+        " crossed right border?
+    elseif (nr == size)
+        let nr = 0
+    endif
+    " fire move command
+    exec 'tabm'.nr
+endfunction
+
+map <Leader>m gT
+map <Leader>. gt
+map <C-Left> :call TabMove(1)<CR>
+map <C-Right> :call TabMove(0)<CR>
+
 """ make the tab key a bit smarter
 
 " from http://pastie.org/359759 / evan phoenix
@@ -116,3 +141,24 @@ function! CleverTab()
 endfunction
 inoremap <Tab> <C-r>=CleverTab()<CR>
 
+""" from http://coderwall.com/p/zfqmiw
+
+" Fake '|' as text object
+nnoremap di\| T\|d,
+nnoremap da\| F\|d,
+nnoremap ci\| T\|c,
+nnoremap ca\| F\|c,
+nnoremap yi\| T\|y,
+nnoremap ya\| F\|y,
+nnoremap vi\| T\|v,
+nnoremap va\| F\|v,
+
+" Fake '/' as text object
+nnoremap di/ T/d,
+nnoremap da/ F/d,
+nnoremap ci/ T/c,
+nnoremap ca/ F/c,
+nnoremap yi/ T/y,
+nnoremap ya/ F/y,
+nnoremap vi/ T/v,
+nnoremap va/ F/v,

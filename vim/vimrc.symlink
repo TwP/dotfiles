@@ -36,12 +36,8 @@ filetype plugin indent on
 source $HOME/.vim/settings/basic.vim
 source $HOME/.vim/settings/editing.vim
 source $HOME/.vim/settings/statusline.vim
-
-"map to bufexplorer
-nnoremap <C-B> :BufExplorer<cr>
-
-"mark syntax errors with :signs
-let g:syntastic_enable_signs=1
+source $HOME/.vim/settings/misc.vim
+source $HOME/.vim/settings/plugins.vim
 
 "jump to last cursor position when opening a file
 "dont do it when writing a commit log entry
@@ -55,42 +51,3 @@ function! SetCursorPosition()
     end
 endfunction
 
-"define :HighlightLongLines command to highlight the offending parts of
-"lines that are longer than the specified length (defaulting to 80)
-command! -nargs=? HighlightLongLines call s:HighlightLongLines('<args>')
-function! s:HighlightLongLines(width)
-    let targetWidth = a:width != '' ? a:width : 79
-    if targetWidth > 0
-        exec 'match Todo /\%>' . (targetWidth) . 'v/'
-    else
-        echomsg "Usage: HighlightLongLines [natural number]"
-    endif
-endfunction
-
-" from aniero http://gist.github.com/179452
-noremap <D-r> :NERDTreeToggle<CR>
-noremap <D-R> :NERDTreeFind<CR>
-noremap <D-i> :TlistToggle<CR>
-
-let g:fuzzy_ignore = "gems*;pkg/*"
-let g:NERDSpaceDelims = 1
-
-let NERDTreeChDirMode=2 " auto-change CWD when changing tree root
-
-let g:user_zen_settings = {
-\    'indentation' : '  '
-\}
-
-command! Nt  :NERDTreeToggle
-command! Ntm :NERDTreeMirror
-command! Tl  :TlistToggle
-
-" ----- syntax copying for presentations -----
-
-" tell TOhtml to disable line numbering when generating HTML
-let g:html_number_lines=0
-" and to use a reasonable font
-let g:html_font="Andale Mono"
-
-""" Disable folding in markdown files
-let g:vim_markdown_folding_disabled=1
