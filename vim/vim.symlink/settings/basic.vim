@@ -88,7 +88,7 @@ set dir=$TEMP " swapfile location
 
 """ command line editing
 
-set history=1000 " store lots of :cmdline history, defaults to 20
+set history=1000 " store lots of :cmdline history
 
 """ folding settings
 
@@ -114,7 +114,7 @@ set wildignore+=*.swp,*~,._*
 set mouse=a
 set ttymouse=xterm2
 
-"tell the term has 256 colors
+"tell the term it has 256 colors
 set t_Co=256
 
 colorscheme molokai

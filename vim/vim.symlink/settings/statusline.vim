@@ -1,3 +1,4 @@
+""" statusline from scrooloose/vimfiles
 
 "statusline setup
 set statusline=%f       "tail of the filename

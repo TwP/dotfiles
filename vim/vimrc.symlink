@@ -34,30 +34,14 @@ call vundle#end()
 filetype plugin indent on
 
 source $HOME/.vim/settings/basic.vim
+source $HOME/.vim/settings/editing.vim
 source $HOME/.vim/settings/statusline.vim
 
 "map to bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
 
-"map Q to something useful
-noremap Q gq
-
-"make Y consistent with C and D
-nnoremap Y y$
-
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
-
-"visual search mappings
-function! s:VSetSearch()
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
-
 
 "jump to last cursor position when opening a file
 "dont do it when writing a commit log entry
@@ -83,14 +67,10 @@ function! s:HighlightLongLines(width)
     endif
 endfunction
 
-let mapleader = ','
-
 " from aniero http://gist.github.com/179452
 noremap <D-r> :NERDTreeToggle<CR>
 noremap <D-R> :NERDTreeFind<CR>
 noremap <D-i> :TlistToggle<CR>
-nnoremap <D-8> :nohls<CR>
-inoremap <D-8> <C-o>:nohls<CR>
 
 let g:fuzzy_ignore = "gems*;pkg/*"
 let g:NERDSpaceDelims = 1
@@ -101,47 +81,9 @@ let g:user_zen_settings = {
 \    'indentation' : '  '
 \}
 
-function! WhitespaceCleanup() range
-    "Step through each line in the range...
-    for linenum in range(a:firstline, a:lastline)
-        let line = getline(linenum)
-        let line = substitute(line, '\s\+$', '', '')
-        let line = substitute(line, '\t', '  ', 'g')
-        call setline(linenum, line)
-    endfor
-
-    if a:lastline > a:firstline
-        echo "Whitespace cleanup for" (a:lastline - a:firstline + 1) "lines"
-    endif
-endfunction
-
-command! Tr  :1,$call WhitespaceCleanup()
 command! Nt  :NERDTreeToggle
 command! Ntm :NERDTreeMirror
 command! Tl  :TlistToggle
-
-" move between splits
-map <C-j> <C-w>j<C-w>_
-map <C-k> <C-w>k<C-w>_
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-_> <C-w>_
-map <C-up> <C-w>K
-map <C-down> <C-w>J
-map <C-left> <C-w>H
-map <C-right> <C-w>L
-
-nnoremap <D-Esc> :set invfullscreen<CR>
-inoremap <D-Esc> <C-O>:set invfullscreen<CR>
-
-" from http://pastie.org/359759 / evan phoenix
-function! CleverTab()
-    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        return "\<C-N>"
-endfunction
-inoremap <Tab> <C-r>=CleverTab()<CR>
 
 " ----- syntax copying for presentations -----
 

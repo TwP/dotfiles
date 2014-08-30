@@ -14,4 +14,7 @@ if has("gui_macvim")
   nnoremap <M-Left>  :vertical resize -5<CR>
   nnoremap <M-Up>    :resize -5<CR>
   nnoremap <M-Down>  :resize +5<CR>
+
+  " disable MacVim shortcuts
+  macmenu Tools.List\ Errors key=<nop>
 endif
