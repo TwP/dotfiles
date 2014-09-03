@@ -55,8 +55,8 @@ map <leader>tn :tabnew<CR>
 
 """ moving quickly between splits
 
-map <C-j> <C-w>j<C-w>_
-map <C-k> <C-w>k<C-w>_
+map <C-j> <C-w>j
+map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
 
@@ -107,7 +107,7 @@ imap <D-9> <Esc>9gt
 
 """ tab movement setup, via ara howard
 
-function TabMove(n)
+function! TabMove(n)
     let nr = tabpagenr()
     let size = tabpagenr('$')
     " do we want to go left?
