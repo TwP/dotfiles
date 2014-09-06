@@ -1,129 +1,52 @@
-" .vimrc
-"
-" from aniero http://gist.github.com/179452
+"Use Vim settings, rather then Vi settings (much better!).
+"This must be first, because it changes other options as a side effect.
+set nocompatible
+filetype off
 
-source ~/.vim/vimrc
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=$GOROOT/misc/vim
+call vundle#begin()
 
-" tell the term it has 16 colors
-if ! has("gui")
-    set t_Co=16
-    set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-    set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-else
-    set go-=T  " disable the toolbars in macvim
-    set go-=r  " disable right-hand scrollbar
-    set go-=L  " disable left-hand scrollbar
-    " set go-=e " disable graphical tabs
-    noremap <D-r> :NERDTreeToggle<CR>
-    noremap <D-R> :NERDTreeFind<CR>
-    noremap <D-i> :TlistToggle<CR>
-    nnoremap <D-8> :nohls<CR>
-    inoremap <D-8> <C-o>:nohls<CR>
-    set number
-endif
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
 
-" colorscheme pease
-colorscheme molokai
-set nobackup
-set dir=$TEMP
+""" Core
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mileszs/ack.vim'
 
-set gfn=Menlo\ Regular\:h13
+""" Editing and Moving
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'godlygeek/tabular'
+Bundle 'edsono/vim-matchit'
 
-let g:fuzzy_ignore = "gems*;pkg/*"
-let g:NERDSpaceDelims = 1
+""" Language and Syntax
+Bundle 'tpope/vim-markdown'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'joker1007/vim-ruby-heredoc-syntax'
 
-let NERDTreeChDirMode=2 " auto-change CWD when changing tree root
+""" Miscellaneous
+Bundle 'zerowidth/vim-copy-as-rtf'
 
-let g:user_zen_settings = {
-\    'indentation' : '  '
-\}
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-rake'
+" Bundle 'Lokaltog/vim-powerline'
+" Bundle 'kana/vim-textobj-user'
+" Bundle 'nelstrom/vim-textobj-rubyblock'
+" Bundle 'slim-template/vim-slim'
 
-function! WhitespaceCleanup() range
-    "Step through each line in the range...
-    for linenum in range(a:firstline, a:lastline)
-        let line = getline(linenum)
-        let line = substitute(line, '\s\+$', '', '')
-        let line = substitute(line, '\t', '  ', 'g')
-        call setline(linenum, line)
-    endfor
+"load ftplugins and indent files
+call vundle#end()
+filetype plugin indent on
 
-    if a:lastline > a:firstline
-        echo "Whitespace cleanup for" (a:lastline - a:firstline + 1) "lines"
-    endif
-endfunction
+source $HOME/.vim/settings/basic.vim
+source $HOME/.vim/settings/editing.vim
+source $HOME/.vim/settings/statusline.vim
+source $HOME/.vim/settings/plugins.vim
+source $HOME/.vim/settings/autocommands.vim
+source $HOME/.vim/settings/misc.vim
 
-command! Tr  :1,$call WhitespaceCleanup()
-command! Nt  :NERDTreeToggle
-command! Ntm :NERDTreeMirror
-command! Tl  :TlistToggle
-
-" move between splits
-map <C-j> <C-w>j<C-w>_
-map <C-k> <C-w>k<C-w>_
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-_> <C-w>_
-map <C-up> <C-w>K
-map <C-down> <C-w>J
-map <C-left> <C-w>H
-map <C-right> <C-w>L
-
-nnoremap <D-Esc> :set invfullscreen<CR>
-inoremap <D-Esc> <C-O>:set invfullscreen<CR>
-
-" set up word wrap stuff
-set wrap
-set linebreak
-set textwidth=78
-set wrapmargin=78
-
-" from http://pastie.org/359759 / evan phoenix
-function! CleverTab()
-    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        return "\<C-N>"
-endfunction
-inoremap <Tab> <C-r>=CleverTab()<CR>
-
-" sparkup configuration
-let g:sparkupExecuteMapping = '<C-e>'
-let g:sparkupNextMapping = '<C-x>'
-
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
-" ----- syntax copying for presentations -----
-
-" tell TOhtml to disable line numbering when generating HTML
-let g:html_number_lines=0
-" and to use a reasonable font
-let g:html_font="Andale Mono"
-
-" from https://gist.github.com/1096346 / nathan witmer
-"
-" copy the entire buffer or selected text as RTF
-" inspired by https://github.com/dharanasoft/rtf-highlight
-" but only uses commands available by default on OS X.
-"
-" To set html conversion options, :help TOhtml
-" And, undocumented, to set the font used,
-" let g:html_font="Your Preferred Font"
-"
-function! CopyRTF(line1,line2)
-  if !executable('textutil')
-    echoerr "crap! textutil not found"
-    return
-  endif
-
-  call tohtml#Convert2HTML(a:line1, a:line2)
-  silent exe "%!textutil -convert rtf -stdin -stdout | pbcopy"
-  silent bd!
-
-  echomsg "RTF copied to clipboard"
-endfunction
-
-command! -range=% CopyRTF :call CopyRTF(<line1>,<line2>)
-
-" EOF
