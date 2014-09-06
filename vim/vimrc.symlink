@@ -10,21 +10,31 @@ call vundle#begin()
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-" My Bundles
+""" Core
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mileszs/ack.vim'
+
+""" Editing and Moving
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'godlygeek/tabular'
+Bundle 'edsono/vim-matchit'
+
+""" Language and Syntax
+Bundle 'tpope/vim-markdown'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'joker1007/vim-ruby-heredoc-syntax'
+
+""" Miscellaneous
+Bundle 'zerowidth/vim-copy-as-rtf'
+
 " Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-rails'
 " Bundle 'tpope/vim-rake'
 " Bundle 'Lokaltog/vim-powerline'
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'edsono/vim-matchit'
-Bundle 'kien/ctrlp.vim'
-Bundle 'zerowidth/vim-copy-as-rtf'
-" Bundle 'rking/ag.vim'
 " Bundle 'kana/vim-textobj-user'
 " Bundle 'nelstrom/vim-textobj-rubyblock'
 " Bundle 'slim-template/vim-slim'
