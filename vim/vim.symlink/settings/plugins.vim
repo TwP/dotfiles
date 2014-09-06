@@ -1,7 +1,4 @@
 
-"map to bufexplorer
-nnoremap <C-B> :BufExplorer<cr>
-
 """ NERDTree
 
 " auto-change CWD when changing tree root
@@ -29,8 +26,7 @@ let g:syntastic_enable_signs=1
 " from aniero http://gist.github.com/179452
 let g:fuzzy_ignore = "gems*;pkg/*"
 
-" ----- syntax copying for presentations -----
-
+""" copy-as-rtf/TOhtml
 " tell TOhtml to disable line numbering when generating HTML
 let g:html_number_lines=0
 " and to use a reasonable font
@@ -43,5 +39,5 @@ let g:markdown_fenced_languages = ['coffee', 'css', 'sass', 'ruby', 'erb=eruby',
 " use the sliver searcher
 let g:ackprg = 'ag --nogroup --nocolor --column --line-numbers'
 nnoremap \ :new<CR>:Ack<space>-i<space>
-nnoremap <C-a> :Ack "\b<C-R><C-W>\b"<CR>:cw<CR>
-vnoremap <C-a> "hy:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
+nnoremap <C-s> :Ack "\b<C-R><C-W>\b"<CR>:cw<CR>
+vnoremap <C-s> "hy:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
