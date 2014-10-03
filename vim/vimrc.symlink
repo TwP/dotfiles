@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-fugitive'
 
 """ Editing and Moving
 Bundle 'scrooloose/nerdcommenter'
@@ -31,7 +32,6 @@ Bundle 'joker1007/vim-ruby-heredoc-syntax'
 """ Miscellaneous
 Bundle 'zerowidth/vim-copy-as-rtf'
 
-" Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-rails'
 " Bundle 'tpope/vim-rake'
 " Bundle 'Lokaltog/vim-powerline'
