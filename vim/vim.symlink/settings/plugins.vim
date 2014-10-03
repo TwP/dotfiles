@@ -38,6 +38,12 @@ let g:markdown_fenced_languages = ['coffee', 'css', 'sass', 'ruby', 'erb=eruby',
 """ ack.vim
 " use the sliver searcher
 let g:ackprg = 'ag --nogroup --nocolor --column --line-numbers'
-nnoremap \ :new<CR>:Ack<space>-i<space>
 nnoremap <C-s> :Ack "\b<C-R><C-W>\b"<CR>:cw<CR>
 vnoremap <C-s> "hy:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
+map <leader>s :new<CR>:Ack<space>
+vmap <leader>s "hy:new<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
+map <leader>ts :tabnew<CR>:Ack<space>
+vmap <leader>ts "hy:tabnew<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
+map <leader>vs :vnew<CR>:Ack<space>
+vmap <leader>vs "hy:vnew<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
+
