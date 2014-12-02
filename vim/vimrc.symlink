@@ -23,6 +23,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
 Bundle 'edsono/vim-matchit'
+Bundle 'SirVer/ultisnips'
 
 """ Language and Syntax
 Bundle 'tpope/vim-markdown'
