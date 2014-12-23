@@ -125,6 +125,14 @@ function v {
   fi
 }
 
+# from Nathan Witmer
+alias scan-ssh='dns-sd -B _ssh._tcp'
+
+function ssh-setup {
+  ssh $1 'mkdir -p -m 700 .ssh; touch .ssh/authorized_keys; chmod 600 .ssh/authorized_keys';
+  cat ~/.ssh/id_rsa.pub | ssh $1 'cat - >> ~/.ssh/authorized_keys'
+}
+
 # These are some functions that are useful for dealing with git branches
 # ----------------------------------------------------------------------
 
