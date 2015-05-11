@@ -29,6 +29,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'joker1007/vim-ruby-heredoc-syntax'
+Bundle 'fatih/vim-go'
 
 """ Miscellaneous
 Bundle 'zerowidth/vim-copy-as-rtf'
