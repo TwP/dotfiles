@@ -47,3 +47,11 @@ vmap <leader>ts "hy:tabnew<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
 map <leader>vs :vnew<CR>:Ack<space>
 vmap <leader>vs "hy:vnew<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
 
+""" fatih/vim-go
+" disable whitespace highlighting
+au FileType go set nolist
+
+au FileType go nmap <leader>t <Plug>(go-test)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
