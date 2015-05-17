@@ -4,13 +4,13 @@ snippet #! "#!/usr/bin/env ruby" b
 endsnippet
 
 snippet cla "class .. end"
-class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+class ${1:`!p snip.rv = camelcase(snip.basename)`}
 	${0}
 end
 endsnippet
 
 snippet clas "class .. initialize .. end"
-class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+class ${1:`!p snip.rv = camelcase(snip.basename)`}
 	def initialize(${2:*args})
 		${0}
 	end
@@ -18,7 +18,7 @@ end
 endsnippet
 
 snippet clas< "class .. < ParentClass .. initialize .. end"
-class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`} < ${2:ParentClass}
+class ${1:`!p snip.rv = camelcase(snip.basename)`} < ${2:ParentClass}
 	def initialize(${3:args})
 		${0}
 	end
@@ -26,13 +26,13 @@ end
 endsnippet
 
 snippet mod "module .. end"
-module ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+module ${1:`!p snip.rv = camelcase(snip.basename)`}
 	${0}
 end
 endsnippet
 
 snippet modc "module .. ClassMethods .. end"
-module ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+module ${1:`!p snip.rv = camelcase(snip.basename)`}
 	module ClassMethods
 		${0}
 	end
@@ -48,3 +48,26 @@ module ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper
 end
 endsnippet
 
+snippet sp "STDERR.puts"
+STDERR.puts ${0:${VISUAL}}
+endsnippet
+
+snippet spi "STDERR.puts inspect"
+STDERR.puts ${0:${VISUAL}}.inspect
+endsnippet
+
+snippet sputs
+STDERR.puts "\n" + "#"*80
+STDERR.puts ${0:${VISUAL}}
+STDERR.puts "#"*80
+endsnippet
+
+
+global !p
+
+import re
+
+def camelcase(s):
+	return re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), s)
+
+endglobal
