@@ -1,0 +1,50 @@
+snippet #! "#!/usr/bin/env ruby" b
+#!/usr/bin/env ruby
+# encoding: utf-8
+endsnippet
+
+snippet cla "class .. end"
+class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+	${0}
+end
+endsnippet
+
+snippet clas "class .. initialize .. end"
+class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+	def initialize(${2:*args})
+		${0}
+	end
+end
+endsnippet
+
+snippet clas< "class .. < ParentClass .. initialize .. end"
+class ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`} < ${2:ParentClass}
+	def initialize(${3:args})
+		${0}
+	end
+end
+endsnippet
+
+snippet mod "module .. end"
+module ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+	${0}
+end
+endsnippet
+
+snippet modc "module .. ClassMethods .. end"
+module ${1:`!p snip.rv = re.sub(r'(?:_|^)([a-zA-Z])', lambda m: m.group(1).upper(), snip.basename)`}
+	module ClassMethods
+		${0}
+	end
+
+	module InstanceMethods
+
+	end
+
+	def self.included(other)
+		other.extend(ClassMethods)
+		other.send(:include, InstanceMethods)
+	end
+end
+endsnippet
+

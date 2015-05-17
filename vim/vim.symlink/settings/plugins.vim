@@ -50,6 +50,8 @@ vmap <leader>vs "hy:vnew<CR>:Ack "<C-r>=escape(@h,'./"*()[]?')<CR>"<CR>
 """ neitanod/vim-clevertab
 " override ultisnips use of the <tab> key
 let g:UltiSnipsExpandTrigger = '<F10>'
+xnoremap <silent><tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+
 " use the keyword first completion strategy
 inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
                       \<c-r>=CleverTab#Complete('tab')<cr>
