@@ -3,6 +3,22 @@ snippet #! "#!/usr/bin/env ruby" b
 # encoding: utf-8
 endsnippet
 
+snippet def "def .. end"
+def ${1:method}
+	${0}
+end
+endsnippet
+
+snippet defr "def .. rescue .. end"
+def ${1:method}
+	${0}
+rescue StandardError => err
+	
+ensure
+	
+end
+endsnippet
+
 snippet cla "class .. end"
 class ${1:`!p snip.rv = camelcase(snip.basename)`}
 	${0}
