@@ -11,5 +11,16 @@ function! s:HighlightLongLines(width)
   endif
 endfunction
 
-" http://lyonheart.us/articles/making-vim-open-the-thing-under-the-cursor/
-nnoremap <silent><Leader>o :!open -g <cWORD><CR><CR>
+noremap <silent><Leader>o :call OpenTheThingUnderTheCursor()<CR>
+function OpenTheThingUnderTheCursor()
+  let view = winsaveview()
+  let @0 = ''
+
+  execute 'normal yib'
+  if '' == @0
+    execute 'normal yiW'
+  endif
+
+  call winrestview(view)
+  exec '!open -g ' . @0
+endfunction
