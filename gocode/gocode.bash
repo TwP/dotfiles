@@ -3,6 +3,10 @@
 
 export GOPATH="$HOME/work/gocode"
 
+# ==== PATH setup ====
+[ -d $GOPATH ] && PATH="$GOPATH/bin:$PATH"
+export PATH
+
 function goto() {
   if [ -n "$1" ]; then
     cd ${GOPATH}/src/$1
