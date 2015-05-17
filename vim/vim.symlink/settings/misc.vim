@@ -12,7 +12,7 @@ function! s:HighlightLongLines(width)
 endfunction
 
 """ open the text under the cursor
-" if the text is a URL, then it will be opeend in the default browser
+" if the text is a URL, then it will be opened in the default browser
 noremap <silent><Leader>o :call OpenTheThingUnderTheCursor()<CR>
 function OpenTheThingUnderTheCursor()
   " save cursor state and clear register 0
