@@ -11,16 +11,24 @@ function! s:HighlightLongLines(width)
   endif
 endfunction
 
+""" open the text under the cursor
+" if the text is a URL, then it will be opeend in the default browser
 noremap <silent><Leader>o :call OpenTheThingUnderTheCursor()<CR>
 function OpenTheThingUnderTheCursor()
+  " save cursor state and clear register 0
   let view = winsaveview()
   let @0 = ''
 
+  " yank the inner block of text between parens
   execute 'normal yib'
   if '' == @0
+    " if that returned nothing than yank between whitespace
     execute 'normal yiW'
   endif
 
+  " restore the cursor state
   call winrestview(view)
+
+  " and now pass our text along to the `open` command
   exec '!open -g ' . @0
 endfunction
