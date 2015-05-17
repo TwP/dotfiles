@@ -130,17 +130,6 @@ map <Leader>. gt
 map <C-Left> :call TabMove(1)<CR>
 map <C-Right> :call TabMove(0)<CR>
 
-""" make the tab key a bit smarter
-
-" from http://pastie.org/359759 / evan phoenix
-function! CleverTab()
-    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-        return "\<Tab>"
-    else
-        return "\<C-N>"
-endfunction
-inoremap <Tab> <C-r>=CleverTab()<CR>
-
 """ from http://coderwall.com/p/zfqmiw
 
 " Fake '|' as text object

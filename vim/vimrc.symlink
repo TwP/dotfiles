@@ -24,6 +24,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
 Bundle 'edsono/vim-matchit'
 Bundle 'SirVer/ultisnips'
+Bundle 'neitanod/vim-clevertab'
 
 """ Language and Syntax
 Bundle 'tpope/vim-markdown'
@@ -51,4 +52,3 @@ source $HOME/.vim/settings/statusline.vim
 source $HOME/.vim/settings/plugins.vim
 source $HOME/.vim/settings/autocommands.vim
 source $HOME/.vim/settings/misc.vim
-
