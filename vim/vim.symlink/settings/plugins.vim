@@ -54,8 +54,8 @@ xnoremap <silent><tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
 
 " use the keyword first completion strategy
 inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
-                      \<c-r>=CleverTab#Complete('tab')<cr>
                       \<c-r>=CleverTab#Complete('ultisnips')<cr>
+                      \<c-r>=CleverTab#Complete('tab')<cr>
                       \<c-r>=CleverTab#Complete('keyword')<cr>
                       \<c-r>=CleverTab#Complete('omni')<cr>
                       \<c-r>=CleverTab#Complete('stop')<cr>
