@@ -5,7 +5,8 @@
 export DOTS="$HOME/.dotfiles"
 
 # ==== PATH setup ====
-[ -d $DOTS ] && PATH="$DOTS/bin:$PATH"
+[ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
+[ -d $DOTS ]          && PATH="$DOTS/bin:$PATH"
 export PATH
 
 export EDITOR=$(type -P vim || type -P vi || type -P nano)

@@ -33,6 +33,8 @@ alias scl='screen -list'
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 
+alias vi="$HOMEBREW_ROOT/bin/vim"
+
 alias nb='cd ~/Dropbox/Tim/notebook'
 
 alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activities/2015/ && diskutil unmount GARMIN'
