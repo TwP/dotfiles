@@ -9,11 +9,7 @@ export DOTS="$HOME/.dotfiles"
 [ -d $DOTS ]          && PATH="$DOTS/bin:$PATH"
 export PATH
 
-if [ -f "$HOMEBREW_ROOT/bin/vim" ]; then
-  export EDITOR="$HOMEBREW_ROOT/bim/vim"
-else
-  export EDITOR=$(type -P vim || type -P vi || type -P nano)
-fi
+export EDITOR=$(type -P vim || type -P vi || type -P nano)
 export FIGNORE=".o:DS_Store"
 export PAGER=/usr/bin/less
 export TEMP=/tmp
