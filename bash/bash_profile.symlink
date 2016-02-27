@@ -3,6 +3,7 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
+export HOMEBREW_ROOT="/usr/local"
 
 # ==== PATH setup ====
 [ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
@@ -19,8 +20,6 @@ export HISTSIZE=10000;
 shopt -s histappend; # append not rewrite history
 
 export JAVA_HOME=`/usr/libexec/java_home`
-
-if [ -f /opt/boxen/env.sh ] ; then source /opt/boxen/env.sh ; fi
 
 # autocompletion options
 if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
