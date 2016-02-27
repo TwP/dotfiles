@@ -86,6 +86,10 @@ if [ "$PS1" ] ; then
   PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"'
 fi
 
+# configure rbenv
+eval "$(rbenv init -)"
+
+# source the bashrc file
 if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 
 # EOF
