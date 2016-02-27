@@ -1,4 +1,5 @@
 tap "caskroom/cask"
+tap "github/bootstrap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "homebrew/versions"
@@ -21,8 +22,16 @@ brew "go"
 brew "graphviz"
 brew "htop-osx"
 brew "hub"
+brew "icu4c"
+brew "imagemagick"
+brew "jansson"
+brew "jemalloc"
 brew "jq"
+brew "launchdns"
+brew "libgda"
+brew "memcached"
 brew "mtr"
+brew "nginx"
 brew "nmap"
 brew "pidof"
 brew "pv"
@@ -31,34 +40,16 @@ brew "ruby-build"
 brew "rbenv"
 brew "rbenv-readline"
 brew "readline"
+brew "redis"
 brew "the_silver_searcher"
-brew "tree"
 brew "tmux"
+brew "tree"
 brew "vim"
 brew "wget"
+brew "homebrew/versions/elasticsearch17"
+brew "homebrew/versions/go13"
+brew "homebrew/versions/mysql56"
+cask "appcleaner"
 cask "macvim"
-
-# gcc
-# gnu-tar
-# gnupg
-# gpgme
-# icu4c
-# ipmitool
-# jansson
-# jbig2dec
-# jemalloc
-# launchdns
-# libgda
-# libmagic
-# libmaxminddb
-# libxmlsec1
-# md5sha1sum
-# mysql
-# nodenv
-# picocom
-# python
-# rust
-# shopify/shopify/toxiproxy
-# wireshark
 
 # vim: ft=ruby
