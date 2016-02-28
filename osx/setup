@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+COMPUTER_NAME="Nenya"
+COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
+
+RELATIVE_PATH="`dirname \"$0\"`"
+source "${RELATIVE_PATH}/colors.sh"
+
+# Output the program name and version string
+cyan "Running: $0, version 0.42"
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# where we keep our defaults
+FILES=${RELATIVE_PATH}/defaults/*
+
+for file in $FILES; do
+  echo ""
+  blue  "==================================================="
+  white " Processing $(basename $file) configuration"
+  blue  "==================================================="
+  source $file
+done
+
+echo ""
+green "All Done!"
+red   "Note: some of these changes require a logout/restart to take effect."
+
+exit 0
+
+# vim ft=sh
