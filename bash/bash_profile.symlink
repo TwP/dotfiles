@@ -4,6 +4,7 @@
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
 export HOMEBREW_ROOT="/usr/local"
+export WORK_HOME="$HOME/work"
 
 # ==== PATH setup ====
 [ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
@@ -92,4 +93,4 @@ eval "$(rbenv init -)"
 # source the bashrc file
 if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 
-# EOF
+# vim:ft=sh
