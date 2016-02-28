@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+#
+# This setup script configures defautl settings for Mac OS X. The settings are
+# found in the `defaults` folder and they are broken down by domain into several
+# files. Please read and understand the files before blindly applying to your
+# own computer.
+#
+# References
+# * https://github.com/dstroot/.osx
+# * https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# * https://gist.github.com/garethrees/2470157
+# -----------------------------------------------------------------------------
 
 COMPUTER_NAME="Nenya"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
@@ -7,7 +18,7 @@ RELATIVE_PATH="`dirname \"$0\"`"
 source "${RELATIVE_PATH}/colors.sh"
 
 # Output the program name and version string
-cyan "Running: $0, version 0.42"
+msg "Running: $0, version 0.42"
 
 # Ask for the administrator password upfront
 sudo -v
