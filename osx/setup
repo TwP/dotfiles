@@ -43,4 +43,4 @@ red   "Note: some of these changes require a logout/restart to take effect."
 
 exit 0
 
-# vim ft=sh
+# vim:ft=sh

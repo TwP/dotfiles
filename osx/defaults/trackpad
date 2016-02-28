@@ -21,4 +21,4 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 msg "Enable “natural” (Lion-style) scrolling"
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
-# vim ft=sh
+# vim:ft=sh

@@ -127,4 +127,4 @@ tell application "Finder"
 end tell
 EOD
 
-# vim ft=sh
+# vim:ft=sh

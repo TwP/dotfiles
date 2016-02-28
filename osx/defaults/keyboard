@@ -37,4 +37,4 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 # msg "Follow the keyboard focus while zoomed in"
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-# vim ft=sh
+# vim:ft=sh

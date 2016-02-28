@@ -49,3 +49,5 @@ white() {
   echo -e "${WHITE}${1}${RESET}"
   return
 }
+
+# vim:ft=sh
