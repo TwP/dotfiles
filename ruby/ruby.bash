@@ -1,6 +1,6 @@
 # ==== Ruby Setup ====
 
-RUBY_HOME="${WORK_HOME}/ruby"
+export RUBY_HOME="${WORK_HOME}/ruby"
 
 function rb() {
   if [ -n "$1" ]; then
@@ -11,7 +11,7 @@ function rb() {
 }
 
 function _rb() {
-  dirs=`find ${RUBY_HOME} -type d -depth 1 -maxdepth 1 | cut -d/ -f5`
+  dirs=`find ${RUBY_HOME} -type d -depth 1 -maxdepth 1 | cut -d/ -f6`
   local cur=${COMP_WORDS[COMP_CWORD]}
   COMPREPLY=( $(compgen -W "$dirs" -- $cur) )
 }
