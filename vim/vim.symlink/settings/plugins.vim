@@ -1,4 +1,10 @@
 
+""" ctrlp-cmatcher
+
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 42
+
 """ NERDTree
 
 " auto-change CWD when changing tree root
