@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 """ Core
 Bundle 'kien/ctrlp.vim'
+Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
