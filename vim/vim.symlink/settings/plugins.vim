@@ -1,6 +1,4 @@
-
 """ ctrlp-cmatcher
-
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 42
@@ -77,3 +75,7 @@ au FileType go nmap <leader>gt <Plug>(go-test)
 
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+""" tagbar
+map  <leader>tb :TagbarToggle<CR>
+vmap <leader>tb :TagbarToggle<CR>

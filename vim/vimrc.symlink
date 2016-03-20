@@ -16,6 +16,7 @@ Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'majutsushi/tagbar'
 
 """ Editing and Moving
 Bundle 'scrooloose/nerdcommenter'
