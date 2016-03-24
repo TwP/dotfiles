@@ -95,3 +95,14 @@ let g:tagbar_type_markdown = {
   \ },
   \ 'sort': 0,
 \ }
+
+" tagbar puppet support
+let g:tagbar_type_puppet = {
+  \ 'ctagstype': 'puppet',
+  \ 'kinds': [
+    \'c:class',
+    \'s:site',
+    \'n:node',
+    \'d:definition'
+  \]
+\}
