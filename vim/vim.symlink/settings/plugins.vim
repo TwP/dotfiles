@@ -80,12 +80,18 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 map  <leader>tb :TagbarToggle<CR>
 vmap <leader>tb :TagbarToggle<CR>
 
+" tagbar markdown support from https://github.com/jszakmeister/markdown2ctags
 let g:tagbar_type_markdown = {
-  \ 'ctagstype' : 'markdown',
+  \ 'ctagstype': 'markdown',
+  \ 'ctagsbin' : '/Users/tpease/.dotfiles/bin/markdown2ctags.py',
+  \ 'ctagsargs' : '-f - --sort=yes',
   \ 'kinds' : [
-    \ 'h:Heading_L1',
-    \ 'i:Heading_L2',
-    \ 'k:Heading_L3',
-    \ 'l:Heading_L4'
-  \ ]
+    \ 's:sections',
+    \ 'i:images'
+  \ ],
+  \ 'sro' : '|',
+  \ 'kind2scope' : {
+    \ 's' : 'section',
+  \ },
+  \ 'sort': 0,
 \ }
