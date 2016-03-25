@@ -16,6 +16,7 @@ alias git-doc="heel -r $HOMEBREW_ROOT/share/doc/git-doc"
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 alias gst='git status'
+alias git-gc='git remote prune origin && git prune && git gc'
 
 alias l.='/bin/ls -lFdh .*'
 alias ls='/bin/ls -F'
