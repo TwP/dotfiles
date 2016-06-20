@@ -42,6 +42,8 @@ alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activ
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
+alias bs='./script/bootstrap'
+
 function stuff {
   if [ -z "$1" ]; then
     echo "Usage: stuff [folder]"
