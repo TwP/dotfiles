@@ -44,6 +44,10 @@ alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e Ven
 
 alias bs='./script/bootstrap'
 
+# use to turn wi-fi on and off
+# `wifi on` and `wifi off`
+alias wifi='networksetup -setairportpower en0'
+
 function stuff {
   if [ -z "$1" ]; then
     echo "Usage: stuff [folder]"
