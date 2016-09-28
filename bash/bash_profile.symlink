@@ -20,8 +20,6 @@ export HISTCONTROL=ignoredups;
 export HISTSIZE=10000;
 shopt -s histappend; # append not rewrite history
 
-export JAVA_HOME=`/usr/libexec/java_home`
-
 # autocompletion options
 if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"
