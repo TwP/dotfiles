@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+osascript <<EOD
+  try
+    tell application "System Events" to tell process "SystemUIServer"
+      key down option
+      click menu bar item 1 of menu bar 2
+      key up option
+    end tell
+  on error e
+    display dialog e
+    activate
+  end try
+EOD
