@@ -57,5 +57,7 @@ brew "homebrew/versions/elasticsearch17"
 brew "homebrew/versions/go13"
 brew "homebrew/versions/mysql56"
 cask "appcleaner"
+cask "arduino"
+cask "viscosity"
 
 # vim: ft=ruby
