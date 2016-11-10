@@ -29,12 +29,12 @@
     <dict>
         <key>LBDefaultScript</key>
         <dict>
-            <key>LBResultType</key>
-            <string>unknown</string>
-            <key>LBRunInBackground</key>
-            <true/>
             <key>LBScriptName</key>
             <string>dnd.scpt</string>
+            <key>LBRunInBackground</key>
+            <true/>
+            <key>LBRequiresArgument</key>
+            <false/>
         </dict>
     </dict>
 </dict>
