@@ -1,6 +1,8 @@
 tap "caskroom/cask"
 tap "github/bootstrap"
+tap "homebrew/boneyard"
 tap "homebrew/bundle"
+tap "homebrew/core"
 tap "homebrew/science"
 tap "homebrew/services"
 tap "homebrew/versions"
@@ -53,11 +55,14 @@ brew "tmux"
 brew "tree"
 brew "macvim", args: %w[with-override-system-vim]
 brew "wget"
+brew 'wireshark', args: ["with-qt5"]
 brew "homebrew/versions/elasticsearch17"
 brew "homebrew/versions/go13"
 brew "homebrew/versions/mysql56"
 cask "appcleaner"
 cask "arduino"
+cask "platypus"
+cask "rstudio"
 cask "viscosity"
 
 # vim: ft=ruby
