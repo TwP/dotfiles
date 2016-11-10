@@ -1,5 +1,8 @@
 require 'rake'
 
+# Load in any *.rake files from the subfolders
+Dir.glob("*/*.rake").each { |fn| load fn }
+
 desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('**/*.symlink')
@@ -60,4 +63,3 @@ task :uninstall do
 end
 
 task :default => 'install'
-
