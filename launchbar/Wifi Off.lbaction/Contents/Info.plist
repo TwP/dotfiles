@@ -4,7 +4,7 @@
 <dict>
   <key>CFBundleIdentifier</key> <string>com.pea53.LaunchBar.action.WifiOff</string>
   <key>CFBundleName</key>       <string>Wifi Off</string>
-  <key>CFBundleVersion</key>    <string>1.0</string>
+  <key>CFBundleVersion</key>    <string>1.0.0</string>
   <key>CFBundleIconFile</key>   <string>/System/Library/PrivateFrameworks/AOSUI.framework/Versions/A/Resources/AirPortUtility.icns</string>
   <key>LBDescription</key>
   <dict>

@@ -33,6 +33,7 @@ namespace :launchbar do
     pkg  = File.join(path, "pkg")
     actions = Dir.glob(File.join(path, "*.lbaction"))
 
+    FileUtils.rm_r(pkg) if File.exists? pkg
     FileUtils.mkdir(pkg)
     actions.each { |action| FileUtils.cp_r(action, pkg) }
   end
