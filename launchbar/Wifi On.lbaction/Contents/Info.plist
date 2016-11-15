@@ -5,7 +5,7 @@
   <key>CFBundleIdentifier</key> <string>com.pea53.LaunchBar.action.WifiOn</string>
   <key>CFBundleName</key>       <string>Wifi On</string>
   <key>CFBundleVersion</key>    <string>1.0.0</string>
-  <key>CFBundleIconFile</key>   <string>/System/Library/PrivateFrameworks/AOSUI.framework/Versions/A/Resources/AirPortUtility.icns</string>
+  <key>CFBundleIconFile</key>   <string>/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/wififan.tiff</string>
   <key>LBDescription</key>
   <dict>
     <key>LBSummary</key>    <string>Turn on the AirPort wifi</string>
