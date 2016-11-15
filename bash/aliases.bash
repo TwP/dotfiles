@@ -44,11 +44,14 @@ alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e Ven
 
 alias bs='./script/bootstrap'
 
-alias icons="find /System/Library -iname '*.icns' -o -iname '*.tiff' -o -iname '*.png' | grep -i "
-
 # use to turn wi-fi on and off
 # `wifi on` and `wifi off`
 alias wifi='networksetup -setairportpower en0'
+
+# search for system icons
+function icons {
+  find /System/Library -iname '*.icns' -o -iname '*.tiff' -o -iname '*.png' 2>/dev/null | grep -i "$1[^/]*$"
+}
 
 function stuff {
   if [ -z "$1" ]; then
