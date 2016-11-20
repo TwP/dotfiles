@@ -14,9 +14,9 @@ on run
       repeat with theConnection in connections
         set connectionName to name of theConnection
         if the state of theConnection is "Connected" then
-          set theResult to theResult & [{title: connectionName, badge: "Disconnect", action: "disconnect", actionArgument: connectionName, actionRunsInBackground: true, icon: "character:🔓"}]
+          set theResult to theResult & [{title: "Disconnect from " & connectionName, badge: "Disconnect", action: "disconnect", actionArgument: connectionName, actionRunsInBackground: true, icon: "character:🔓"}]
         else
-          set theResult to theResult & [{title: connectionName, badge: "Connect", action: "connect", actionArgument: connectionName, actionRunsInBackground: true, icon: "character:🔒"}]
+          set theResult to theResult & [{title: "Connect to " & connectionName, badge: "Connect", action: "connect", actionArgument: connectionName, actionRunsInBackground: true, icon: "character:🔒"}]
         end if
       end repeat
     end tell
