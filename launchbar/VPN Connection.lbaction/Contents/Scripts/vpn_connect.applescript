@@ -35,7 +35,7 @@ on connect(connectionName)
     display dialog e
     activate
   end try
-end
+end connect
 
 -- This handler is called when the user selects "Disconnect" for a connection
 on disconnect(connectionName)
@@ -45,4 +45,4 @@ on disconnect(connectionName)
     display dialog e
     activate
   end try
-end
+end disconnect

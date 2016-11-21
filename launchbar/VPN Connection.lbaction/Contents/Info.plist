@@ -30,10 +30,11 @@
   <dict>
     <key>LBDefaultScript</key>
     <dict>
-      <key>LBScriptName</key>          <string>vpn_connect.scpt</string>
-      <key>LBKeepWindowActive</key>    <false/>
-      <key>LBReturnsResult</key>       <true/>
-      <key>LBResultType</key>          <string>unknown</string>
+      <key>LBScriptName</key>       <string>vpn_connect.scpt</string>
+      <key>LBRunInBackground</key>  <false/>
+      <key>LBKeepWindowActive</key> <false/>
+      <key>LBReturnsResult</key>    <true/>
+      <key>LBResultType</key>       <string>unknown</string>
     </dict>
   </dict>
   <key>LBTextInputTitle</key>         <string>VPN Connections</string>
