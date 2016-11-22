@@ -40,6 +40,9 @@ msg "Ctrl-Cmd-Space to search in Emoji"
 defaults write at.obdev.LaunchBar SnippetsHotKey -string "4096@49"
 defaults write at.obdev.LaunchBar SnippetsHotKeyEnabled -bool true
 
+# msg "Opt-Cmd-Q to quit LaunchBar"
+# defaults write at.obdev.LaunchBar AlternativeQuitKeyEquivalent -bool true
+
 msg "Double tap Ctrl for Instant Send"
 defaults write at.obdev.LaunchBar ModifierTapInstantSend -int 23
 
@@ -67,6 +70,9 @@ defaults write at.obdev.LaunchBar CalculatorTrigonometryMode -int 0
 
 msg "Prefer plain text for clipboard items"
 defaults write at.obdev.LaunchBar ClipboardHistoryPreferPlainText -bool true
+
+msg "Clipboard history will hold 10 itmes"
+defaults write at.obdev.LaunchBar ClipboardHistoryCapacity -int 10
 
 ## Update
 

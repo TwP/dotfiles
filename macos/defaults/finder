@@ -47,8 +47,9 @@ defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 msg "Remove the spring loading delay for directories"
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
-msg "Avoid creating .DS_Store files on network volumes"
+msg "Avoid creating .DS_Store files on network or USB volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # msg "Disable disk image verification"
 # defaults write com.apple.frameworks.diskimages skip-verify -bool true
@@ -63,7 +64,7 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 msg "Configure desktop appearance"
 # show item info on the right / snap to grid / grid spacing / icon size
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom false" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 128" ~/Library/Preferences/com.apple.finder.plist
