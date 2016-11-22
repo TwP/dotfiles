@@ -1,0 +1,88 @@
+# -----------------------------------------------------------------------------
+# LaunchBar
+# -----------------------------------------------------------------------------
+
+# determine if LaunchBar is currently running
+ps aux | grep '/LaunchBar\.app' > /dev/null
+RUNNING=$?
+
+# if LaunchBar is running, we need to stop the application before changing defaults
+if [[ $RUNNING -eq 0 ]]; then
+  red "#### Stopping LaunchBar ####"
+  /usr/bin/osascript -e 'tell application "LaunchBar" to quit'
+fi
+
+## General
+
+msg "Prefer secure URL schemes"
+defaults write at.obdev.LaunchBar OpenLocationPreferSecureSchemes -bool true
+
+## Appearance
+
+msg "Use the 'El Capitan' appearance theme"
+defaults write at.obdev.LaunchBar Theme -string "at.obdev.LaunchBar.theme.ElCapitan"
+
+## Shortcuts
+
+msg "Cmd-Space to activate LaunchBar"
+defaults write at.obdev.LaunchBar LaunchBarHotKey -string "256@49"
+defaults write at.obdev.LaunchBar LaunchBarHotKeyEnabled -bool true
+
+msg "Opt-Cmd-Space to search in Spotlight"
+defaults write at.obdev.LaunchBar SpotlightHotKey -string "2304@49"
+defaults write at.obdev.LaunchBar SpotlightHotKeyEnabled -bool true
+
+msg "Ctrl-Space to search in Snippets"
+defaults write at.obdev.LaunchBar EmojiHotKey -string "4352@49"
+defaults write at.obdev.LaunchBar EmojiHotKeyEnabled -bool true
+
+msg "Ctrl-Cmd-Space to search in Emoji"
+defaults write at.obdev.LaunchBar SnippetsHotKey -string "4096@49"
+defaults write at.obdev.LaunchBar SnippetsHotKeyEnabled -bool true
+
+msg "Double tap Ctrl for Instant Send"
+defaults write at.obdev.LaunchBar ModifierTapInstantSend -int 23
+
+msg "Double tap Cmd for Snippets"
+defaults write at.obdev.LaunchBar ModifierTapSnippets -int 21
+
+## Actions
+
+## Calculator
+
+msg "Typing '=' switches to calculator mode"
+defaults write at.obdev.LaunchBar SwitchToCalculatorWithEqualsSign -bool true
+
+msg "Typing digits DOES NOT automatically switch to calculator mode"
+defaults write at.obdev.LaunchBar SwitchToCalculatorAutomatically -bool false
+
+# values for the calculator trig mode
+#   0 - Radian
+#   1 - Degree
+#   2 - Grad
+msg "Default calculator trig mode is Radians"
+defaults write at.obdev.LaunchBar CalculatorTrigonometryMode -int 0
+
+## Clipboard
+
+msg "Prefer plain text for clipboard items"
+defaults write at.obdev.LaunchBar ClipboardHistoryPreferPlainText -bool true
+
+## Update
+
+msg "Automatically check for updates on a weekly basis"
+defaults write at.obdev.LaunchBar SoftwareUpdateCheckAutomatically -bool true
+defaults write at.obdev.LaunchBar SoftwareUpdateCheckInterval -int 604800
+
+## Advanced
+
+msg "Do not show LaunchBar in the Dock"
+defaults write at.obdev.LaunchBar ShowDockIcon -bool false
+
+# start up LaunchBar again if it was running to begin with
+if [[ $RUNNING -eq 0 ]]; then
+  green "#### Starting LaunchBar ####"
+  /usr/bin/open '/Applications/LaunchBar.app'
+fi
+
+# vim:ft=sh
