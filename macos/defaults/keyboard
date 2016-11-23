@@ -2,6 +2,9 @@
 # Keyboard
 # -----------------------------------------------------------------------------
 
+# Need to add section for keyboard brightness controls
+# https://github.com/mathiasbynens/dotfiles/issues/327
+
 msg "Enable full keyboard access for all controls"
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
