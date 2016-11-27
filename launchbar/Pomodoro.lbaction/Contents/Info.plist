@@ -21,8 +21,8 @@
   <dict>
     <key>LBSummary</key>
     <string>Timer for pomodoro intervals: "Work on LaunchBar action 15m".
-After the pomodoro interval expires, LaunchBar will display a large message
-letting you know the interval is over.</string>
+LaunchBar will display a large message letting you know
+when the pomodoro interval is over.</string>
     <key>LBRequirements</key> <string></string>
     <key>LBArgument</key>     <string>Task to work on [interval]</string>
     <key>LBResult</key>       <string></string>
@@ -46,7 +46,7 @@ letting you know the interval is over.</string>
       <key>LBAllowsInstantReuseOfLastTextInputString</key> <false/>
     </dict>
   </dict>
-  <key>LBTextInputTitle</key>         <string>Pomodoro Task [time]</string>
+  <key>LBTextInputTitle</key>         <string>Pomodoro Task [interval]</string>
   <key>LSMinimumSystemVersion</key>   <string>10.11</string>
   <key>NSHumanReadableCopyright</key> <string>Copyright ©️ 2016 Tim Pease</string>
 </dict>

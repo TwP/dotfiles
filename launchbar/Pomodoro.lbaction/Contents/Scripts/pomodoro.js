@@ -50,9 +50,10 @@ function run(argument) {
     var prefs = getPreferences();
     return [
       {title: 'Start', icon: '🍅', action: 'runWithString', actionArgument: prefs.message, actionRunsInBackground: true},
-      {title: 'Interval', icon: '⏲', badge: prefs.interval},
-      {title: 'Message', icon: '🗒', badge: prefs.message},
-      {title: 'Sound', icon: '🔈', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()}
+      {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
+      {title: 'Message', icon: 'font-awesome:comment', badge: prefs.message},
+      {title: 'Sound', icon: 'font-awesome:volume-down', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()},
+      {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()}
     ];
   }
 }
@@ -90,6 +91,7 @@ function runWithString(string) {
       sound:  input.sound,
       delay:  input.interval
     });
+    addToHistory(string);
   }
 }
 
@@ -105,6 +107,7 @@ function getPreferences() {
   if (!prefs.hasOwnProperty('interval')) prefs.interval = '15min';
   if (!prefs.hasOwnProperty('sound'))    prefs.sound    = 'Glass';
   if (!prefs.hasOwnProperty('message'))  prefs.message  = 'Your pomodoro is done!';
+  if (!prefs.hasOwnProperty('history'))  prefs.history  = [];
 
   return prefs;
 }
@@ -194,6 +197,50 @@ function setDefault(name, value) {
     title: '🍅 Pomodoro',
     string: 'Default ' + name + ' was set to "' + value + '"'
   });
+}
+
+/**
+ *
+ * @returns {Array} The list of previously run pomodoro sessions formatted as LaunchBar result objects
+ */
+function getHistory() {
+  var actions = [];
+  var prefs   = getPreferences();
+
+  actions.push({title: 'Clear History', icon: 'font-awesome:trash-o', action: 'clearHistory'});
+
+  prefs.history.forEach(function(item) {
+    actions.push({
+      title: item,
+      icon: 'font-awesome:repeat',
+      action: 'runWithString',
+      actionArgument: item
+    });
+  });
+
+  return actions;
+}
+
+/**
+ *
+ * @param {String} string - The string to add to the history array
+ * @returns udnefined
+ */
+function addToHistory(string) {
+  var prefs = getPreferences();
+  if (string == prefs.message) return;
+
+  prefs.history.unshift(string);
+  prefs.history.splice(10);
+}
+
+/**
+ *
+ * @returns undefined
+ */
+function clearHistory() {
+  var prefs = getPreferences();
+  prefs.history = [];
 }
 
 /**
