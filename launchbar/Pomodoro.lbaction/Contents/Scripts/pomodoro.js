@@ -30,7 +30,7 @@
  */
 
 var SOUND_PATH='/System/Library/Sounds';
-var INTERVAL_RGXP=/((?:[0-9]+(?:h|m(?:in)?|s(?:ec)?)\s*)+)$/;
+var INTERVAL_RGXP=/((?:[1-9][0-9]*(?:h|m(?:in)?|s(?:ec)?)\s*)+)$/;
 
 /**
  * This is the default function called by LaunchBar. If the user just runs the
@@ -200,6 +200,8 @@ function setDefault(name, value) {
 }
 
 /**
+ * Retrieve the list previously used pomodoro tasks and format them as LaunchBar
+ * result objects. Selecting a historical task will re-run that task.
  *
  * @returns {Array} The list of previously run pomodoro sessions formatted as LaunchBar result objects
  */
@@ -222,6 +224,13 @@ function getHistory() {
 }
 
 /**
+ * Add the given pomodoro string to the beginning of the history list. New
+ * entries are added to the head of the list, and older entries are removed from
+ * the tail of the list. The history is limited to 10 entries.
+ *
+ * If an entry already exists in the list, then the previous entry is removed
+ * and the new entry is added to the head of the list. This prevents duplicate
+ * entries in the history list.
  *
  * @param {String} string - The string to add to the history array
  * @returns udnefined
@@ -230,11 +239,18 @@ function addToHistory(string) {
   var prefs = getPreferences();
   if (string == prefs.message) return;
 
-  prefs.history.unshift(string);
-  prefs.history.splice(10);
+  var history = prefs.history;
+  var index   = history.indexOf(string);
+
+  if (index == 0) return;                    // repeating last pomodoro
+  if (index > 1 ) history.splice(index, 1);  // remove previous history entry
+
+  history.unshift(string);
+  history.splice(10);
 }
 
 /**
+ * Does what it says on the label - clears the history array of all entries.
  *
  * @returns undefined
  */
@@ -244,9 +260,9 @@ function clearHistory() {
 }
 
 /**
- * Set the default sound to the named system sound. A notification will be shown
- * confirming that the default has been set, and the sound will be played. If
- * the system sound does not exist then an alert box is shown.
+ * Find the system provided sounds and return a list of LaunchBar result
+ * objects - one for each sound. The result objects will show the name of the
+ * sound and will set the default sound when selected.
  *
  * @returns {Array} The list of available system sounds formatted as LaunchBar result objects
  */
