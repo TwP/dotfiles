@@ -1,5 +1,32 @@
 /**
+ * Launchodoro - A pomodoro timer for LaunchBar
  *
+ * Set a pomodoro for 15 minutes, and at then end of the interval a large
+ * message is displayed along with a notification sound letting you know your
+ * pomodoro is done. Go take that five minute break!
+ *
+ * You can specify differnt times for individual pomodoro sessions. You can also
+ * have your own pomodoro message displayed at the end of the interval. Or you
+ * can run with the default interval and message and just hit `Start`.
+ *
+ *   `pomodoro [Enter] [Enter]`              - Start a pomodoro
+ *   `pomodoro [Space] 17min`                - Start a 17 minute pomodoro
+ *   `pomodoro [Space] write the readme 25m` - Start a 25 minute pomodoro aimed at writing the README file
+ *
+ * ## Defaults
+ *
+ * The defaults are configurable through the `pomodoro` action itself. The
+ * "bang" syntax is used to tell Launchodoro that you are setting a default
+ * value. You have three defaults to configure.
+ *
+ *   `pomodoro [Space] !interval 25min`                 - Set the default pomodoro interval to 25 minutes
+ *   `pomodoro [Space] !message Your pomodoro is done!` - Set the default completion message
+ *   `pomodoro [Space] !sound Purr`                     - Set the default sound to Purr
+ *
+ * You can also set the sound by pulling up pomodoro, hit enter, select `Sound`,
+ * hit space, and then you can choose one of the listed sounds
+ *
+ *   `pomodoro [Enter] Sound [Space]`
  */
 
 var SOUND_PATH='/System/Library/Sounds';
