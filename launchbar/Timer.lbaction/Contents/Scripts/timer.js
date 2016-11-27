@@ -14,7 +14,7 @@ function go(str) {
     var delay  = RegExp.$1;
 
     LaunchBar.displayInLargeType({
-      'title': '⏰ Reminder',
+      'title': '🎗 Reminder',
       'string': remind,
       'sound': 'Glass',
       'delay': delay

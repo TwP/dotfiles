@@ -1,5 +1,5 @@
 /**
- * Launchodoro - A pomodoro timer for LaunchBar
+ * A pomodoro timer for LaunchBar
  *
  * Set a pomodoro for 15 minutes, and at then end of the interval a large
  * message is displayed along with a notification sound letting you know your
