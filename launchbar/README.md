@@ -33,7 +33,7 @@ action for you. The caveat is that you have to be connected to our private
 network in the office. So you cannot unlock the front door while sipping a
 Mai-Tai and watching the sunset on Waikīkī beach.
 
-![](images/doorbot.png)
+<img src="images/doorbot.png" width="600px"/>
 
 ### Pause Dropbox
 
