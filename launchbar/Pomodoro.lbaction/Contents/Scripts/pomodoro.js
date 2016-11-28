@@ -55,7 +55,7 @@ function run(argument) {
         {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()},
         {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
         {title: 'Message', icon: 'font-awesome:comment', badge: prefs.message},
-        {title: 'Sound', icon: 'font-awesome:volume-down', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()}
+        {title: 'Sound', icon: 'font-awesome:volume-up', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()}
       ];
 
     // just pressing Enter ↩︎ executes the default pomodoro
