@@ -49,18 +49,18 @@ function run(argument) {
   } else if (argument == undefined) {
     var prefs = getPreferences();
 
-    // running via Cmd-Enter ⌘↩︎ will execute the default pomodoro
+    // running via Cmd-Enter ⌘↩︎ will show the pomodoro settings
     if (LaunchBar.options.commandKey == 1) {
-      runWithString(prefs.message);
-
-    // just pressing Enter ↩︎ pulls up the settings menu
-    } else {
       return [
         {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()},
         {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
         {title: 'Message', icon: 'font-awesome:comment', badge: prefs.message},
         {title: 'Sound', icon: 'font-awesome:volume-down', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()}
       ];
+
+    // just pressing Enter ↩︎ executes the default pomodoro
+    } else {
+      runWithString(prefs.message);
     }
   }
 }
