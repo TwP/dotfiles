@@ -33,12 +33,12 @@ defaults write at.obdev.LaunchBar SpotlightHotKey -string "2304@49"
 defaults write at.obdev.LaunchBar SpotlightHotKeyEnabled -bool true
 
 msg "Ctrl-Space to search in Snippets"
-defaults write at.obdev.LaunchBar EmojiHotKey -string "4352@49"
-defaults write at.obdev.LaunchBar EmojiHotKeyEnabled -bool true
-
-msg "Ctrl-Cmd-Space to search in Emoji"
 defaults write at.obdev.LaunchBar SnippetsHotKey -string "4096@49"
 defaults write at.obdev.LaunchBar SnippetsHotKeyEnabled -bool true
+
+msg "Ctrl-Cmd-Space to search in Emoji"
+defaults write at.obdev.LaunchBar EmojiHotKey -string "4352@49"
+defaults write at.obdev.LaunchBar EmojiHotKeyEnabled -bool false
 
 # msg "Opt-Cmd-Q to quit LaunchBar"
 # defaults write at.obdev.LaunchBar AlternativeQuitKeyEquivalent -bool true
