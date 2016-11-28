@@ -24,7 +24,7 @@ Disturb" is disabled the action will turn it on preventing Notifications from
 displaying. When enabled, the action will disable "Do Not Disturb" allowing
 Notifications to be displayed.
 
-![](images/do-not-disturb.png)
+<img src="images/do-not-disturb.png" width="600px"/>
 
 ### Doorbot
 
@@ -44,9 +44,9 @@ Accessibility feature of Applescript to automate clicking on the pause and
 resume buttons in the Dropbox UI. You will need to grant LaunchBar permission to
 use Accessibility for this action to work.
 
-![](images/pause-dropbox-1.png)
+<img src="images/pause-dropbox-1.png" width="600px"/>
 
-![](images/pause-dropbox-2.png)
+<img src="images/pause-dropbox-2.png" width="600px"/>
 
 ### Pomodoro
 
@@ -58,7 +58,7 @@ This is a simple pomodoro timer built inside of LaunchBar. You can configure the
 default interval and alert sound. It is all explained in greater detail in the
 [readme file](Pomodoro.lbaction/README.md) for the pomodoro action.
 
-![](images/pomodoro/pomodoro.png)
+<img src="images/pomodoro/pomodoro.png" width="600px"/>
 
 ### Restart Dock
 
@@ -66,7 +66,7 @@ Do you work from a Mac laptop? Do you plug that laptop into Thunderbolt
 displays? Does your Cmd-Tab application switching no longer display on your
 monitor? You need to restart your Dock, and this action will do just that.
 
-![](images/restart-dock.png)
+<img src="images/restart-dock.png" width="600px"/>
 
 ### Timer
 
@@ -75,9 +75,9 @@ poop! Set a timer next time and don't miss that bus. The timer actions uses
 LaunchBar's "large type" feature to display your reminder at the appropriate
 time along with an alert sound.
 
-![](images/timer-1.png)
+<img src="images/timer-1.png" width="600px"/>
 
-![](images/timer-2.png)
+<img src="images/timer-2.png" width="600px"/>
 
 ### VPN Connection
 
@@ -87,13 +87,13 @@ inactive. For active connections, the action will present the option to
 disconnect. For inactive connections, the action will present the option to
 connect.
 
-![](images/viscosity.png)
+<img src="images/viscosity.png" width="600px"/>
 
 ### Wifi
 
 Turn the wireless network on and off.
 
-![](images/wifi.png)
+<img src="images/wifi.png" width="600px"/>
 
 ## Installing
 
