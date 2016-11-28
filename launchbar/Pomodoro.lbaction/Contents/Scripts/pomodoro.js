@@ -9,9 +9,9 @@
  * have your own pomodoro message displayed at the end of the interval. Or you
  * can run with the default interval and message and just hit `Start`.
  *
- *   `pomodoro [Enter] [Enter]`              - Start a pomodoro
- *   `pomodoro [Space] 17min`                - Start a 17 minute pomodoro
- *   `pomodoro [Space] write the readme 25m` - Start a 25 minute pomodoro aimed at writing the README file
+ *   `pomodoro ⏎ ⏎`                    - Start a pomodoro
+ *   `pomodoro ␣ 17min`                - Start a 17 minute pomodoro
+ *   `pomodoro ␣ write the readme 25m` - Start a 25 minute pomodoro aimed at writing the README file
  *
  * ## Defaults
  *
@@ -19,14 +19,14 @@
  * "bang" syntax is used to tell Launchodoro that you are setting a default
  * value. You have three defaults to configure.
  *
- *   `pomodoro [Space] !interval 25min`                 - Set the default pomodoro interval to 25 minutes
- *   `pomodoro [Space] !message Your pomodoro is done!` - Set the default completion message
- *   `pomodoro [Space] !sound Purr`                     - Set the default sound to Purr
+ *   `pomodoro ␣ !interval 25min`                 - Set the default pomodoro interval to 25 minutes
+ *   `pomodoro ␣ !message Your pomodoro is done!` - Set the default completion message
+ *   `pomodoro ␣ !sound Purr`                     - Set the default sound to Purr
  *
  * You can also set the sound by pulling up pomodoro, hit enter, select `Sound`,
  * hit space, and then you can choose one of the listed sounds
  *
- *   `pomodoro [Enter] Sound [Space]`
+ *   `pomodoro ⏎ Sound ␣`
  */
 
 var SOUND_PATH='/System/Library/Sounds';
