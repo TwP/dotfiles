@@ -9,7 +9,7 @@
  * have your own pomodoro message displayed at the end of the interval. Or you
  * can run with the default interval and message and just hit `Start`.
  *
- *   `pomodoro ⏎ ⏎`                    - Start a pomodoro
+ *   `pomodoro ⌘↩︎`                     - Start a pomodoro
  *   `pomodoro ␣ 17min`                - Start a 17 minute pomodoro
  *   `pomodoro ␣ write the readme 25m` - Start a 25 minute pomodoro aimed at writing the README file
  *
@@ -26,7 +26,7 @@
  * You can also set the sound by pulling up pomodoro, hit enter, select `Sound`,
  * hit space, and then you can choose one of the listed sounds
  *
- *   `pomodoro ⏎ Sound ␣`
+ *   `pomodoro ↩︎ Sound ␣`
  */
 
 var SOUND_PATH='/System/Library/Sounds';
@@ -48,13 +48,20 @@ function run(argument) {
 
   } else if (argument == undefined) {
     var prefs = getPreferences();
-    return [
-      {title: 'Start', icon: '🍅', action: 'runWithString', actionArgument: prefs.message, actionRunsInBackground: true},
-      {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
-      {title: 'Message', icon: 'font-awesome:comment', badge: prefs.message},
-      {title: 'Sound', icon: 'font-awesome:volume-down', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()},
-      {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()}
-    ];
+
+    // running via Cmd-Enter ⌘↩︎ will execute the default pomodoro
+    if (LaunchBar.options.commandKey == 1) {
+      runWithString(prefs.message);
+
+    // just pressing Enter ↩︎ pulls up the settings menu
+    } else {
+      return [
+        {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()},
+        {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
+        {title: 'Message', icon: 'font-awesome:comment', badge: prefs.message},
+        {title: 'Sound', icon: 'font-awesome:volume-down', badge: prefs.sound, action: 'playSound', actionArgument: prefs.sound, actionRunsInBackground: true, children: getSounds()}
+      ];
+    }
   }
 }
 
