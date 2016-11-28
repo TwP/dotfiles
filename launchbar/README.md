@@ -95,7 +95,6 @@ Turn the wireless network on and off.
 
 ![](images/wifi.png)
 
-
 ## Installing
 
 These LaunchBar actions cannot be found by LaunchBar when they are tucked away
