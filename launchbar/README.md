@@ -128,5 +128,6 @@ rake launchbar:install
 * [hlissner/lb6-actions](https://github.com/hlissner/lb6-actions)
 * [Ptujec/LaunchBar](https://github.com/Ptujec/LaunchBar)
 * [Duhemm/launchbar-github](https://github.com/Duhemm/launchbar-github)
+* [Zettt/LaunchBar-Scripts](https://github.com/Zettt/LaunchBar-Scripts)
 * [Nicholas Riley LaunchBar Actions](https://sabi.net/nriley/software/#launchbar)
 
