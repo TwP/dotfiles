@@ -6,3 +6,4 @@
 
 export ARDUINO_DIR="/Applications/Arduino.app/Contents/Java"
 export ARDMK_DIR="${DOTS}/arduino/Arduino-Makefile"
+export ARDUINO_SKETCHBOOK="${SRC_PATH}/Arduino"

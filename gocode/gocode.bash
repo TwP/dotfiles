@@ -1,7 +1,7 @@
 # ==== GO Development Setup ====
 # All the fucntions useful for working with GO
 
-export GOPATH="$HOME/work/gocode"
+export GOPATH="${SRC_PATH}/gocode"
 
 # ==== PATH setup ====
 [ -d $GOPATH ] && PATH="$GOPATH/bin:$PATH"

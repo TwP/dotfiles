@@ -1,6 +1,6 @@
 # ==== Ruby Setup ====
 
-export RUBY_HOME="${WORK_HOME}/ruby"
+export RUBY_HOME="${SRC_PATH}/ruby"
 
 function rb() {
   if [ -n "$1" ]; then
