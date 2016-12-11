@@ -16,6 +16,7 @@ COMPUTER_NAME="Nenya"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
 
 RELATIVE_PATH="`dirname \"$0\"`"
+ABSOLUTE_PATH=$(cd ${RELATIVE_PATH}; pwd)
 source "${RELATIVE_PATH}/colors.sh"
 
 DEFAULTS_PATH="${RELATIVE_PATH}/defaults"
