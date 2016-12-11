@@ -149,3 +149,8 @@ function ssh-setup {
   cat ~/.ssh/id_rsa.pub | ssh $1 'cat - >> ~/.ssh/authorized_keys'
 }
 
+# Enable a yubikey via the yubiswitch application if it is installed
+function enable-yubikey() {
+  ps ux | grep [y]ubiswitch >/dev/null && osascript -e 'tell application "yubiswitch" to KeyOn'
+}
+
