@@ -18,8 +18,11 @@ COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{p
 RELATIVE_PATH="`dirname \"$0\"`"
 source "${RELATIVE_PATH}/colors.sh"
 
-# Output the program name and version string
-msg "Running: $0, version 0.42"
+DEFAULTS_PATH="${RELATIVE_PATH}/defaults"
+declare -a DEFAULTS
+
+# Output the program name
+msg "Running: $0"
 
 # Ask for the administrator password upfront
 sudo -v
@@ -27,10 +30,18 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# where we keep our defaults
-FILES=${RELATIVE_PATH}/defaults/*
+# process all defaults
+if [ $# -eq 0 ]; then
+  DEFAULTS=${DEFAULTS_PATH}/*
 
-for file in $FILES; do
+# or process the specified defaults
+else
+  for file in $@; do
+    DEFAULTS+=("${DEFAULTS_PATH}/$(basename $file)")
+  done
+fi
+
+for file in ${DEFAULTS[@]}; do
   echo ""
   blue  "==================================================="
   white " Processing $(basename $file) configuration"
