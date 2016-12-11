@@ -1,0 +1,15 @@
+[user]
+  # Name used in commit messages.
+  name = Tim Pease
+  # Email used in commit messages.
+  email = tim.pease@gmail.com
+
+[shell]
+  # Default SSH username.
+  username = TwP
+
+[github]
+  # GitHub username for command-line tools.
+  user = TwP
+
+# vim: ft=gitconfig
