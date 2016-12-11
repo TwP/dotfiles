@@ -1,9 +1,6 @@
 tap 'caskroom/cask'
-tap 'github/bootstrap'
-tap 'homebrew/boneyard'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
-tap 'homebrew/science'
 tap 'homebrew/services'
 tap 'homebrew/versions'
 cask 'java'
@@ -113,8 +110,6 @@ brew 'tree'
 brew 'utf8proc'
 brew 'wget'
 brew 'wireshark', args: ['with-qt5']
-brew 'homebrew/boneyard/rbenv-readline'
-brew 'homebrew/science/r'
 cask 'airfoil'
 cask 'appcleaner'
 cask 'arduino'
@@ -131,22 +126,21 @@ cask 'openscad'
 cask 'platypus'
 cask 'powerphotos'
 cask 'ripit'
-cask 'rstudio'
+cask 'screenhero'
 cask 'skitch'
 cask 'slack'
+cask 'steam'
 cask 'superduper'
 cask 'things'
 cask 'viscosity'
 cask 'vlc'
-cask 'zoom'
+cask 'zoomus'
 mas 'Keynote', id: 409183694
 mas 'Twitter', id: 409789998
 mas 'iMovie', id: 408981434
 mas 'Evernote', id: 406056744
 mas 'Skitch', id: 425955336
 mas '1Password', id: 443987910
-mas 'NetSpot', id: 514951692
-mas 'SoundConverter', id: 413890028
 mas 'OmniGraffle', id: 711830901
 mas 'Wunderlist', id: 410628904
 mas 'Moom', id: 419330170
