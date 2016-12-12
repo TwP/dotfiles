@@ -12,7 +12,7 @@
 # * http://rixstep.com/2/20060901,00.shtml
 # -----------------------------------------------------------------------------
 
-COMPUTER_NAME="Nenya"
+COMPUTER_NAME="Vilya"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
 
 RELATIVE_PATH="`dirname \"$0\"`"
