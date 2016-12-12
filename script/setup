@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# This setup script allows these dotfiles to integrate with the MacOS strap from
+# Mike McQuaid - https://github.com/MikeMcQuaid/strap
+#
+# All this does is run `rake install` in the top-level directory.
+# -----------------------------------------------------------------------------
+
+DOTS_PATH="$(cd "$(dirname "$0")/.." && pwd)"
+(
+  cd "$DOTS_PATH"
+  rake install
+)
+
+# vim:ft=sh
