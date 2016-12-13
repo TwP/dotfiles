@@ -24,36 +24,6 @@ all the available rake tasks via the `rake -T` command.
 Dot files can do a lot, but they can't do everything quite yet. Here are a few
 things to remember when moving to a new machine.
 
-### Fluid Apps
-
-[**Fluid** apps](http://fluidapp.com) are wonderfuil single-site-browser
-applications that wrap up a website as a standalone Mac application. The
-**Fluid** application itself is not at all scriptable, so there is no good way
-to automate the creation and installation of these applications. The best
-solution is to copy each app from the old machine to the new machine.
-
-* Coursera
-* GitHub Mail
-* Gmail
-* Google Voice
-* Instapaper
-* Mint
-* Pivotal Tracker
-* Trello
-
-Along with the apps themselves, we'll also need to copy over the preferences
-fils for each app. The preferences contain all the window preferences and browsa
-plugin settings.
-
-* `~/Library/Preferences/com.fluidapp.FluidApp.Coursera.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.GitHub Mail.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Gmail.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Google Voice.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Instapaper.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Mint.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Pivotal Tracker.plist`
-* `~/Library/Preferences/com.fluidapp.FluidApp.Trello.plist`
-
 ### Messages
 
 Here is how you can preserve your **Messages** history when upgrading to a new
