@@ -24,19 +24,6 @@ all the available rake tasks via the `rake -T` command.
 Dot files can do a lot, but they can't do everything quite yet. Here are a few
 things to remember when moving to a new machine.
 
-### Fonts
-
-Open up the **FontBook** application and select the `User` menu on the left.
-This is the list of all the fonts you have installed on your system. If you
-right-click on one of the font names you can select the "Show in Finder" option.
-This will bring up a **Finder** window showing all the `.ttf` and `.otf` font
-files you have previously installed.
-
-Copy these files to your new machine (or put them on a shared drive). On the new
-machine import the fonts using the **FontBook** application there. You can
-import fonts by selecting the "Add Fonts..." submenu under the main "File" menu
-of **FontBook**.
-
 ### Fluid Apps
 
 [**Fluid** apps](http://fluidapp.com) are wonderfuil single-site-browser
