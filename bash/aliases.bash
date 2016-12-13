@@ -48,6 +48,9 @@ alias bs='./script/bootstrap'
 # `wifi on` and `wifi off`
 alias wifi='networksetup -setairportpower en0'
 
+# open a file using the Marked application
+alias marked='open -a Marked'
+
 # search for system icons
 function icons {
   find /System/Library -iname '*.icns' -o -iname '*.tiff' -o -iname '*.png' 2>/dev/null | grep -i "$1[^/]*$"
