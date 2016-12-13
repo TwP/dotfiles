@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------------
+# Google Chrome
+# -----------------------------------------------------------------------------
+
+ADBLOCK_ID="gighmmpiobklfepjocnamgkkbiglidom"
+if [ ! -d "${HOME}/Library/Application Support/Google/Chrome/Default/Extensions/${ADBLOCK_ID}" ]; then
+  msg "Download and install AdBlock for Chrome"
+  open -a "Google Chrome" "https://chrome.google.com/webstore/detail/${ADBLOCK_ID}"
+fi
+
+# vim:ft=sh
