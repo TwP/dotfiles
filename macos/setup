@@ -15,6 +15,9 @@
 COMPUTER_NAME="Vilya"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
 
+# easy access to documents in iCloud Drive
+CLOUD_DOCS="${HOME}/Library/Mobile Documents/com~apple~CloudDocs"
+
 RELATIVE_PATH="`dirname \"$0\"`"
 ABSOLUTE_PATH=$(cd ${RELATIVE_PATH}; pwd)
 source "${RELATIVE_PATH}/colors.sh"

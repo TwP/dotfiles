@@ -1,0 +1,25 @@
+# -----------------------------------------------------------------------------
+# Fonts
+# -----------------------------------------------------------------------------
+
+# allow spaces in filenames
+OLD_IFS="$IFS"
+IFS=$'\n'
+
+FONT_PATH="${HOME}/Library/Fonts"
+FILES=(${CLOUD_DOCS}/Fonts/*)
+
+msg "Copying fonts into place"
+
+for file in "${FILES[@]}"; do
+  fontname=$(basename "$file")
+  if [ ! -f "${FONT_PATH}/$fontname" ]; then
+    msg "Adding: $fontname"
+    cp "$file" "${FONT_PATH}/"
+  fi
+done
+
+# set the "internal field separator" back to its original value
+IFS="$OLD_IFS"
+
+# vim:ft=sh
