@@ -5,6 +5,11 @@
 # msg "Only use UTF-8 in Terminal.app"
 # defaults write com.apple.terminal StringEncodings -array 4
 
+msg "Add Homebrew bash to the list of allowed shells"
+if ! grep -Fxq "${HOMEBREW_ROOT}/bin/bash" /etc/shells; then
+  echo "${HOMEBREW_ROOT}/bin/bash" | sudo tee -a /etc/shells > /dev/null
+fi
+
 msg "Use the “Pea53” theme by default in Terminal.app"
 osascript <<EOD
 tell application "Terminal"
@@ -49,6 +54,8 @@ tell application "Terminal"
 
 end tell
 EOD
+
+
 
 # msg "Enable “focus follows mouse” for Terminal.app and all X11 apps"
 # defaults write com.apple.terminal FocusFollowsMouse -bool true
