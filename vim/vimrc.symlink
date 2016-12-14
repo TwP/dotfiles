@@ -24,7 +24,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
-Bundle 'edsono/vim-matchit'
+Bundle 'matchit.zip'
 Bundle 'SirVer/ultisnips'
 Bundle 'neitanod/vim-clevertab'
 
