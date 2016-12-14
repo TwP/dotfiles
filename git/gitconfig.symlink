@@ -196,6 +196,9 @@
   # Prune branches and collect garbage
   prune-and-gc = !git remote prune origin && git prune && git gc
 
+  # Open the git documentation in a web browser (MacOS only)
+  docs = !open $HOMEBREW_ROOT/share/doc/git-doc/index.html
+
   ## Shortened 'New' Commands
   fahr = !git fetch --all && git hard-reset
   rem = !git rebase-against-master

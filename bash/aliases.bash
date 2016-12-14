@@ -10,8 +10,6 @@ alias ds='/usr/bin/du -h -s'
 alias du='/usr/bin/du -h'
 alias find='/usr/bin/find'
 
-alias git-doc="heel -r $HOMEBREW_ROOT/share/doc/git-doc"
-
 alias l.='/bin/ls -lFdh .*'
 alias ls='/bin/ls -F'
 alias ll='/bin/ls -lFh'
