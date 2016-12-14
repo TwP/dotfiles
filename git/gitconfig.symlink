@@ -193,6 +193,9 @@
   # Diff against the current branch's merge-base
   diff-merge-base = !git diff $(git merge-base-master)
 
+  # Prune branches and collect garbage
+  prune-and-gc = !git remote prune origin && git prune && git gc
+
   ## Shortened 'New' Commands
   fahr = !git fetch --all && git hard-reset
   rem = !git rebase-against-master
@@ -210,6 +213,7 @@
   # `true` needed as the return status is wrong otherwise.
   l = !git pretty-one-line-log || true
   f = !git fix-up-previous-commit
+  pgc = !git prune-and-gc
 
   ## Shortened Existing Commands
   p = pull

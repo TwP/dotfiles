@@ -10,13 +10,7 @@ alias ds='/usr/bin/du -h -s'
 alias du='/usr/bin/du -h'
 alias find='/usr/bin/find'
 
-alias gdf='git difftool -y'
-alias gdh='git diff HEAD'
 alias git-doc="heel -r $HOMEBREW_ROOT/share/doc/git-doc"
-alias gsd='git svn dcommit'
-alias gsr='git svn rebase'
-alias gst='git status'
-alias git-gc='git remote prune origin && git prune && git gc'
 
 alias l.='/bin/ls -lFdh .*'
 alias ls='/bin/ls -F'
