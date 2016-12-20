@@ -40,17 +40,19 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 # msg "Follow the keyboard focus while zoomed in"
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-msg "Remap capslock to control on all attached keyboards"
+# msg "Remap capslock to control on all attached keyboards"
 # These changes will only take effect after logging out and logging back in.
 # I still need to figure out how system preferences applies keyboard mapping
 # changes and try to emulate that behavior.
-yubicoVendorID=4176  # don't try to remap our YubiKey
-keyboards=($(ioreg -n IOHIDKeyboard -r | grep -E 'VendorID"|ProductID' | awk '{print $4}' | paste -s -d'-\n' - | grep -v "^${yubicoVendorID}"))
-for k in "${keyboards[@]}"
-do
-  if ! defaults -currentHost read -g "com.apple.keyboard.modifiermapping.${k}-0" 2>&1 | grep "Dst = 2" > /dev/null; then
-    defaults -currentHost write -g "com.apple.keyboard.modifiermapping.${k}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"
-  fi
-done
+# NOTE - these settings no longer work in Sierra
+
+# yubicoVendorID=4176  # don't try to remap our YubiKey
+# keyboards=($(ioreg -n IOHIDKeyboard -r | grep -E 'VendorID"|ProductID' | awk '{print $4}' | paste -s -d'-\n' - | grep -v "^${yubicoVendorID}"))
+# for k in "${keyboards[@]}"
+# do
+#   if ! defaults -currentHost read -g "com.apple.keyboard.modifiermapping.${k}-0" 2>&1 | grep "Dst = 2" > /dev/null; then
+#     defaults -currentHost write -g "com.apple.keyboard.modifiermapping.${k}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"
+#   fi
+# done
 
 # vim:ft=sh
