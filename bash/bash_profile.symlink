@@ -5,6 +5,7 @@
 export DOTS="$HOME/.dotfiles"
 export HOMEBREW_ROOT="/usr/local"
 export SRC_PATH="$HOME/work"
+export CLOUD_DOCS="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 # ==== PATH setup ====
 [ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
