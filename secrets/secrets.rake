@@ -1,8 +1,9 @@
 require 'fileutils'
 
-# Describe the secrets to store in the iCloud Drive encrypted disk image
+# Describe the secrets to store in the iCloud Drive encrypted disk image.
+#
 # The key is the folder in the encrypted disk image where the secrets will be
-# store. The sub-hash describes the `:source` directory for the file, and the
+# stored. The sub-hash describes the `:source` directory for the files, and the
 # `:glob` patterns used to match the files that will be copied.
 FILES = {
   "ssh" => {
