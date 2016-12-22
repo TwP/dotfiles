@@ -47,23 +47,23 @@ end
 
 class FluidApp
   # Path to the documents in iCloud Drive
-  CLOUD_DOCS   = File.join(ENV['HOME'], "Library", "Mobile Documents", "com~apple~CloudDocs", "Fluid").freeze
+  FLUID_DIR    = File.join(ENV['ICLOUD_DRIVE'], "Fluid").freeze
   PREFERENCES  = File.join(ENV['HOME'], "Library", "Preferences").freeze
   APPLICATIONS = "/Applications".freeze
 
   def self.apps_path(*args)
     if args.empty?
-      File.join(CLOUD_DOCS, "apps")
+      File.join(FLUID_DIR, "apps")
     else
-      File.join(CLOUD_DOCS, "apps", *args)
+      File.join(FLUID_DIR, "apps", *args)
     end
   end
 
   def self.prefs_path(*args)
     if args.empty?
-      File.join(CLOUD_DOCS, "prefs")
+      File.join(FLUID_DIR, "prefs")
     else
-      File.join(CLOUD_DOCS, "prefs", *args)
+      File.join(FLUID_DIR, "prefs", *args)
     end
   end
 
@@ -154,8 +154,8 @@ class FluidApp
       FileUtils.rm_r(FluidApp.prefs_path)
     end
 
-    if File.exists?(CLOUD_DOCS)
-      FileUtils.rm_r(CLOUD_DOCS)
+    if File.exists?(FLUID_DIR)
+      FileUtils.rm_r(FLUID_DIR)
     end
 
     nil

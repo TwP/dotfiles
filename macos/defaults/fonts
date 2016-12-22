@@ -7,7 +7,7 @@ OLD_IFS="$IFS"
 IFS=$'\n'
 
 FONT_PATH="${HOME}/Library/Fonts"
-FILES=(${CLOUD_DOCS}/Fonts/*)
+FILES=(${ICLOUD_DRIVE}/Fonts/*)
 
 msg "Copying fonts into place"
 
