@@ -31,8 +31,3 @@ machine. Copy the `~/Library/Messages` folder from the old machine to the new
 machine. Viola - you're done. Just make sure that the **Messages** app is not
 running on either machine when you copy the folder.
 
-### SSH Configuration
-
-You know where your keys are hidden. Go find them and install them in `~/.ssh`
-and then you can play on the internet again.
-
