@@ -8,14 +8,27 @@
 
 -- This handler is called when the user runs the action:
 on run
-  try
-    tell application "System Events" to tell process "SystemUIServer"
-      key down option
-      click menu bar item 1 of menu bar 2
-      key up option
+  tell application "System Events"
+    tell application process "SystemUIServer"
+      try
+        key down option
+
+        -- MacOS prior to Sierra
+        if exists menu bar 2 then
+          click menu bar item 1 of menu bar 2
+
+        -- MacOS Sierra
+        else
+          click menu bar item 1 of menu bar 1
+        end if
+
+        key up option
+
+      on error e
+        key up option
+        display dialog e
+        activate
+      end try
     end tell
-  on error e
-    display dialog e
-    activate
-  end try
+  end tell
 end run
