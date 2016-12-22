@@ -16,40 +16,46 @@ end run
 
 -- This handler is called when the user selects "Pause syncing"
 on pause()
-  try
-    tell application "System Events" to tell application process "Dropbox"
-      click menu bar item 1 of menu bar 2
-
-      set currentState to name of UI element 6 of UI element 1 of window 1
-      if (currentState ends with "paused") then
+  tell application "System Events"
+    tell application process "Dropbox"
+      try
         click menu bar item 1 of menu bar 2
-      else
-        click menu button 1 of UI element 1 of window 1
-        click menu item "Pause Syncing" of menu 1 of menu button 1 of UI element 1 of window 1
-      end if
+
+        set currentState to name of UI element 5 of UI element 1 of window 1
+        if (currentState ends with "paused") then
+          click menu bar item 1 of menu bar 2
+        else
+          click menu button 1 of UI element 1 of window 1
+          click menu item "Pause Syncing" of menu 1 of menu button 1 of UI element 1 of window 1
+        end if
+      on error e
+        click menu bar item 1 of menu bar 2
+        display dialog e
+        activate
+      end try
     end tell
-  on error e
-    display dialog e
-    activate
-  end try
+  end tell
 end pause
 
 -- This handler is called when the user selects "Resume syncing"
 on resume()
-  try
-    tell application "System Events" to tell application process "Dropbox"
-      click menu bar item 1 of menu bar 2
-
-      set currentState to name of UI element 6 of UI element 1 of window 1
-      if (currentState ends with "paused") then
-        click menu button 1 of UI element 1 of window 1
-        click menu item "Resume Syncing" of menu 1 of menu button 1 of UI element 1 of window 1
-      else
+  tell application "System Events"
+    tell application process "Dropbox"
+      try
         click menu bar item 1 of menu bar 2
-      end if
+
+        set currentState to name of UI element 5 of UI element 1 of window 1
+        if (currentState ends with "paused") then
+          click menu button 1 of UI element 1 of window 1
+          click menu item "Resume Syncing" of menu 1 of menu button 1 of UI element 1 of window 1
+        else
+          click menu bar item 1 of menu bar 2
+        end if
+      on error e
+        click menu bar item 1 of menu bar 2
+        display dialog e
+        activate
+      end try
     end tell
-  on error e
-    display dialog e
-    activate
-  end try
+  end tell
 end resume
