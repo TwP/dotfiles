@@ -496,7 +496,7 @@
 	<key>Key Control: Arrow: Control</key>
 	<integer>31</integer>
 	<key>Key Control: Arrow: Option</key>
-	<integer>31</integer>
+	<integer>41</integer>
 	<key>Keyboard Controls</key>
 	<dict>
 		<key>Identifier</key>
