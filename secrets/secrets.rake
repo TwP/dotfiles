@@ -3,20 +3,20 @@ require 'fileutils'
 # Describe the secrets to store in the iCloud Drive encrypted disk image.
 #
 # The key is the folder in the encrypted disk image where the secrets will be
-# stored. The sub-hash describes the `:source` directory for the files, and the
+# stored. The sub-hash describes the `:local` directory for the files, and the
 # `:glob` patterns used to match the files that will be copied.
 FILES = {
   "ssh" => {
-    source: "~/.ssh",
-    glob:   %w[authorized_keys config* *rsa*]
+    local: "~/.ssh",
+    glob:  %w[authorized_keys config* *rsa*]
   },
   "gh_ssh" => {
-    source: "~/GitHub/.ssh",
-    glob:   "*"
+    local: "~/GitHub/.ssh",
+    glob:  "*"
   },
   "secret" => {
-    source: "~/.dotfiles/secret",
-    glob:   "**/*"
+    local: "~/.dotfiles/secret",
+    glob:  "**/*"
   }
 }
 
@@ -44,20 +44,20 @@ namespace :secrets do
     pwd = Dir.pwd
     begin
       FILES.each do |backup, h|
-        source = h[:source]
+        local = h[:local]
 
         # skip these files if the backup directory does not exist
         src_dir = File.join(VOLUME, backup)
         next unless File.exists?(src_dir) && File.directory?(src_dir)
 
         Dir.chdir(src_dir)
-        dest_dir = File.expand_path(source)
+        dest_dir = File.expand_path(local)
 
         Dir.glob("**/*").each do |file|
           next if File.directory?(file)
 
           d      = File.join(dest_dir, file)
-          d_name = File.join(source,   file)
+          d_name = File.join(local,    file)
 
           s      = File.join(src_dir, file)
           s_name = File.join(backup,  file)
@@ -82,11 +82,11 @@ namespace :secrets do
     pwd = Dir.pwd
     begin
       FILES.each do |backup, h|
-        source = h[:source]
-        globs  = h[:glob]
+        local = h[:local]
+        globs = h[:glob]
 
-        # skip these files if the source directory does not exist
-        src_dir = File.expand_path(source)
+        # skip these files if the local directory does not exist
+        src_dir = File.expand_path(local)
         next unless File.exists?(src_dir) && File.directory?(src_dir)
 
         Dir.chdir(src_dir)
@@ -97,10 +97,10 @@ namespace :secrets do
             next if File.directory?(file)
 
             d      = File.join(dest_dir, file)
-            d_name = File.join(backup, file)
+            d_name = File.join(backup,   file)
 
-            s      = File.join(src_dir,  file)
-            s_name = File.join(source, file)
+            s      = File.join(src_dir, file)
+            s_name = File.join(local,   file)
 
             if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
               puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"

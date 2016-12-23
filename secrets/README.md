@@ -51,21 +51,42 @@ You can define what gets backed up to the encrypted disk image by editing the
 Hash that maps a folder in the encrypted disk image to a local source folder and glob
 pattern.
 
+```ruby
+FILES = {
+  "ssh" => {
+    local: "~/.ssh",
+    glob:  "*"
+  }
+}
+```
+
 When a backup is performed, all files in the `:local` folder that match the
 `:glob` patterns will be copied to the encrypted disk image. The `FILES` hash
 key is used as the folder name in the disk image where the local files will be
-copied to.
+copied to. In our example above all the files in your `~/.ssh` folder will be
+backed up to the `/Volumes/Secrets/ssh` folder in the encrypted disk image.
 
 Conversely, when an install is performed, all files in the encrypted disk image
-folder will be copied to the `:local` folder.
+folder will be copied to the `:local` folder. In our example above, all the
+files in the `/Volumes/Secrets/ssh` folder will be installed to your local
+`~/.ssh` folder.
 
 The backup and install tasks are idempotent. The modification time of the files
-are used to determine if a file needs to be copied or not.
+are used to determine if a file needs to be copied or not. All paths will be
+created if they do not already exist.
 
 ### About Encrypted Disk Images
 
-The tasks use the `hdiutil` command line tool for managing the encrypted disk image.
+Secrets relies on the `hdiutil` command line tool to create and manage the
+encrypted disk image.
 
+We create the encrypted disk image using AES 256 bit encryption and Journaled
+HFS file system. The disk image is 10 MB in size - so if you are storing secrets
+larger than this you will need to adjust the size accordingly. You can also
+create a sparsebundle which will grow and shrink in size as required. I've not
+fully tested sparsebundles on iCloud Drive - an interruption in synchronization
+might corrupt the sparsebundle as some bands in the sparsebundle might be out of
+sync if iCloud Drive synchronization fails.
 
 ```sh
 hdiutil create         \
@@ -78,11 +99,27 @@ hdiutil create         \
   "${ICLOUD_DRIVE}/secrets.dmg"
 ```
 
+Mounting the encrypted disk image is straightforward. You will be asked to type
+in the password used when the image was created. Again, don't forget this
+password otherwise all data in the encrypted disk image will be lost.
+
 ```sh
 hdiutil attach "${ICLOUD_DRIVE}/secrets.dmg"
 ```
 
+Un-mounting the volume is also straightforward.
+
 ```sh
 hdiutil detach /Volumes/Secrets
 ```
+
+What is this `ICLOUD_DRIVE` environment variable? This is something I've put in
+my bash environment to make it simpler to work with documents in iCloud Drive
+when using the command line. It is defined thusly:
+
+```sh
+export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+```
+
+It is a bit of an odd location - hence the environment variable.
 
