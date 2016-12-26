@@ -1,11 +1,11 @@
 #!/bin/bash
 ## Usage: gh-creds <cmd>
 ## 
-##   setup    set your GitHub HTTPS credentials
-##   erase    erase your GitHub HTTPS credentials
-##   show     show your GitHub HTTPS credentials
-##   token    the auth token suitable for use in other scripts
-##   --help   show this help message
+##   setup  : set your GitHub HTTPS credentials in the MacOS keychain
+##   erase  : erase your GitHub HTTPS credentials from the MacOS keychain
+##   show   : show your GitHub HTTPS credentials
+##   token  : just the auth token (suitable for use in other scripts)
+##   help   : show this help message
 ## 
 ## This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
 ## and it will configure your git environment to read these credentials from
