@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Setup GitHub HTTPS credentials"
+echo "Please enter your GitHub username and personal access token."
+read -p    "  username: " GITHUB_USER
+read -s -p "     token: " GITHUB_TOKEN
+echo ""
+
+if git credential-osxkeychain 2>&1 | grep $Q "git.credential-osxkeychain" &>/dev/null; then
+  if [ "$(git config --global credential.helper)" != "osxkeychain" ]; then
+    git config --global credential.helper osxkeychain
+  fi
+
+  if [ -n "$GITHUB_USER" ] && [ -n "$GITHUB_TOKEN" ]; then
+    printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+    printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n" \
+          "$GITHUB_USER" "$GITHUB_TOKEN" \
+          | git credential-osxkeychain store
+  fi
+fi
+
+echo "OK"
+
+# vim:ft=sh
