@@ -18,7 +18,7 @@ GITHUB_USER=""
 GITHUB_TOKEN=""
 
 assert_osxkeychain() {
-  if ! git credential-osxkeychain 2>&1 | grep $Q "git.credential-osxkeychain" &>/dev/null; then
+  if ! git credential-osxkeychain 2>&1 | grep -q "git.credential-osxkeychain"; then
     exit 0
   fi
 }
