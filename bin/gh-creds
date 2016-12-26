@@ -1,24 +1,80 @@
 #!/bin/bash
+## Usage: gh-creds <cmd>
+## 
+##   setup    set your GitHub HTTPS credentials
+##   erase    erase your GitHub HTTPS credentials
+##   show     show your GitHub HTTPS credentials
+##   --help   show this help message
+## 
+## This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
+## and it will configure your git environment to read these credentials from
+## the OSX keychain. You will need a GitHub personal access token.
+## 
+##   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 
-echo "Setup GitHub HTTPS credentials"
-echo "Please enter your GitHub username and personal access token."
-read -p    "  username: " GITHUB_USER
-read -s -p "     token: " GITHUB_TOKEN
-echo ""
+set -e
 
-if git credential-osxkeychain 2>&1 | grep $Q "git.credential-osxkeychain" &>/dev/null; then
+GITHUB_USER=""
+GITHUB_TOKEN=""
+
+assert_osxkeychain() {
+  if ! git credential-osxkeychain 2>&1 | grep $Q "git.credential-osxkeychain" &>/dev/null; then
+    exit 0
+  fi
+}
+
+show_help() {
+  str=$(grep "^## " "${BASH_SOURCE[0]}" | cut -c 4-)
+  echo "$str"
+}
+
+erase_creds() {
+  echo -n "Erasing GitHub HTTPS credentials ... "
+  printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+  echo "OK"
+}
+
+setup_creds() {
+  echo "Please enter your GitHub username and personal access token."
+  read -p    "  username: " GITHUB_USER
+  read -s -p "     token: " GITHUB_TOKEN
+  echo ""
+
   if [ "$(git config --global credential.helper)" != "osxkeychain" ]; then
     git config --global credential.helper osxkeychain
   fi
 
   if [ -n "$GITHUB_USER" ] && [ -n "$GITHUB_TOKEN" ]; then
+    echo -n "Setting GitHub username and token ... "
     printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
     printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n" \
           "$GITHUB_USER" "$GITHUB_TOKEN" \
           | git credential-osxkeychain store
+    echo "OK"
   fi
-fi
+}
 
-echo "OK"
+show_creds() {
+  echo "Your GitHub HTTPS credentials are ..."
+  printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain get
+}
+
+case "$1" in
+  setup)
+    assert_osxkeychain
+    setup_creds
+    ;;
+  erase)
+    assert_osxkeychain
+    erase_creds
+    ;;
+  show)
+    assert_osxkeychain
+    show_creds
+    ;;
+  *)
+    show_help
+    ;;
+esac
 
 # vim:ft=sh
