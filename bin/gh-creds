@@ -4,6 +4,7 @@
 ##   setup    set your GitHub HTTPS credentials
 ##   erase    erase your GitHub HTTPS credentials
 ##   show     show your GitHub HTTPS credentials
+##   token    the auth token suitable for use in other scripts
 ##   --help   show this help message
 ## 
 ## This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
@@ -11,7 +12,6 @@
 ## the OSX keychain. You will need a GitHub personal access token.
 ## 
 ##   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
-
 set -e
 
 GITHUB_USER=""
@@ -59,6 +59,12 @@ show_creds() {
   printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain get
 }
 
+token() {
+  printf "protocol=https\nhost=github.com\n" \
+    | git credential-osxkeychain get \
+    | awk 'BEGIN { FS = "=" }; $1 ~ /password/ { print $2 }'
+}
+
 case "$1" in
   setup)
     assert_osxkeychain
@@ -71,6 +77,10 @@ case "$1" in
   show)
     assert_osxkeychain
     show_creds
+    ;;
+  token)
+    assert_osxkeychain
+    token
     ;;
   *)
     show_help
