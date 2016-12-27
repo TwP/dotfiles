@@ -1,17 +1,17 @@
 #!/bin/bash
-## Usage: gh-creds <cmd>
-## 
-##   setup  : set your GitHub HTTPS credentials in the MacOS keychain
-##   erase  : erase your GitHub HTTPS credentials from the MacOS keychain
-##   show   : show your GitHub HTTPS credentials
-##   token  : just the auth token (suitable for use in other scripts)
-##   help   : show this help message
-## 
-## This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
-## and it will configure your git environment to read these credentials from
-## the OSX keychain. You will need a GitHub personal access token.
-## 
-##   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
+#/ Usage: gh-creds <cmd>
+#/
+#/   setup  : set your GitHub HTTPS credentials in the MacOS keychain
+#/   erase  : erase your GitHub HTTPS credentials from the MacOS keychain
+#/   show   : show your GitHub HTTPS credentials
+#/   token  : just the auth token (suitable for use in other scripts)
+#/   help   : show this help message
+#/
+#/ This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
+#/ and it will configure your git environment to read these credentials from
+#/ the OSX keychain. You will need a GitHub personal access token.
+#/
+#/   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 set -e
 
 GITHUB_USER=""
@@ -24,7 +24,7 @@ assert_osxkeychain() {
 }
 
 show_help() {
-  str=$(grep "^## " "${BASH_SOURCE[0]}" | cut -c 4-)
+  str=$(grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-)
   echo "$str"
 }
 
