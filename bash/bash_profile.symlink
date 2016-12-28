@@ -26,7 +26,7 @@ if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"
 fi
 
-for file in `find $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'`; do
+for file in `find -L $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'`; do
   if [ -f $file ]; then
     source $file
   fi
@@ -56,7 +56,6 @@ if [ "$PS1" ] ; then
 
     user='${BLUE}\u${RESET}'
     host='${YELLOW}\h${RESET}'
-#   cwd='${CYAN}${PWD/#$HOME/~}${RESET}'
     cwd='${CYAN}\w${RESET}'
     git=\"\$(__git_ps1 \"(${GREEN}%s${RESET})\") ${YELLOW}\$(_git_dirty)${RESET}\"
 
