@@ -36,16 +36,20 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 
 msg "Don’t group windows by application in Mission Control"
 # (i.e. use the old Exposé behavior instead)
-defaults write com.apple.dock expose-group-by-app -bool false
+defaults write com.apple.dock expose-group-apps -bool false
 
-# msg "Disable Dashboard"
-# defaults write com.apple.dashboard mcx-disabled -bool true
+# Possible values:
+#   1: Off (disable dashboard entirely)
+#   2: As Space
+#   3: As Overlay
+msg "Show the Dashboard as an overlay"
+defaults write com.apple.dashboard dashboard-enabled-state -int 3
 
-# msg "Don’t show Dashboard as a Space"
-# defaults write com.apple.dock dashboard-in-overlay -bool true
+msg "Don’t automatically rearrange Spaces based on most recent use"
+defaults write com.apple.dock mru-spaces -bool false
 
-# msg "Don’t automatically rearrange Spaces based on most recent use"
-# defaults write com.apple.dock mru-spaces -bool false
+msg "Don't switch Spaces when opening application windows"
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false
 
 msg "Remove the auto-hiding Dock delay"
 defaults write com.apple.dock autohide-delay -float 0
