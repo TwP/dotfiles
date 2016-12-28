@@ -126,6 +126,10 @@ function findr {
   find . -name '*.rb' -print0 | xargs -0 grep "$*"
 }
 
+function cdiff {
+  diff -c $* 2>&1 | awk -f "$DOTS/bash/cdiff.awk"
+}
+
 # from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
 function v {
   if [ $# == 0 ] ; then
