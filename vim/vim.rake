@@ -5,9 +5,9 @@ namespace :vim do
     vundle_path = File.join(path, "vim.symlink", "bundle", "vundle")
 
     cmd = if File.exists?(vundle_path)
-      "cd #{vundle_path} && git pull"
+      "cd '#{vundle_path}' && git pull"
     else
-      "git clone https://github.com/VundleVim/Vundle.vim.git #{vundle_path}"
+      "git clone https://github.com/VundleVim/Vundle.vim.git '#{vundle_path}'"
     end
 
     puts "Executing: `#{cmd}`"
