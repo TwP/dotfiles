@@ -13,6 +13,10 @@ fi
 msg "Set standby delay to 3 hours (default is 1 hour)"
 sudo pmset -a standbydelay 10800
 
+msg "Enable the Application Layer Firewall"
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/dev/null
+
 # msg "Disable the sound effects on boot"
 # sudo nvram SystemAudioVolume=" "
 
