@@ -20,7 +20,7 @@ COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{p
 ICLOUD_DRIVE="${HOME}/Library/Mobile Documents/com~apple~CloudDocs"
 
 RELATIVE_PATH="`dirname \"$0\"`"
-ABSOLUTE_PATH=$(cd ${RELATIVE_PATH}; pwd)
+ABSOLUTE_PATH=$(cd "${RELATIVE_PATH}"; pwd)
 source "${RELATIVE_PATH}/colors.sh"
 
 DEFAULTS_PATH="${RELATIVE_PATH}/defaults"
@@ -37,7 +37,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # process all defaults
 if [ $# -eq 0 ]; then
-  DEFAULTS=${DEFAULTS_PATH}/*
+  DEFAULTS="${DEFAULTS_PATH}/*"
 
 # or process the specified defaults
 else
