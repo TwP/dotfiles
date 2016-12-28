@@ -69,7 +69,7 @@ BEGIN {
          # Compiler generated alerts (file must end in .h .hpp .c .cpp)
 #         } elseif {[regexp {^[0-9A-Za-z_/]+\.(hpp|h|cpp|c):} $s] ||
 #                   [regexp {^In file included from} $s]          ||
-#       	    [regexp {^                 from} $s]} {
+#                   [regexp {^                 from} $s]} {
 #            puts "${make_alert}${s}${normal}"
 #            lappend ofInterest "${make_alert}${s}${normal}"
 

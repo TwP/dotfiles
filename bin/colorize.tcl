@@ -10,12 +10,12 @@ exec /usr/local/tcl/bin/tclsh8.4 "$0" "$@"
 # This script reads standard input line-by-line and colorizes the lines
 # according to the specified input type.  Each line is then written to standard
 # out.
-# 
+#
 # The colors are defined in the .colorizerc file located in the user's home
 # directory.  This file will be created the first time the colorize.tcl script
 # is executed.  Subsequent executions of the script will read the .colorizerc
 # file to determine which colors to use for output.
-# 
+#
 # Allowed types:
 #   make - input contains gnu make lines
 #   cvs  - input contains cvs lines (only "cvs update" lines can be colorized)
@@ -134,25 +134,25 @@ if {$argc > 0} { set type [lindex [split $argv { }] 0] }
 switch $type {
    cvs {
       while {![eof stdin]} {
-	 set s [gets stdin]
+         set s [gets stdin]
 
          if {[regexp {^(cvs|rcsmerge)[ 0-9A-z]*: (warning|conflicts):?} $s] ||
-	     [regexp {^Merging} $s]} {
+             [regexp {^Merging} $s]} {
             puts "${cvs_warning}${s}${normal}"
          } elseif [regexp {^\? } $s] {
             puts "${cvs_unknown}${s}${normal}"
-	 } elseif [regexp {^M } $s] {
+         } elseif [regexp {^M } $s] {
             puts "${cvs_modified}${s}${normal}"
-	 } elseif [regexp {^A } $s] {
-	    puts "${cvs_added}${s}${normal}"
+         } elseif [regexp {^A } $s] {
+            puts "${cvs_added}${s}${normal}"
          } elseif [regexp {^[UP] } $s] {
             puts "${cvs_updated}${s}${normal}"
          } elseif [regexp {^C } $s] {
-	    puts "${cvs_conflict}${s}${normal}"
+            puts "${cvs_conflict}${s}${normal}"
          } elseif [regexp {^T } $s] {
-	    puts "${cvs_tag}${s}${normal}"
+            puts "${cvs_tag}${s}${normal}"
          } elseif [regexp {^R } $s] {
-	    puts "${cvs_remove}${s}${normal}"
+            puts "${cvs_remove}${s}${normal}"
          } else {
             puts "${cvs_info}${s}${normal}"
          }
@@ -161,7 +161,7 @@ switch $type {
 
    diff {
       while {![eof stdin]} {
-	 set s [gets stdin]
+         set s [gets stdin]
 
          if [regexp {^\+ } $s] {
             puts "${diff_added}${s}${normal}"
@@ -199,7 +199,7 @@ switch $type {
          # Compiler generated alerts (file must end in .h .hpp .c .cpp)
          } elseif {[regexp {^[0-9A-Za-z_/]+\.(hpp|h|cpp|c):} $s] ||
                    [regexp {^In file included from} $s]          ||
-       	           [regexp {^                 from} $s]} {
+                   [regexp {^                 from} $s]} {
             puts "${make_alert}${s}${normal}"
             lappend ofInterest "${make_alert}${s}${normal}"
 
@@ -208,15 +208,15 @@ switch $type {
             puts "${make_comment}${s}${normal}"
 
          # Everything else is white text on a black background
-	 # -- except for compiler lines; we are grabbing the filename from
-	 # -- compiler lines
+         # -- except for compiler lines; we are grabbing the filename from
+         # -- compiler lines
          } else {
-	    set rgxp {((?:[^ ]*[ ]+)+)([0-9A-z]+\.(?:hpp|h|cpp|c))(.*)}
-	    if [regexp $rgxp $s line pre filename post] {
-	       puts "${pre}${make_sourcefile}${filename}${normal}${post}"
-	    } else {
+            set rgxp {((?:[^ ]*[ ]+)+)([0-9A-z]+\.(?:hpp|h|cpp|c))(.*)}
+            if [regexp $rgxp $s line pre filename post] {
+               puts "${pre}${make_sourcefile}${filename}${normal}${post}"
+            } else {
                puts ${s}
-	    }
+            }
          }
       }
 
