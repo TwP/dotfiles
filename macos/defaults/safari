@@ -117,7 +117,7 @@ if [ ! -f "${HOME}/Library/Safari/Extensions/AdBlock.safariextz" ]; then
 fi
 
 # see if Instapaper has been installed and install it if needed
-if [ ! -f "${HOME}/Library/Safari/Extensions/Instapaper.safariextz"]; then
+if [ ! -f "${HOME}/Library/Safari/Extensions/Instapaper.safariextz" ]; then
   msg "Download and install Instapaper extension for Safari"
   open -a "Safari" "https://safari-extensions.apple.com/details/?id=com.instapaper.extension-CAM49M58WK"
 fi
