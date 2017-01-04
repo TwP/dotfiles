@@ -9,7 +9,7 @@
 -- This handler is called when the user runs the action:
 on run()
   set theResult to []
-  set theResult to theResult & [{title: "Puase syncing",  action: "pause",  actionRunsInBackground: true, icon: "font-awesome:fa-pause"}]
+  set theResult to theResult & [{title: "Pause syncing",  action: "pause",  actionRunsInBackground: true, icon: "font-awesome:fa-pause"}]
   set theResult to theResult & [{title: "Resume syncing", action: "resume", actionRunsInBackground: true, icon: "font-awesome:fa-play" }]
   return theResult
 end run

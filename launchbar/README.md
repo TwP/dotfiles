@@ -103,7 +103,7 @@ here in the dotfiles repository. We need to copy the `*.lbaction` folders to the
 LaunchBar looks for custom actions.
 
 We also need to compile all the `*.applescript` files into binary `*.scpt` files
-that LaunchBar can execute. The applescript files are great for humans and `git`
+that LaunchBar can execute. The Applescript files are great for humans and `git`
 version control, but they are not so great for LaunchBar. We can use the
 `osacompile` command to compile the `*.applescript` files into `*.scpt` file
 equivalents. Then we can copy the `*.lbaction` folders to the correct location.
