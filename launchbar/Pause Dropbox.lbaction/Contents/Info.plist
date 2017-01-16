@@ -17,7 +17,7 @@
   <key>LBDebugLogEnabled</key>       <false/>
   <key>LBDescription</key>
   <dict>
-    <key>LBSummary</key>      <string>Puase and resume Dropbox syncing</string>
+    <key>LBSummary</key>      <string>Pause and resume Dropbox syncing</string>
     <key>LBRequirements</key> <string>Dropbox must be installed and running to use this action, and LaunchBar must have permission to use accessibility features via applescript.</string>
     <key>LBArgument</key>     <string></string>
     <key>LBResult</key>       <string></string>
