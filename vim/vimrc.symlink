@@ -54,3 +54,4 @@ source $HOME/.vim/settings/statusline.vim
 source $HOME/.vim/settings/plugins.vim
 source $HOME/.vim/settings/autocommands.vim
 source $HOME/.vim/settings/misc.vim
+source $HOME/.vim/scripts/git_commit_editor.vim
