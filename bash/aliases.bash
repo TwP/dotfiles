@@ -30,7 +30,7 @@ alias vi="$HOMEBREW_ROOT/bin/vim"
 
 alias nb='cd ~/Dropbox/Tim/notebook'
 
-alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activities/2016/ && diskutil unmount GARMIN'
+alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activities/2017/ && diskutil unmount GARMIN'
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
