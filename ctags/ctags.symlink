@@ -1,3 +1,10 @@
+--recurse=yes
+--exclude=.git
+--exclude=vendor/*
+--exclude=node_modules/*
+--exclude=db/*
+--exclude=log/*
+
 --langdef=markdown
 --langmap=markdown:.md
 --regex-markdown=/^#[ \t]+(.*)/\1/h,Heading_L1/

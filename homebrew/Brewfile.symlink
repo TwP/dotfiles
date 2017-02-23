@@ -92,6 +92,7 @@ brew 'openssl@1.1'
 brew 'nginx', restart_service: true
 brew 'nmap'
 brew 'nsq'
+brew 'parallel'
 brew 'pidof'
 brew 'pigz'
 brew 'pkg-config'
