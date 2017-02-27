@@ -110,6 +110,8 @@ set wildignore+=**/vendor/gems,**/vendor/cache,**/node_modules,.bundle,.sass-cac
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+set notagbsearch " do not assume sorted tags files
+
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
