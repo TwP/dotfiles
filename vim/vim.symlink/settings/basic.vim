@@ -117,5 +117,6 @@ set ttymouse=xterm2
 "tell the term it has 256 colors
 set t_Co=256
 
+" colorscheme base16-oceanicnext
 colorscheme molokai
 

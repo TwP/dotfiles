@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 """ Core
 Bundle 'kien/ctrlp.vim'
+Bundle 'ivalkeen/vim-ctrlp-tjump'
 Bundle 'JazzCore/ctrlp-cmatcher'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
@@ -26,9 +27,10 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'godlygeek/tabular'
 Bundle 'matchit.zip'
 Bundle 'SirVer/ultisnips'
-Bundle 'neitanod/vim-clevertab'
+Bundle 'zerowidth/vim-bgtags'
 
 """ Language and Syntax
+Bundle 'chriskempson/base16-vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'joker1007/vim-ruby-heredoc-syntax'
