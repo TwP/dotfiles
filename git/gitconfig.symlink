@@ -149,9 +149,12 @@
 
   # Preview branch names and recent commit then checkout selection
   checkout-with-relative-age = \
-    !git for-each-ref --sort=-committerdate --format='%(refname:short) (%(committerdate:relative))' refs/heads \
+    !git for-each-ref --sort=-committerdate --format='%(refname:short) | %(committerdate:relative)' refs/heads \
+    | column -t -s '|' \
     | fzf --reverse --nth=1 --preview 'git log --patch --color {1}...{1}~3' \
     | awk '{print $1}' | xargs git checkout
+
+  branches-with-dates = !git for-each-ref --sort=-committerdate --format='%(refname:short) | %(committerdate:relative)' refs/heads | column -t -s '|' \
 
   # Rebase against origin/master and prompt for what operations
   # should be performed.
@@ -216,6 +219,7 @@
   dm = !git diff-merge-base
   mb = !git merge-base-master
   co = !git checkout-with-relative-age
+  br = !git branches-with-dates
   w = !git word-diff
   u = !git push-and-set-upstream
   b = !git checkout-as-new-branch
