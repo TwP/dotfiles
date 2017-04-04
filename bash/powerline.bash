@@ -23,6 +23,7 @@ __powerline() {
   readonly PS_SYMBOL_HOUSE=''    # fontawesome house   U+F015
 
   readonly GIT_SYMBOL_BRANCH=''  # octicons git branch    U+F418
+  readonly GIT_SYMBOL_CHANGES='' # fontawesome bolt       U+F0E7
   readonly GIT_SYMBOL_PUSH=''    # fontawesome up arrow   U+F176
   readonly GIT_SYMBOL_PULL=''    # fontawesome down arrow U+F175
 
@@ -43,7 +44,7 @@ __powerline() {
     local marks
 
     # branch is modified?
-    [ -n "$($git_eng status --porcelain)" ] && marks+=" $GIT_BRANCH_CHANGED_SYMBOL"
+    [ -n "$($git_eng status --porcelain)" ] && marks+=" $GIT_SYMBOL_CHANGES"
 
     # how many commits local branch is ahead/behind of remote?
     local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
