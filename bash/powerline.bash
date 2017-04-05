@@ -21,6 +21,7 @@ __powerline() {
   readonly PS_SYMBOL_FOLDER=''   # octicons folder     U+F413
   readonly PS_SYMBOL_CLOCK=''    # fontawesome clock   U+F017
   readonly PS_SYMBOL_HOUSE=''    # fontawesome house   U+F015
+  readonly PS_SYMBOL_RUBY=''     # devicons ruby       U+E791
 
   readonly GIT_SYMBOL_BRANCH=''  # octicons git branch    U+F418
   readonly GIT_SYMBOL_CHANGES='' # fontawesome bolt       U+F0E7
@@ -57,27 +58,39 @@ __powerline() {
   }
 
   ps1() {
+    local FG_SEP
+    local FG_TERM=$FG_BLACK
+    local BG_TERM=$BG_BLACK
+    local FG_CLOCK=$FG_GREY
+    local BG_CLOCK=$BG_GREY
+    local FG_FOLDER="\[\e[38;5;74m\]"
+    local BG_FOLDER="\[\e[48;5;74m\]"
+    local FG_RUBY="\[\e[38;5;52m\]"
+    local BG_RUBY="\[\e[48;5;52m\]"
+    local TX_RUBY="\[\e[38;5;245m\]"
+    local FG_GIT="\[\e[38;5;113m\]"
+    local BG_GIT="\[\e[48;5;113m\]"
+
     if [ $? -eq 0 ]; then
       local FG_EXIT=$FG_GREEN
-      local FG_APPLE=$FG_GREY
+      local FG_APPLE=$FG_CLOCK
     else
       local FG_EXIT=$FG_RED
       local FG_APPLE=$FG_RED
     fi
 
-    local FG_SEP
-
-    PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                           FG_SEP=$FG_BLACK
-    PS1+="${FG_SEP}${BG_GREY}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_GREY
-    PS1+="${FG_SEP}${BG_CYAN}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_FOLDER}  \w ";                 FG_SEP=$FG_CYAN
+    PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                            FG_SEP=$FG_TERM
+    PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
+    PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_FOLDER}  \w ";                FG_SEP=$FG_FOLDER
+    # PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
 
     if git -C . rev-parse 2>/dev/null; then
       __powerline_git_info="$(__git_info)"
-      PS1+="${FG_SEP}${BG_GREEN}${SEPARATOR}${FG_BLACK} \${__powerline_git_info} "
-      FG_SEP=$FG_GREEN
+      PS1+="${FG_SEP}${BG_GIT}${SEPARATOR}${FG_BLACK} \${__powerline_git_info} "
+      FG_SEP=$FG_GIT
     fi
 
-    PS1+="${FG_SEP}${BG_BLACK}${SEPARATOR}${RESET}\n"
+    PS1+="${FG_SEP}${BG_TERM}${SEPARATOR}${RESET}\n"
     PS1+="${FG_EXIT}${TRAILER}${RESET} "
 
     # set the title bar to show the hostname and current working directory
