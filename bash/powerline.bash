@@ -65,9 +65,9 @@ __powerline() {
     local BG_CLOCK=$BG_GREY
     local FG_FOLDER="\[\e[38;5;74m\]"
     local BG_FOLDER="\[\e[48;5;74m\]"
-    local FG_RUBY="\[\e[38;5;52m\]"
-    local BG_RUBY="\[\e[48;5;52m\]"
-    local TX_RUBY="\[\e[38;5;245m\]"
+    local FG_RUBY="\[\e[38;5;130m\]"
+    local BG_RUBY="\[\e[48;5;130m\]"
+    local TX_RUBY="\[\e[38;5;0m\]"
     local FG_GIT="\[\e[38;5;113m\]"
     local BG_GIT="\[\e[48;5;113m\]"
 
@@ -82,7 +82,7 @@ __powerline() {
     PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                            FG_SEP=$FG_TERM
     PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
     PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_FOLDER}  \w ";                FG_SEP=$FG_FOLDER
-    # PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
+    PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
 
     if git -C . rev-parse 2>/dev/null; then
       __powerline_git_info="$(__git_info)"
