@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-
+#
 # Liberally stoeln from http://misc.flogisoft.com/bash/tip_colors_and_formatting
+# for hex equivalents see http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 
 # for fgbg in 38 48 ; do #Foreground/Background
-
 for fgbg in 48 ; do # Background only - foreground colors were not helpful to me
   for color in {0..15} ; do
     #Display the color

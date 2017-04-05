@@ -54,28 +54,28 @@ if [ "$PS1" ] ; then
   #   leader='╭ '
   #   trailer='╰ ➙ '
 
-  #   user='${BLUE}\u${RESET}'
-  #   host='${YELLOW}\h${RESET}'
-  #   cwd='${CYAN}\w${RESET}'
-  #   git=\"\$(__git_ps1 \"(${GREEN}%s${RESET})\") ${YELLOW}\$(_git_dirty)${RESET}\"
+  #   user='${FG_BLUE}\u${RESET}'
+  #   host='${FG_YELLOW}\h${RESET}'
+  #   cwd='${FG_CYAN}\w${RESET}'
+  #   git=\"\$(__git_ps1 \"(${FG_GREEN}%s${RESET})\") ${FG_YELLOW}\$(_git_dirty)${RESET}\"
 
   #   rbenv_manager_current
   #   rbenv_status=\$?
-  #   ruby=\"{${MAGENTA}\$(ruby_version)${RESET}\"
+  #   ruby=\"{${FG_MAGENTA}\$(ruby_version)${RESET}\"
   #   if [[ \$rbenv_status = \"2\" ]] ; then
   #     ruby=\"\${ruby}}\"
   #   elif [[ \$rbenv_status = \"1\" ]] ; then
-  #     ruby=\"\${ruby} ${GREEN}✔ ${RESET}}\"
+  #     ruby=\"\${ruby} ${FG_GREEN}✔ ${RESET}}\"
   #   else
-  #     ruby=\"\${ruby} ${RED}✘ ${RESET}}\"
+  #     ruby=\"\${ruby} ${FG_RED}✘ ${RESET}}\"
   #   fi
 
   #   prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
 
   #   if [[ \$status = \"0\" ]] ; then
-  #     prompt=\"${GREEN}\${leader}${RESET}\${prompt}\n${GREEN}\${trailer}${RESET}\"
+  #     prompt=\"${FG_GREEN}\${leader}${RESET}\${prompt}\n${FG_GREEN}\${trailer}${RESET}\"
   #   else
-  #     prompt=\"${RED}\${leader}${RESET}\${prompt}\n${RED}\${trailer}${RESET}\"
+  #     prompt=\"${FG_RED}\${leader}${RESET}\${prompt}\n${FG_RED}\${trailer}${RESET}\"
   #   fi
 
   #   echo -e \"\${prompt}\"
