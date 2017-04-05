@@ -58,6 +58,14 @@ __powerline() {
   }
 
   ps1() {
+    if [ $? -eq 0 ]; then
+      local FG_EXIT=$FG_GREEN
+      local FG_APPLE=$FG_CLOCK
+    else
+      local FG_EXIT=$FG_RED
+      local FG_APPLE=$FG_RED
+    fi
+
     local FG_SEP
     local FG_TERM=$FG_BLACK
     local BG_TERM=$BG_BLACK
@@ -70,14 +78,6 @@ __powerline() {
     local TX_RUBY="\[\e[38;5;0m\]"
     local FG_GIT="\[\e[38;5;113m\]"
     local BG_GIT="\[\e[48;5;113m\]"
-
-    if [ $? -eq 0 ]; then
-      local FG_EXIT=$FG_GREEN
-      local FG_APPLE=$FG_CLOCK
-    else
-      local FG_EXIT=$FG_RED
-      local FG_APPLE=$FG_RED
-    fi
 
     PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                            FG_SEP=$FG_TERM
     PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
