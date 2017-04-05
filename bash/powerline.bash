@@ -60,10 +60,10 @@ __powerline() {
   ps1() {
     if [ $? -eq 0 ]; then
       local FG_EXIT=$FG_GREEN
-      local FG_APPLE=$FG_CLOCK
+      local FG_APPLE=$FG_GREY          # match FG_CLOCK
     else
       local FG_EXIT=$FG_RED
-      local FG_APPLE=$FG_RED
+      local FG_APPLE=$FG_EXIT
     fi
 
     local FG_SEP
@@ -71,22 +71,25 @@ __powerline() {
     local BG_TERM=$BG_BLACK
     local FG_CLOCK=$FG_GREY
     local BG_CLOCK=$BG_GREY
-    local FG_FOLDER="\[\e[38;5;74m\]"
-    local BG_FOLDER="\[\e[48;5;74m\]"
-    local FG_RUBY="\[\e[38;5;130m\]"
-    local BG_RUBY="\[\e[48;5;130m\]"
-    local TX_RUBY="\[\e[38;5;0m\]"
-    local FG_GIT="\[\e[38;5;113m\]"
-    local BG_GIT="\[\e[48;5;113m\]"
+    local TX_CLOCK=$FG_TERM
+    local FG_FOLDER="\[\e[38;5;74m\]"  # light blue
+    local BG_FOLDER="\[\e[48;5;74m\]"  # light blue
+    local TX_FOLDER=$FG_TERM
+    local FG_RUBY="\[\e[38;5;130m\]"   # burnt orange
+    local BG_RUBY="\[\e[48;5;130m\]"   # burnt orange
+    local TX_RUBY=$FG_TERM
+    local FG_GIT="\[\e[38;5;113m\]"    # minty green
+    local BG_GIT="\[\e[48;5;113m\]"    # minty green
+    local TX_GIT=$FG_TERM
 
     PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                            FG_SEP=$FG_TERM
-    PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
-    PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${FG_BLACK} ${PS_SYMBOL_FOLDER}  \w ";                FG_SEP=$FG_FOLDER
+    PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${TX_CLOCK} ${PS_SYMBOL_CLOCK}  $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
+    PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${TX_FOLDER} ${PS_SYMBOL_FOLDER}  \w ";               FG_SEP=$FG_FOLDER
     PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
 
     if git -C . rev-parse 2>/dev/null; then
       __powerline_git_info="$(__git_info)"
-      PS1+="${FG_SEP}${BG_GIT}${SEPARATOR}${FG_BLACK} \${__powerline_git_info} "
+      PS1+="${FG_SEP}${BG_GIT}${SEPARATOR}${TX_GIT} \${__powerline_git_info} "
       FG_SEP=$FG_GIT
     fi
 
