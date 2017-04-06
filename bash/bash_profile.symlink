@@ -44,45 +44,6 @@ if [ "$PS1" ] ; then
 
   # MySQL prompt
   export MYSQL_PS1='\u@\h \d \c> '
-
-  # _git_dirty () {
-  #   git status 2> /dev/null | grep -c : | awk '{if ($1 > 0) print "⚡"}'
-  # }
-
-  # prompt="
-  #   status=\$?
-  #   leader='╭ '
-  #   trailer='╰ ➙ '
-
-  #   user='${FG_BLUE}\u${RESET}'
-  #   host='${FG_YELLOW}\h${RESET}'
-  #   cwd='${FG_CYAN}\w${RESET}'
-  #   git=\"\$(__git_ps1 \"(${FG_GREEN}%s${RESET})\") ${FG_YELLOW}\$(_git_dirty)${RESET}\"
-
-  #   rbenv_manager_current
-  #   rbenv_status=\$?
-  #   ruby=\"{${FG_MAGENTA}\$(ruby_version)${RESET}\"
-  #   if [[ \$rbenv_status = \"2\" ]] ; then
-  #     ruby=\"\${ruby}}\"
-  #   elif [[ \$rbenv_status = \"1\" ]] ; then
-  #     ruby=\"\${ruby} ${FG_GREEN}✔ ${RESET}}\"
-  #   else
-  #     ruby=\"\${ruby} ${FG_RED}✘ ${RESET}}\"
-  #   fi
-
-  #   prompt=\"\${user}@\${host}:\${cwd} \${ruby}\${git}\"
-
-  #   if [[ \$status = \"0\" ]] ; then
-  #     prompt=\"${FG_GREEN}\${leader}${RESET}\${prompt}\n${FG_GREEN}\${trailer}${RESET}\"
-  #   else
-  #     prompt=\"${FG_RED}\${leader}${RESET}\${prompt}\n${FG_RED}\${trailer}${RESET}\"
-  #   fi
-
-  #   echo -e \"\${prompt}\"
-  # "
-  # export PS1="\$(${prompt})"
-
-  # PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME} - ${PWD}\007"'
 fi
 
 # configure rbenv
