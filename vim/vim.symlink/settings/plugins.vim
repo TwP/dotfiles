@@ -122,3 +122,6 @@ let g:bgtags_user_commands = {
     \ 'default': 'ctags -f-'
     \}
 \ }
+
+map  <leader>bg :BgtagsUpdateTags<CR>
+vmap <leader>tb :BgtagsUpdateTags<CR>
