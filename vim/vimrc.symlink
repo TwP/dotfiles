@@ -36,6 +36,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'joker1007/vim-ruby-heredoc-syntax'
 Bundle 'fatih/vim-go'
+Bundle 'elzr/vim-json'
 
 """ Miscellaneous
 Bundle 'zerowidth/vim-copy-as-rtf'

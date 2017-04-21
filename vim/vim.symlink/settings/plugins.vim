@@ -9,16 +9,20 @@ vnoremap <C-]> :CtrlPtjumpVisual<cr>
 
 """ NERDTree
 " auto-change CWD when changing tree root
-let NERDTreeChDirMode=2
+let g:NERDTreeChDirMode=2
 command! -n=? -complete=dir NT NERDTreeToggle <args>
 
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '^tags$']
-let NERDTreeDirArrows=1
+let g:NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$', '^tags$']
+let g:NERDTreeDirArrows=1
 
 nnoremap <D-r> :NERDTreeToggle<CR>
 nnoremap <D-R> :NERDTree<CR><C-w>p:NERDTreeFind<CR>
 
-let NERDSpaceDelims = 1
+""" NERDCommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 """ Tabular
 " sets ,a= to align = and => lines
@@ -41,6 +45,10 @@ let g:html_font="Andale Mono"
 
 """ enable syntax highlighting in fenced markdown blocks
 let g:markdown_fenced_languages = ['coffee', 'css', 'sass', 'ruby', 'erb=eruby', 'javascript', 'html', 'sh', 'xml', 'sql']
+
+""" vim-json
+" disable quote concealing
+let g:vim_json_syntax_conceal = 0
 
 """ ack.vim
 " use the sliver searcher
