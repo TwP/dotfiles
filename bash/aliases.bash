@@ -6,7 +6,6 @@ alias ..='cd ..'
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias b='cd $OLDPWD'
 alias c='clear'
-alias ds='/usr/bin/du -h -s'
 alias du='/usr/bin/du -h'
 alias find='/usr/bin/find'
 
