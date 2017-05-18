@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleIconFile</key>        <string>com.culturedcode.ThingsMac</string>
+  <key>CFBundleIdentifier</key>      <string>at.obdev.LaunchBar.action.AddToThings</string>
+  <key>CFBundleName</key>            <string>Add to Things</string>
+  <key>CFBundleVersion</key>         <string>1.2</string>
+  <key>LBAssociatedApplication</key> <string>com.culturedcode.ThingsMac</string>
+  <key>LBRequiredApplication</key>   <string>com.culturedcode.ThingsMac</string>
+  <key>LBDescription</key>
+  <dict>
+    <key>LBAuthor</key>     <string>Objective Development</string>
+    <key>LBSummary</key>    <string>This action creates a new to-do in Things with the specified text.</string>
+    <key>LBTwitter</key>    <string>@launchbar</string>
+    <key>LBWebsiteURL</key> <string>https://www.obdev.at/</string>
+  </dict>
+  <key>LBScripts</key>
+  <dict>
+    <key>LBDefaultScript</key>
+    <dict>
+      <key>LBAcceptedArgumentTypes</key> <array><string>string</string></array>
+      <key>LBRequiresArgument</key>      <true/>
+      <key>LBResultType</key>            <string>unknown</string>
+      <key>LBScriptName</key>            <string>default.scpt</string>
+    </dict>
+  </dict>
+  <key>NSHumanReadableCopyright</key> <string>Copyright © 2014-2016 Objective Development</string>
+</dict>
+</plist>
