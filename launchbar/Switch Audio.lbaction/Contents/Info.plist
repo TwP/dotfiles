@@ -2,54 +2,40 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string>com.renaghan.launchbar.SwitchAudio</string>
-	<key>CFBundleName</key>
-	<string>Switch Audio</string>
-	<key>LBAbbreviation</key>
-	<string>sound speaker headphones microphone</string> 
-	<key>CFBundleVersion</key>
-	<string>2.1</string>
-	<key>CFBundleIconFile</key>
-	<string>font-awesome:fa-headphones</string>
-	<key>LBDebugLogEnabled</key>
-	<false/>
-	<key>LBScripts</key>
-	<dict>
-		<key>LBDefaultScript</key>
-		<dict>
-			<key>LBScriptName</key>
-			<string>audio.js</string>
-			<key>LBRunInBackground</key>
-			<false/>
-			<key>LBRequiresArgument</key>
-			<false/>
-			<key>LBReturnsResult</key>
-			<true/>
-		</dict>
-	</dict>
-	<key>LBDescription</key>
-	<dict>
-		<key>LBSummary</key>
-		<string>Switch Input and Output Audio devices. Requires switchaudio-osx which is mostly easily installed via homebrew: "brew install switchaudio-osx" (command must be installed to /usr/local/bin/SwitchAudioSource). When invoked it returns items for each output device (headphones) and each input device (microphone). The currently selected item for each is prefixed with *. Select an item and hit enter to switch to that item, the action will respond by refreshing the items and you should note the * by the item you just selected.</string>
-		<key>LBRequirements</key>
-		<string>https://github.com/deweller/switchaudio-osx</string>
-		<key>LBAuthor</key>
-		<string>Padraic Renaghan</string>
-		<key>LBEmail</key>
-		<string>prenagha@renaghan.com</string>
-		<key>LBWebsiteURL</key>
-		<string>https://prenagha.github.io/launchbar/audio.html</string>
-		<key>LBTwitter</key>
-		<string>@prenagha</string>
-	  <key>LBUpdateURL</key>
-	  <string>https://raw.githubusercontent.com/prenagha/launchbar/master/Switch%20Audio.lbaction/Contents/Info.plist</string>
-	  <key>LBDownloadURL</key>
-	  <string>https://s3.amazonaws.com/renaghan/lbdist/Switch%20Audio.lbaction</string>
-	  <key>LBChangelog</key>
-	  <string>
-	    Support action updates
-	  </string>
-	</dict>
+  <key>CFBundleIdentifier</key> <string>com.renaghan.launchbar.SwitchAudio</string>
+  <key>CFBundleName</key>       <string>Switch Audio</string>
+  <key>CFBundleVersion</key>    <string>2.1</string>
+  <key>LBAbbreviation</key>     <string>sound speaker headphones microphone</string> 
+  <key>CFBundleIconFile</key>   <string>font-awesome:fa-headphones</string>
+  <key>LBDebugLogEnabled</key>  <false/>
+  <key>LBDescription</key>
+  <dict>
+    <key>LBSummary</key>
+    <string>Switch Input and Output Audio devices. Requires switchaudio-osx which is mostly
+easily installed via homebrew: "brew install switchaudio-osx" (command must be
+installed to /usr/local/bin/SwitchAudioSource). When invoked it returns items
+for each output device (headphones) and each input device (microphone). The
+currently selected item for each is prefixed with *. Select an item and hit
+enter to switch to that item, the action will respond by refreshing the items
+and you should note the * by the item you just selected.</string>
+    <key>LBRequirements</key> <string>https://github.com/deweller/switchaudio-osx</string>
+    <key>LBAuthor</key>       <string>Padraic Renaghan</string>
+    <key>LBEmail</key>        <string>prenagha@renaghan.com</string>
+    <key>LBWebsiteURL</key>   <string>https://prenagha.github.io/launchbar/audio.html</string>
+    <key>LBTwitter</key>      <string>@prenagha</string>
+    <key>LBUpdateURL</key>    <string>https://raw.githubusercontent.com/prenagha/launchbar/master/Switch%20Audio.lbaction/Contents/Info.plist</string>
+    <key>LBDownloadURL</key>  <string>https://s3.amazonaws.com/renaghan/lbdist/Switch%20Audio.lbaction</string>
+    <key>LBChangelog</key>    <string>Support action updates</string>
+  </dict>
+  <key>LBScripts</key>
+  <dict>
+    <key>LBDefaultScript</key>
+    <dict>
+      <key>LBScriptName</key>       <string>audio.js</string>
+      <key>LBRunInBackground</key>  <false/>
+      <key>LBRequiresArgument</key> <false/>
+      <key>LBReturnsResult</key>    <true/>
+    </dict>
+  </dict>
 </dict>
 </plist>

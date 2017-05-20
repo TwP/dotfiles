@@ -58,15 +58,15 @@ function makeOutput(obj) {
 }
 
 function makeItem(name, kind, active) {
-  var icon  = (kind == 'input' ? 'microphone.icns' : 'headphones.icns');
-  var title = (active ? '▶︎ ' : '') + name;
-  var item  = {
+  var icon   = (kind == 'input' ? 'microphone.icns' : 'headphones.icns');
+  var title  = (active ? '▶︎ ' : '') + name;
+  var action = (active ? 'run': 'switchto');
+  return {
     'title': title,
     'kind': kind,
     'name': name,
-    'action': 'switchto',
+    'action': action,
     'actionReturnsItems': true,
     'icon': icon
   };
-  return item;
 }
