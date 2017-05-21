@@ -4,6 +4,9 @@
 --
 -- Copyright (c) 2014-2016 Objective Development
 -- https://obdev.at/
+--
+-- Input Format
+--   title #tag1 #tag2 [project/area] ::note >duedate
 
 on handle_string(s)
   tell application "Things3"
