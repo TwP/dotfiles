@@ -207,6 +207,9 @@
   # Open the git documentation in a web browser (MacOS only)
   docs = !open $HOMEBREW_ROOT/share/doc/git-doc/index.html
 
+  # What have I been working on today
+  today = !git log --since="00:00:00" --all --oneline --no-merges --author=\"$(git config user.email)\"
+
   ## Shortened 'New' Commands
   fahr = !git fetch --all && git hard-reset
   rem = !git rebase-against-master
