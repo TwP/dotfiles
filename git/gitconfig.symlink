@@ -219,6 +219,7 @@
   fa = !git fetch --all
   pf = !git push --force-with-lease
   dm = !git diff-merge-base
+  dh = !git diff HEAD
   mb = !git merge-base-master
   co = !git checkout-with-relative-age
   br = !git branches-with-relative-age
