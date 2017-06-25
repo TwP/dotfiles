@@ -49,6 +49,7 @@ defaults write at.obdev.LaunchBar ModifierTapInstantSend -int 23
 msg "Double tap Cmd for Snippets"
 defaults write at.obdev.LaunchBar ModifierTapSnippets -int 21
 
+
 ## Actions
 
 ## Calculator
@@ -73,6 +74,14 @@ defaults write at.obdev.LaunchBar ClipboardHistoryPreferPlainText -bool true
 
 msg "Clipboard history will hold 10 itmes"
 defaults write at.obdev.LaunchBar ClipboardHistoryCapacity -int 10
+
+msg "Opt-Cmd-/ to show Clipboard History"
+defaults write at.obdev.LaunchBar ShowClipboardHistoryHotKey -string "2304@44"
+defaults write at.obdev.LaunchBar ShowClipboardHistoryHotKeyEnabled -bool true
+
+msg "Cmd-/ to select from Clipboard History"
+defaults write at.obdev.LaunchBar SelectFromClipboardHistoryHotKey -string "256@44"
+defaults write at.obdev.LaunchBar SelectFromClipboardHistoryHotKeyEnabled -bool true
 
 ## Update
 
