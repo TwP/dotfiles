@@ -29,7 +29,7 @@
       <key>LBAllowsInstantReuseOfLastTextInputString</key> <false/>
     </dict>
   </dict>
-  <key>LBTextInputTitle</key>         <string>title #tag1 #tag2 [project/area] ::note >duedate</string>
+  <key>LBTextInputTitle</key>         <string>title #tag [project/area] ::note >duedate</string>
   <key>NSHumanReadableCopyright</key> <string>Copyright © 2017 Tim Pease</string>
 </dict>
 </plist>

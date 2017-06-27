@@ -6,7 +6,7 @@
 -- https://obdev.at/
 --
 -- Input Format
---   title #tag1 #tag2 [project/area] ::note >duedate
+--   title #tag [project/area] ::note >duedate
 
 on handle_string(s)
   tell application "Things3"

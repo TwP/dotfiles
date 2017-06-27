@@ -19,8 +19,8 @@ defaults write at.obdev.LaunchBar OpenLocationPreferSecureSchemes -bool true
 
 ## Appearance
 
-msg "Use the 'El Capitan' appearance theme"
-defaults write at.obdev.LaunchBar Theme -string "at.obdev.LaunchBar.theme.ElCapitan"
+# msg "Use the 'El Capitan' appearance theme"
+# defaults write at.obdev.LaunchBar Theme -string "at.obdev.LaunchBar.theme.ElCapitan"
 
 ## Shortcuts
 
