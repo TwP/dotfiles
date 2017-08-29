@@ -88,7 +88,7 @@ brew 'mas'
 brew 'md5sha1sum'
 brew 'memcached', restart_service: true
 brew 'mtr'
-brew 'mysql@5.6'
+brew 'mysql@5.7'
 brew 'openssl@1.1'
 brew 'nginx', restart_service: true
 brew 'nmap'
