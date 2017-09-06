@@ -112,15 +112,15 @@ let g:tagbar_type_puppet = {
 let g:bgtags_user_commands = {
   \ 'directories': {
     \ '.git': [
-      \ 'git ls-files -c -o --exclude-standard | ' .
-        \ 'egrep -v ''\.r(b|ake)$|\.git/'' | ' .
+      \ 'git ls-files -c -o --exclude-standard '':^*.rb'' '':^*.rake'' '':^*.go'' '':^*.git'' | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
         \ 'parallel -j200\% -N 500 --pipe ''ctags -L - -f -'' > tags',
       \ 'eval "$(rbenv init -)" && rbenv shell $(rbenv global) && ' .
         \ 'git ls-files -c -o --exclude-standard | ' .
-        \ 'egrep ''\.r(b|ake)$'' | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
-        \ 'parallel -X ''ripper-tags -f - {}'' >> tags'
+        \ 'parallel -X -L200 ''ripper-tags -f - {}'' >> tags',
+      \ 'git ls-files -c -o --exclude-standard ''*.go'' | ' .
+        \ 'parallel -X -L200 ''gotags -f - {}'' >> tags'
       \ ],
     \ 'default': 'ctags -R'
     \ },
