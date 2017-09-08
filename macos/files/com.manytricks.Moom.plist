@@ -488,6 +488,160 @@
 			<key>Resize Width Unit</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>1001</integer>
+			<key>Apply to Overlapping Windows</key>
+			<true/>
+			<key>Auto-Trigger</key>
+			<true/>
+			<key>Auto-Trigger Display Count</key>
+			<integer>1</integer>
+			<key>Center Mode</key>
+			<integer>0</integer>
+			<key>Collapsed</key>
+			<false/>
+			<key>Confine to Display</key>
+			<false/>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>CE09E4D0-1C5C-4FB5-A749-F11CDD116958</string>
+				<key>Key Code</key>
+				<integer>6</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>Z</string>
+			</dict>
+			<key>Identifier</key>
+			<string>CE09E4D0-1C5C-4FB5-A749-F11CDD116958</string>
+			<key>Loop Through Displays</key>
+			<false/>
+			<key>Move Delta</key>
+			<integer>50</integer>
+			<key>Move Direction</key>
+			<integer>5</integer>
+			<key>Move to Edge/Corner Direction</key>
+			<integer>5</integer>
+			<key>Relative Frame</key>
+			<string>{{0.31171874999999999, 0.21939136588818117}, {0.65507812499999996, 0.72399150743099783}}</string>
+			<key>Resize Anchor</key>
+			<integer>10</integer>
+			<key>Resize Height Unit</key>
+			<integer>0</integer>
+			<key>Resize Proportionally</key>
+			<false/>
+			<key>Resize Size</key>
+			<string>{1677, 1023}</string>
+			<key>Resize Width Unit</key>
+			<integer>0</integer>
+			<key>Snapshot</key>
+			<array>
+				<dict>
+					<key>Application Name</key>
+					<string>GitHub Mail</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.fluidapp.fluidapp.github mail</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{171, 187}, {1600, 1023}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Inbox (3) - tim.pease@github.com - GitHub Mail</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>MacVim</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>org.vim.macvim</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{957, 12}, {1603, 1405}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>elastomer.rb (~/GitHub/github/lib) - GITHUB</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Terminal</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.terminal</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{76, 110}, {1159, 928}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Vilya - /Users/tpease/GitHub/github — -bash — 162×50</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Slack</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.tinyspeck.slackmacgap</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{236, 283}, {1600, 942}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Slack - GitHub</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Safari</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.safari</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{798, 314}, {1677, 1023}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Time Sink · Many Tricks</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Safari</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.safari</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{880, 395}, {1680, 1022}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>bhilburn/powerlevel9k: The most awesome Powerline theme for ZSH around!</string>
+				</dict>
+			</array>
+			<key>Snapshot Screens</key>
+			<array>
+				<string>{{0, 0}, {2560, 1440}}</string>
+			</array>
+			<key>Title</key>
+			<string>Work</string>
+		</dict>
 	</array>
 	<key>Dismiss After Moving</key>
 	<false/>
@@ -520,6 +674,8 @@
 	<true/>
 	<key>Mouse Controls Include Custom Controls: Show On Hover</key>
 	<false/>
+	<key>NSStatusItem Preferred Position Item-0</key>
+	<real>291</real>
 	<key>NSToolbar Configuration Preferences (App Store) 2.0</key>
 	<dict>
 		<key>TB Display Mode</key>
@@ -576,5 +732,7 @@
 	<false/>
 	<key>Stealth Mode</key>
 	<true/>
+	<key>Target Window Highlight</key>
+	<real>0.19625686813186816</real>
 </dict>
 </plist>
