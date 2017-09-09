@@ -17,6 +17,10 @@ FILES = {
   "secret" => {
     local: "~/.dotfiles/secret",
     glob:  "**/*"
+  },
+  "info" => {
+    local: "~/Documents/Information",
+    glob:  "**/*"
   }
 }
 
