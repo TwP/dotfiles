@@ -144,7 +144,6 @@ cask 'slack'
 cask 'steam'
 cask 'subler'
 cask 'superduper'
-cask 'things'
 cask 'viscosity'
 cask 'vlc'
 cask 'zoomus'
@@ -165,5 +164,6 @@ mas 'GarageBand', id: 682658836
 mas 'QuitsAppsMBI', id: 436884448
 mas 'Slack', id: 803453959
 mas 'Numbers', id: 409203825
+mas 'Things 3', id: 904280696
 
 # vim: ft=ruby
