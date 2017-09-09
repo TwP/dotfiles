@@ -37,7 +37,7 @@ brew 'curl'
 brew 'dbus'
 brew 'git'
 brew 'dos2unix'
-brew 'elasticsearch@1.7', restart_service: true
+brew 'elasticsearch@2.4', restart_service: true
 brew 'faac'
 brew 'lame'
 brew 'x264'
