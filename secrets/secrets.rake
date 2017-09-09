@@ -24,9 +24,10 @@ FILES = {
   }
 }
 
-VOLUME_NAME = "Secrets".freeze
-VOLUME      = File.join("", "Volumes", VOLUME_NAME).freeze
-DMG_FILE    = File.join(ENV['ICLOUD_DRIVE'], "secrets.dmg").freeze
+ICLOUD_DRIVE = "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".freeze
+VOLUME_NAME  = "Secrets".freeze
+VOLUME       = File.join("", "Volumes", VOLUME_NAME).freeze
+DMG_FILE     = File.join(ICLOUD_DRIVE, "secrets.dmg").freeze
 
 namespace :secrets do
   desc "Install secrets from iCloud Drive"
