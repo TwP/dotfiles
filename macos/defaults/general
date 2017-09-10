@@ -52,6 +52,10 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 msg "Disable the over-the-top focus ring animation"
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
+msg "Click in the scroll bar to jump to the next page"
+# Set to 1 to "jump to the spot that's clicked"
+defaults write NSGlobalDomain AppleScrollerPagingBehavior -int 0
+
 # msg "Disable smooth scrolling"
 # (Uncomment if you’re on an older Mac that messes up the animation)
 # defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
@@ -124,5 +128,19 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 #   set desktop picture to POSIX file "/Library/Desktop Pictures/Galaxy.jpg"
 # end tell
 # EOD
+
+msg "Use 24-hour time"
+defaults write NSGlobalDomain AppleICUForce24HourTime -bool true
+
+msg "Set date and time formats"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "1" "yyyy-MM-dd"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "2" "MMM d, y"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "3" "MMMM d, y"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "4" "EEEE, MMMM d, y"
+
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "1" "HH:mm"
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "2" "HH:mm:ss"
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "3" "HH:mm:ss z"
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "4" "HH:mm:ss zzzz"
 
 # vim:ft=sh
