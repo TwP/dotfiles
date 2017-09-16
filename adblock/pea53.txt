@@ -20,3 +20,4 @@
 ||static.chartbeat.com^
 ||crwdcntrl.net^
 ||rodale.com^
+||c.amazon-adsystem.com^
