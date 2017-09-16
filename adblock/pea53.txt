@@ -1,0 +1,22 @@
+[Adblock Plus 2.0]
+! Version: 201709161232
+! Title: Pea53Privacy
+! Last modified: Sep 16, 2017, 12:32
+! Expires: 7 days (update frequency)
+! Homepage: https://github.com/TwP/dotfiles/tree/master/adblock
+!
+||petiteumbrella.com^
+||odb.outbrain.com^
+||ps.eyeota.net^
+||edge.quantserve.com^
+||pixel.quantserve.com^
+||secure.quantserve.com^
+||sb.scorecardresearch.com^
+||s3.buysellads.com^
+||googletagservices.com^
+||google-analytics.com^
+||effectivemeasure.net^
+||connect.facebook.net^
+||static.chartbeat.com^
+||crwdcntrl.net^
+||rodale.com^
