@@ -8,7 +8,7 @@ export SRC_PATH="$HOME/work"
 export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 # ==== PATH setup ====
-[ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
+[ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$HOMEBREW_ROOT/opt/curl/bin:$PATH"
 [ -d $DOTS ]          && PATH="$DOTS/bin:$PATH"
 export PATH
 
