@@ -8,7 +8,7 @@ namespace :launchbar do
     abort "LaunchBar does not appear to be installed" unless File.exists?(dest)
 
     actions = File.join(dest, "Actions")
-    FileUtils.symlink(File.join(path, "Actions.pkg"), actions) unless File.symlink?(actions)
+    FileUtils.symlink(File.join(path, ".Actions.pkg"), actions) unless File.symlink?(actions)
 
     snippets = File.join(dest, "Snippets")
     FileUtils.symlink(File.join(path, "Snippets"), snippets) unless File.symlink?(snippets)
@@ -23,7 +23,7 @@ namespace :launchbar do
   end
 
   task :build => :pkg do
-    path  = File.expand_path("../Actions.pkg", __FILE__)
+    path  = File.expand_path("../.Actions.pkg", __FILE__)
     files = Dir.glob(File.join(path, "**/*.applescript"))
 
     files.each do |filename|
@@ -36,7 +36,7 @@ namespace :launchbar do
 
   task :pkg do
     path = File.expand_path("../Actions", __FILE__)
-    pkg  = File.expand_path("../Actions.pkg", __FILE__)
+    pkg  = File.expand_path("../.Actions.pkg", __FILE__)
     actions = Dir.glob(File.join(path, "*.lbaction"))
 
     FileUtils.rm_r(pkg) if File.exists? pkg
@@ -47,7 +47,7 @@ namespace :launchbar do
   desc "Cleanup build artifacts"
   task :cleanup do
     path = File.expand_path("..", __FILE__)
-    pkg  = File.join(path, "Actions.pkg")
+    pkg  = File.join(path, ".Actions.pkg")
 
     FileUtils.rm_r(pkg) if File.exists?(pkg)
   end
