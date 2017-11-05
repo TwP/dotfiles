@@ -7,8 +7,11 @@ namespace :launchbar do
     dest = File.expand_path("~/Library/Application Support/LaunchBar")
     abort "LaunchBar does not appear to be installed" unless File.exists?(dest)
 
-    FileUtils.symlink(File.join(path, "Actions.pkg"), File.join(dest, "Actions"), force: true)
-    FileUtils.symlink(File.join(path, "Snippets"), File.join(dest, "Snippets"), force: true)
+    actions = File.join(dest, "Actions")
+    FileUtils.symlink(File.join(path, "Actions.pkg"), actions) unless File.symlink?(actions)
+
+    snippets = File.join(dest, "Snippets")
+    FileUtils.symlink(File.join(path, "Snippets"), snippets) unless File.symlink?(snippets)
   end
 
   task :backup do
