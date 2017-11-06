@@ -23,7 +23,7 @@ represented as **⌘**.
     Start a default pomodoro. The default message will be shown at the end of
     the interval, and the default interval length will be used.
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro.png" width="400px"/>
   </dd>
   <dt>pomodoro ␣</dt>
   <dd>
@@ -31,13 +31,13 @@ represented as **⌘**.
     of the interval, and you can specify a custom interval length. If you omit
     either, then the default message or interval will be used.
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro-task.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-task.png" width="400px"/>
   </dd>
   <dt>pomodoro ⌘↩︎</dt>
   <dd>
     Show the default pomodoro settings.
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro-settings.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-settings.png" width="400px"/>
   </dd>
 </dl>
 
@@ -65,14 +65,14 @@ you know that the change has been applied. You can pull up the default settings
       <li>seconds - <code>sec</code> or <code>s</code></li>
     </ul>
 
-    <img src="../images/pomodoro/pomodoro-interval.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-interval.png" width="400px"/>
   </dd>
   <dt>pomodoro ␣ !message Your pomodoro is done!</dt>
   <dd>
     Change the default pomodoro message. This message will be displayed in large
     type at the end of the pomodoro interval if no other message is given.
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro-message.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-message.png" width="400px"/>
   </dd>
   <dt>pomodoro ␣ !sound Glass</dt>
   <dd>
@@ -80,9 +80,9 @@ you know that the change has been applied. You can pull up the default settings
     the pomodoro interval. You can also navigate to the "Sound" menu after
     pulling up the settings, and select the default sound that way.
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro-settings-sound.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-settings-sound.png" width="400px"/>
     <br/><br/>
-    <img src="../images/pomodoro/pomodoro-sounds.png" width="400px"/>
+    <img src="../../images/pomodoro/pomodoro-sounds.png" width="400px"/>
   </dd>
 </dl>
 
@@ -93,7 +93,7 @@ under the "History" section of the pomodoro settings. If you highlight one of
 the pomodoros in the history list and hit `[return]`, it will start another
 pomodoro interval using the historical message.
 
-<img src="../images/pomodoro/pomodoro-history.png" width="400px"/>
+<img src="../../images/pomodoro/pomodoro-history.png" width="400px"/>
 
 If you start a pomodoro using the default message, it will not appear in the
 history list. If you repeat a pomodoro from the history list, it will be moved
