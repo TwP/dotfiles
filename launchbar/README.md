@@ -56,7 +56,7 @@ for getting past the initial block we sometimes face when starting a task.
 
 This is a simple pomodoro timer built inside of LaunchBar. You can configure the
 default interval and alert sound. It is all explained in greater detail in the
-[readme file](Pomodoro.lbaction/README.md) for the pomodoro action.
+[readme file](Actions/Pomodoro.lbaction/README.md) for the pomodoro action.
 
 <img src="images/pomodoro/pomodoro.png" width="600px"/>
 
