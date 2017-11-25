@@ -9,7 +9,8 @@ FLUID_APPS = [
   "Instapaper",
   "Mint",
   "Pivotal Tracker",
-  "Trello"
+  "Syncthing",
+  "Trello",
 ]
 
 namespace :fluid do
