@@ -21,6 +21,10 @@ FILES = {
   "info" => {
     local: "~/Documents/Information",
     glob:  "**/*"
+  },
+  "syncthing" => {
+    local: "~/Library/Application Support/Syncthing",
+    glob:  %w[*.pem *.txt *.xml]
   }
 }
 
