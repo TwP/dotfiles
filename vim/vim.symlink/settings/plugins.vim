@@ -31,6 +31,9 @@ map <leader>a= :Tabularize /=>\?<cr>
 " sets ,a, to align on commas (useful for stacked method calls, etc)
 map <leader>a, :Tabularize /,<cr>
 
+" sets ,a: to align on colons :
+map <leader>a: :Tabularize /:\zs<cr>
+
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 
