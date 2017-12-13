@@ -108,7 +108,7 @@ brew 'ruby'
 brew 'snappy'
 brew 'socat'
 brew 'softhsm'
-brew 'syncthing'
+brew 'syncthing', restart_service: true
 brew 'switchaudio-osx'
 brew 'the_silver_searcher'
 brew 'tmux'
