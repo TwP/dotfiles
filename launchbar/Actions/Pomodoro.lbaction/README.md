@@ -60,11 +60,11 @@ you know that the change has been applied. You can pull up the default settings
     and a half minute pomodor interval.
   <br/>
   <ul>
-  <li>hours - <code>h</code></li>
-  <li>minutes - <code>min</code> or <code>m</code></li>
-  <li>seconds - <code>sec</code> or <code>s</code></li>
+    <li>hours - <code>h</code></li>
+    <li>minutes - <code>min</code> or <code>m</code></li>
+    <li>seconds - <code>sec</code> or <code>s</code></li>
   </ul>
-
+  <br/>
   <img src="../../images/pomodoro/pomodoro-interval.png" width="400px"/>
   </dd>
   <dt>pomodoro ␣ !message Your pomodoro is done!</dt>
