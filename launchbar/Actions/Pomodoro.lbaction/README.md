@@ -58,8 +58,7 @@ you know that the change has been applied. You can pull up the default settings
     Change the default pomodoro interval. The interval can be given in hours,
     minutes, and seconds. The string "12m 30s" would be interpreted as a twelve
     and a half minute pomodor interval.
-
-  <br/><br/>
+  <br/>
   <ul>
   <li>hours - <code>h</code></li>
   <li>minutes - <code>min</code> or <code>m</code></li>
