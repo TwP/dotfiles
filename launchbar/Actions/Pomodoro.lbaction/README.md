@@ -59,13 +59,13 @@ you know that the change has been applied. You can pull up the default settings
     minutes, and seconds. The string "12m 30s" would be interpreted as a twelve
     and a half minute pomodor interval.
 
-  <br/>
+  <br/><br/>
   <ul>
   <li>hours - <code>h</code></li>
   <li>minutes - <code>min</code> or <code>m</code></li>
   <li>seconds - <code>sec</code> or <code>s</code></li>
   </ul>
-  <br/>
+
   <img src="../../images/pomodoro/pomodoro-interval.png" width="400px"/>
   </dd>
   <dt>pomodoro ␣ !message Your pomodoro is done!</dt>
