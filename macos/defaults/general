@@ -2,7 +2,7 @@
 # General UI/UX
 # -----------------------------------------------------------------------------
 
-if [[ ${COMPUTER_NAME} != $(sudo scutil --get ComputerName) ]]; then
+if [[ -n ${COMPUTER_NAME// } && ${COMPUTER_NAME} != $(sudo scutil --get ComputerName) ]]; then
   msg "Set computer name to '${COMPUTER_NAME}' (as done via System Preferences → Sharing)"
   sudo scutil --set ComputerName "${COMPUTER_NAME}"
   sudo scutil --set HostName "${COMPUTER_NAME}"

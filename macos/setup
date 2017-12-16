@@ -5,6 +5,15 @@
 # files. Please read and understand the files before blindly applying to your
 # own computer.
 #
+# You can pass in an optional COMPUTER-NAME to this script and it will be
+# set as the computer name as done via `System Preferences → Sharing`. This
+# change will only be made if COMPUTER-NAME is different than the current
+# computer name.
+#
+# Usage
+#
+#   ./setup [COMPUTER-NAME]
+#
 # References
 # * https://github.com/herrbischoff/awesome-osx-command-line
 # * https://github.com/dstroot/.osx
@@ -13,7 +22,7 @@
 # * http://rixstep.com/2/20060901,00.shtml
 # -----------------------------------------------------------------------------
 
-COMPUTER_NAME="Vilya"
+COMPUTER_NAME="$1"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
 
 # easy access to documents in iCloud Drive
