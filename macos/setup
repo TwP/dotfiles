@@ -23,12 +23,12 @@
 # -----------------------------------------------------------------------------
 
 COMPUTER_NAME="$1"
-COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
+COMPUTER_UUID=$(ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \")
 
 # easy access to documents in iCloud Drive
 ICLOUD_DRIVE="${HOME}/Library/Mobile Documents/com~apple~CloudDocs"
 
-RELATIVE_PATH="`dirname \"$0\"`"
+RELATIVE_PATH=$(dirname "$0")
 ABSOLUTE_PATH=$(cd "${RELATIVE_PATH}"; pwd)
 source "${RELATIVE_PATH}/colors.sh"
 
