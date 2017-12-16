@@ -77,7 +77,7 @@ defaults write at.obdev.LaunchBar ClipboardHistoryCapacity -int 10
 
 msg "Ignore applications for clipboard history"
 defaults write at.obdev.LaunchBar ClipboardHistoryIgnoreApplications \
-  -array "com.apple.keychainaccess"                                  \
+  -array "com.apple.keychainaccess" \
          "com.agilebits.onepassword"
 
 msg "Opt-Cmd-/ to show Clipboard History"
