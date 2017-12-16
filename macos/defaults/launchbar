@@ -75,6 +75,11 @@ defaults write at.obdev.LaunchBar ClipboardHistoryPreferPlainText -bool true
 msg "Clipboard history will hold 10 itmes"
 defaults write at.obdev.LaunchBar ClipboardHistoryCapacity -int 10
 
+msg "Ignore applications for clipboard history"
+defaults write at.obdev.LaunchBar ClipboardHistoryIgnoreApplications \
+  -array "com.apple.keychainaccess"                                  \
+         "com.agilebits.onepassword"
+
 msg "Opt-Cmd-/ to show Clipboard History"
 defaults write at.obdev.LaunchBar ShowClipboardHistoryHotKey -string "2304@44"
 defaults write at.obdev.LaunchBar ShowClipboardHistoryHotKeyEnabled -bool true
