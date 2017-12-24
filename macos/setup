@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
-#
-# This setup script configures defautl settings for Mac OS X. The settings are
-# found in the `defaults` folder and they are broken down by domain into several
-# files. Please read and understand the files before blindly applying to your
-# own computer.
-#
-# You can pass in an optional COMPUTER-NAME to this script and it will be
-# set as the computer name as done via `System Preferences → Sharing`. This
-# change will only be made if COMPUTER-NAME is different than the current
-# computer name.
-#
-# Usage
-#
-#   ./setup [COMPUTER-NAME]
-#
+#/ Usage: setup [options] <defaults_file ...>
+#/
+#/   Configure default settings for Mac OS X. The settings are found in the
+#/   `defaults` folder and they are broken down by domain into several files.
+#/   Please read and understand the files before blindly applying to your own
+#/   computer.
+#/
+#/   OPTIONS:
+#/     -c <computer-name>    Configure the computer name as done via "System Preferences → Sharing"
+#/     -h                    Show this message.
+#/
+#/   EXAMPLES:
+#/     setup
+#/     setup -c Compy
+#/     setup general finder
+#/     setup -c Compy dock
+#/
 # References
 # * https://github.com/herrbischoff/awesome-osx-command-line
 # * https://github.com/dstroot/.osx
@@ -22,7 +24,11 @@
 # * http://rixstep.com/2/20060901,00.shtml
 # -----------------------------------------------------------------------------
 
-COMPUTER_NAME="$1"
+usage() {
+  grep '^#/' <"$0" | cut -c 4-
+}
+
+COMPUTER_NAME=""
 COMPUTER_UUID=$(ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \")
 
 # easy access to documents in iCloud Drive
@@ -34,6 +40,29 @@ source "${RELATIVE_PATH}/colors.sh"
 
 DEFAULTS_PATH="${RELATIVE_PATH}/defaults"
 declare -a DEFAULTS
+
+while getopts ":c:h" opt; do
+  case $opt in
+    c)
+      COMPUTER_NAME=$OPTARG
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    \?)
+      red "Invalid option: -$OPTARG" >&2
+      usage
+      exit 1
+      ;;
+    :)
+      red "Option -$OPTARG requires an argument." >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))  # consume processed args
 
 # Output the program name
 msg "Running: $0"
