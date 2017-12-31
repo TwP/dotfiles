@@ -3,6 +3,9 @@
 set nocompatible
 filetype off
 
+scriptencoding utf-8
+set encoding=utf-8
+
 set rtp+=~/.vim/bundle/vundle/
 set rtp+=$GOROOT/misc/vim
 call vundle#begin()
