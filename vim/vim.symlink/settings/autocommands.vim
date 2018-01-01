@@ -14,3 +14,6 @@ function! SetCursorPosition()
     endif
   end
 endfunction
+
+" Do not create backups when editing crontab files
+autocmd filetype crontab setlocal nobackup nowritebackup
