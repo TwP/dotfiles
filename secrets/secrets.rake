@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'set'
 
 # Describe the secrets to store in the iCloud Drive encrypted disk image.
 #
@@ -8,30 +9,32 @@ require 'fileutils'
 FILES = {
   "ssh" => {
     local: "~/.ssh",
-    glob:  %w[authorized_keys config* *rsa*]
+    globs: %w[authorized_keys config* *rsa*]
   },
   "gh_ssh" => {
     local: "~/GitHub/.ssh",
-    glob:  "*"
+    globs: "*"
   },
   "secret" => {
     local: "~/.dotfiles/secret",
-    glob:  "**/*"
+    globs: %w[**/* **/.*]
   },
   "info" => {
     local: "~/Documents/Information",
-    glob:  "**/*"
+    globs: %w[**/* **/.*]
   },
   "syncthing" => {
     local: "~/Library/Application Support/Syncthing",
-    glob:  %w[*.pem *.txt *.xml]
+    globs: %w[*.pem *.txt *.xml]
   }
 }
 
 ICLOUD_DRIVE = "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".freeze
 VOLUME_NAME  = "Secrets".freeze
+VOLUME_SIZE  = "10m".freeze
 VOLUME       = File.join("", "Volumes", VOLUME_NAME).freeze
 DMG_FILE     = File.join(ICLOUD_DRIVE, "secrets.dmg").freeze
+IGNORE       = Set.new(%w[.DS_Store]).freeze
 
 namespace :secrets do
   desc "Install secrets from iCloud Drive"
@@ -54,6 +57,8 @@ namespace :secrets do
     begin
       FILES.each do |backup, h|
         local = h[:local]
+        globs = Array(h[:globs])
+        files = Array(h[:files])
 
         # skip these files if the backup directory does not exist
         src_dir = File.join(VOLUME, backup)
@@ -62,8 +67,9 @@ namespace :secrets do
         Dir.chdir(src_dir)
         dest_dir = File.expand_path(local)
 
-        Dir.glob("**/*").each do |file|
-          next if File.directory?(file)
+        install_file = ->(file) do
+          next if !File.exists?(file) || File.directory?(file)
+          next if IGNORE.include? file
 
           d      = File.join(dest_dir, file)
           d_name = File.join(local,    file)
@@ -79,6 +85,9 @@ namespace :secrets do
             puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
           end
         end
+
+        Dir.glob(globs).each(&install_file)
+        files.each(&install_file)
       end
     ensure
       Dir.chdir(pwd)
@@ -92,7 +101,8 @@ namespace :secrets do
     begin
       FILES.each do |backup, h|
         local = h[:local]
-        globs = h[:glob]
+        globs = Array(h[:globs])
+        files = Array(h[:files])
 
         # skip these files if the local directory does not exist
         src_dir = File.expand_path(local)
@@ -101,25 +111,27 @@ namespace :secrets do
         Dir.chdir(src_dir)
         dest_dir = File.join(VOLUME, backup)
 
-        Array(globs).each do |glob|
-          Dir.glob(glob).each do |file|
-            next if File.directory?(file)
+        backup_file = ->(file) do
+          next if !File.exists?(file) || File.directory?(file)
+          next if IGNORE.include? file
 
-            d      = File.join(dest_dir, file)
-            d_name = File.join(backup,   file)
+          d      = File.join(dest_dir, file)
+          d_name = File.join(backup,   file)
 
-            s      = File.join(src_dir, file)
-            s_name = File.join(local,   file)
+          s      = File.join(src_dir, file)
+          s_name = File.join(local,   file)
 
-            if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
-              puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
-              FileUtils.mkdir_p(File.dirname(d))
-              FileUtils.cp(s, d, preserve: true)
-            else
-              puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
-            end
+          if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+            puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
+            FileUtils.mkdir_p(File.dirname(d))
+            FileUtils.cp(s, d, preserve: true)
+          else
+            puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
           end
         end
+
+        Dir.glob(globs).each(&backup_file)
+        files.each(&backup_file)
       end
     ensure
       Dir.chdir(pwd)
@@ -132,7 +144,7 @@ namespace :secrets do
 
   task :create_dmg do
     unless File.exists? DMG_FILE
-      cmd = %Q{hdiutil create -type UDIF -encryption AES-256 -size 10m -fs "Journaled HFS+" -volname "#{VOLUME_NAME}" -attach "#{DMG_FILE}"}
+      cmd = %Q{hdiutil create -type UDIF -encryption AES-256 -size #{VOLUME_SIZE} -fs "Journaled HFS+" -volname "#{VOLUME_NAME}" -attach "#{DMG_FILE}"}
       puts "Creating an ecrypted disk image for storing secrets ..."
       puts cmd
       Kernel.system cmd
