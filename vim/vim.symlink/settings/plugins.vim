@@ -76,6 +76,11 @@ au FileType go nmap <leader>gt <Plug>(go-test)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
+""" fugitive
+" copy GitHub url to clipboard
+nnoremap <silent> <Leader>cg :Gbrowse!<CR>
+vnoremap <silent> <Leader>cg :'<,'>Gbrowse!<CR>
+
 """ tagbar
 map  <leader>tb :TagbarToggle<CR>
 vmap <leader>tb :TagbarToggle<CR>
