@@ -47,7 +47,7 @@ let g:html_number_lines=0
 let g:html_font="Andale Mono"
 
 """ enable syntax highlighting in fenced markdown blocks
-let g:markdown_fenced_languages = ['coffee', 'css', 'sass', 'ruby', 'erb=eruby', 'javascript', 'html', 'sh', 'xml', 'sql']
+let g:markdown_fenced_languages = ['go', 'coffee', 'css', 'sass', 'ruby', 'erb=eruby', 'javascript', 'html', 'sh', 'xml', 'sql']
 
 """ vim-json
 " disable quote concealing
