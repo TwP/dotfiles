@@ -1,10 +1,15 @@
 # ==== Docker Setup ====
 # Some fucntions useful for working with Docker
 
-alias dscr="screen ${HOME}/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty"
 alias dpsa="docker ps -a"
-alias drm='docker rm $(docker ps -aqf status=exited)'
-alias ds="open /Applications/Docker.app"
-alias dq="osascript -e 'quit app \"docker\"'"
 alias dv="docker volume ls"
 alias dn="docker network ls"
+
+function _dc() {
+  local cmds="activate clean console cycle deactivate ports rebuild screen"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  _docker_compose
+  COMPREPLY=( $(compgen -W "$cmds" -- $cur) "${COMPREPLY[@]}" )
+}
+
+complete -F _dc dc
