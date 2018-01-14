@@ -4,8 +4,8 @@
 #/   Useful shortcuts for working with `docker` and `docker-compose`.
 #/
 #/   `dc` also accepts `docker-compose` commands in addition to the commands
-#/   listed below. In this sense the `dc` script as a shorthand notation for the
-#/   more lengthy `docker-compose`.
+#/   listed below. In this sense the `dc` script acts as a shorthand notation
+#/   for the more lengthy `docker-compose`.
 #/
 #/   COMMANDS:
 #/     clean            Remove stopped containers and dangling images
