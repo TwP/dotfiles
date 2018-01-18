@@ -5,6 +5,7 @@
 #/   erase  : erase your GitHub HTTPS credentials from the MacOS keychain
 #/   show   : show your GitHub HTTPS credentials
 #/   token  : just the auth token (suitable for use in other scripts)
+#/   user   : just the GitHub username (suitable for use in other scripts)
 #/   help   : show this help message
 #/
 #/ This script will confgiure your GitHub HTTPS crednetials in the OSX keychain,
@@ -65,6 +66,12 @@ token() {
     | awk 'BEGIN { FS = "=" }; $1 ~ /password/ { print $2 }'
 }
 
+user() {
+  printf "protocol=https\nhost=github.com\n" \
+    | git credential-osxkeychain get \
+    | awk 'BEGIN { FS = "=" }; $1 ~ /username/ { print $2 }'
+}
+
 case "$1" in
   setup)
     assert_osxkeychain
@@ -81,6 +88,10 @@ case "$1" in
   token)
     assert_osxkeychain
     token
+    ;;
+  user)
+    assert_osxkeychain
+    user
     ;;
   *)
     show_help
