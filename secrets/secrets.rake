@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'set'
+require 'socket'
 
 # Describe the secrets to store in the iCloud Drive encrypted disk image.
 #
@@ -33,7 +34,8 @@ ICLOUD_DRIVE = "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".fre
 VOLUME_NAME  = "Secrets".freeze
 VOLUME_SIZE  = "10m".freeze
 VOLUME       = File.join("", "Volumes", VOLUME_NAME).freeze
-DMG_FILE     = File.join(ICLOUD_DRIVE, "secrets.dmg").freeze
+HOSTNAME     = Socket.gethostname.split(".").first.downcase.freeze
+DMG_FILE     = File.join(ICLOUD_DRIVE, "#{HOSTNAME}.secrets.dmg").freeze
 IGNORE       = Set.new(%w[.DS_Store]).freeze
 
 namespace :secrets do
