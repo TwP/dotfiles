@@ -1,5 +1,7 @@
 require 'rake'
 
+ICLOUD_DRIVE = "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".freeze
+
 # Load in any *.rake files from the subfolders
 Dir.glob("*/*.rake").each { |fn| load fn }
 
