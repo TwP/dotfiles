@@ -32,3 +32,6 @@ function OpenTheThingUnderTheCursor()
   " and now pass our text along to the `open` command
   exec '!open -g ' . @0
 endfunction
+
+""" Ruby - change hacshrockets to new hash syntax
+map <leader>hs :s/\(\s\+\\|[{(,]\)\zs:\(\h\w*[!=?]\?\)\s\+=>\s\+/\2: /g<cr>
