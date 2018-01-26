@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+#/ Usage: gh-log [options] <date>
+#/
+#/   Show Issues and Pull Requests that you have been involved with since the
+#/   given date. The date must be expressed in YYYY-MM-DD format.
+#/
+#/   This utility requires the `gh-creds` utility to be installed and
+#/   configured - this is how your GitHub username and access token is
+#/   retrieved.
+#/
+#/   OPTIONS:
+#/     -u  <username>      GitHub username to query on (defaults to you)
+#/     -o  <organization>  Limit results to a single GitHub organization
+#/
+#/   EXAMPLES:
+#/     gh-log 2018-01-01
+#/     gh-log -o github 2018-01-01
+#/     gh-log -u defunkt 2017-07-01
+#/
+#------------------------------------------------------------------------------
+
+set -e
+
+: ${GH_ACCESS_TOKEN:=`gh-creds token`}
+: ${GH_LOGIN:=`gh-creds user`}
+
+org=""
+
+function usage {
+  grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
+}
+
+while getopts ":c:o:h" opt; do
+  case $opt in
+    u)
+      GH_LOGIN=$OPTARG
+      ;;
+    o)
+      org=$OPTARG
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))  # consume processed args
+
+if [ -z "$1" ]; then
+  usage
+  exit 1
+fi
+
+merged_prs="$TEMP/merged_prs"
+authored_issues="$TEMP/authored_issues"
+commented_prs="$TEMP/commented_prs"
+commented_issues="$TEMP/commented_issues"
+
+function cleanup_files() {
+  rm -f "$merged_prs" "$authored_issues" "$commented_prs" "$commented_issues"
+}
+trap cleanup_files EXIT
+
+start_time="${1}T00:00:00"
+
+function formatted_issues() {
+  query=$1
+  page=1
+  base_url="https://api.github.com/search/issues?access_token=$GH_ACCESS_TOKEN&per_page=100&sort=created&order=asc"
+
+  q="created:>$start_time"
+  if [ -n "$org" ]; then q="$q+org:$org"; fi
+  q="$q+$query"
+
+  while true; do
+    curl="$base_url&page=$page&q=$q"
+    echo $curl >&2
+    out=`curl -s "$curl"`
+
+    if [ `echo "$out" | jq -r '.items | length'` -eq 0 ]; then
+      echo "No more pages" >&2
+      break
+    fi
+    echo "$out"
+    page=`expr $page + 1`
+  done | jq  -r '.items[] | "* [\(.title)](\(.html_url)) \(.comments) comments"'
+}
+
+echo "Searching GitHub..."
+
+formatted_issues "author:$GH_LOGIN+is:merged+is:pr" > "$merged_prs"
+formatted_issues "author:$GH_LOGIN+is:issue" > "$authored_issues"
+formatted_issues "commenter:$GH_LOGIN+is:pr" > "$commented_prs"
+formatted_issues "commenter:$GH_LOGIN+is:issue" > "$commented_issues"
+
+echo "=========================================="
+echo
+
+echo "# PRs @$GH_LOGIN opened that were merged (`cat "$merged_prs" | wc -l` prs)"
+cat /tmp/merged_prs
+echo
+
+echo "# Issues @$GH_LOGIN opened (`cat "$authored_issues" | wc -l` issues)"
+cat "$authored_issues"
+echo
+
+echo "# PRs from others that @$GH_LOGIN commented on (`comm -13 "$merged_prs" "$commented_prs" | wc -l` prs)"
+comm -13 "$merged_prs" "$commented_prs"
+echo
+
+echo "# Issues from others that @$GH_LOGIN commented on (`comm -13 "$authored_issues" "$commented_issues" | wc -l` issues)"
+comm -13 "$authored_issues" "$commented_issues"
+echo
