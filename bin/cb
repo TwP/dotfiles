@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+#/ Usage: cb <command> [options]
+#/
+#/   Helper script to make it a little easer to work with certbot and dnsimple
+#/   challenge verification. These commands here will only work with the
+#/   dnsimple plugin. The first step should be to `install` the plugin.
+#/
+#/   COMMANDS:
+#/     register  <email>      Register a new letsencrypt account
+#/     dnsimple  -d <domain>  Generate certificates for the domain(s)
+#/     renew                  Renew certificates
+#/     install                Install the dnsimple plugin
+#/
+#/   EXAMPLE:
+#/     cb install
+#/     cb register letsencryp@example.com
+#/     cb dnsimple -d test.example.com
+#/     cb renew --dry-run
+#/
+#------------------------------------------------------------------------------
+set -e
+
+CB_HOME=${CB_HOME:-"$HOME/.certbot"}
+
+function usage {
+  /usr/bin/grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
+}
+
+function cb_cmd {
+  /usr/local/bin/certbot \
+    --config-dir $CB_HOME/config \
+    --work-dir $CB_HOME/work \
+    --logs-dir $CB_HOME/log \
+    "$@"
+}
+
+function cb_register {
+  shift  # consume the "register" arg
+
+  if [ -z "$1" ]; then
+    usage
+    /bin/echo "Registration requires an email address."
+    exit 1
+  fi
+
+  cb_cmd register --no-eff-email --email "$1"
+}
+
+# See https://github.com/certbot/certbot/blob/master/certbot-dns-dnsimple/certbot_dns_dnsimple/__init__.py
+# for detailed instructions on using the dnsimple plugin
+function cb_dnsimple {
+  shift  # consume the "dnsimple" arg
+
+  if [ -z "$1" ]; then
+    usage
+    /bin/echo "One or more domains must be provided."
+    exit 1
+  fi
+
+  cb_cmd certonly \
+    --dns-dnsimple \
+    --dns-dnsimple-credentials "$CB_HOME/config/dnsimple.ini" \
+    "$@"
+}
+
+function cb_renew {
+  shift  # consume the "renew" arg
+
+  cb_cmd renew \
+    --dns-dnsimple \
+    --dns-dnsimple-credentials "$CB_HOME/config/dnsimple.ini" \
+    "$@"
+}
+
+function cb_install_dnsimple {
+  version=$(/usr/local/bin/certbot --version | cut -c 9-)
+
+  startdir=$(/bin/pwd)
+  cd $TEMP
+
+  /usr/local/bin/git clone "https://github.com/certbot/certbot.git" &&
+    cd certbot &&
+    /usr/local/bin/git checkout "tags/v$version" -b "v$version" &&
+    /usr/local/bin/pip3 install "certbot-dns-dnsimple/" &&
+    cd .. &&
+    rm -fr certbot
+
+  cd "$startdir"
+}
+
+if [[ $# > 0 ]]; then
+  case "$1" in
+    --help )
+      usage
+      ;;
+    -h )
+      usage
+      ;;
+    register)
+      cb_register "$@"
+      ;;
+    dnsimple)
+      cb_dnsimple "$@"
+      ;;
+    renew)
+      cb_renew "$@"
+      ;;
+    install)
+      cb_install_dnsimple
+      ;;
+    *)
+      cb_cmd "$@"
+      ;;
+  esac
+else
+  usage
+  exit 1
+fi
