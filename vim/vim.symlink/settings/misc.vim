@@ -35,3 +35,6 @@ endfunction
 
 """ Ruby - change hacshrockets to new hash syntax
 map <leader>hs :s/\(\s\+\\|[{(,]\)\zs:\(\h\w*[!=?]\?\)\s\+=>\s\+/\2: /g<cr>
+
+""" Redraw the vim window
+map <leader>r :redraw!
