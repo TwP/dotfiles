@@ -37,4 +37,4 @@ endfunction
 map <leader>hs :s/\(\s\+\\|[{(,]\)\zs:\(\h\w*[!=?]\?\)\s\+=>\s\+/\2: /g<cr>
 
 """ Redraw the vim window
-map <leader>r :redraw!
+map <leader>r :redraw!<cr>
