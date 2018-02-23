@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-#/ Usage: gh-log [options] <date>
+#/ Usage: gh-log [options] <date> <end_date>
 #/
 #/   Show Issues and Pull Requests that you have been involved with since the
-#/   given date. The date must be expressed in YYYY-MM-DD format.
+#/   given date. The date must be expressed in YYYY-MM-DD format. An end date
+#/   can be given to limit the range; if omitted, the end date defaults to
+#/   today.
 #/
 #/   This utility requires the `gh-creds` utility to be installed and
 #/   configured - this is how your GitHub username and access token is
@@ -13,7 +15,7 @@
 #/     -o  <organization>  Limit results to a single GitHub organization
 #/
 #/   EXAMPLES:
-#/     gh-log 2018-01-01
+#/     gh-log 2018-01-01 2018-01-31
 #/     gh-log -o github 2018-01-01
 #/     gh-log -u defunkt 2017-07-01
 #/
@@ -71,14 +73,17 @@ function cleanup_files() {
 }
 trap cleanup_files EXIT
 
-start_time="${1}T00:00:00"
+created_range=">${1}T00:00:00"
+if [ -n "$2" ]; then
+  created_range="${1}..${2}"
+fi
 
 function formatted_issues() {
   query=$1
   page=1
   base_url="https://api.github.com/search/issues?access_token=$GH_ACCESS_TOKEN&per_page=100&sort=created&order=asc"
 
-  q="created:>$start_time"
+  q="created:$created_range"
   if [ -n "$org" ]; then q="$q+org:$org"; fi
   q="$q+$query"
 
