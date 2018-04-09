@@ -21,13 +21,14 @@
 set -e
 
 CB_HOME=${CB_HOME:-"$HOME/.certbot"}
+CERTBOT_BIN="$HOMEBREW_ROOT/opt/certbot/libexec/bin"
 
 function usage {
   /usr/bin/grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
 }
 
 function cb_cmd {
-  /usr/local/bin/certbot \
+  $CERTBOT_BIN/certbot \
     --config-dir $CB_HOME/config \
     --work-dir $CB_HOME/work \
     --logs-dir $CB_HOME/log \
@@ -81,7 +82,7 @@ function cb_install_dnsimple {
   /usr/local/bin/git clone "https://github.com/certbot/certbot.git" &&
     cd certbot &&
     /usr/local/bin/git checkout "tags/v$version" -b "v$version" &&
-    /usr/local/bin/pip3 install "certbot-dns-dnsimple/" &&
+    $CERTBOT_BIN/pip3 install "certbot-dns-dnsimple/" &&
     cd .. &&
     rm -fr certbot
 
