@@ -21,3 +21,4 @@
 ||crwdcntrl.net^
 ||rodale.com^
 ||c.amazon-adsystem.com^
+||embed.ly^
