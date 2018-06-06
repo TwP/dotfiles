@@ -21,7 +21,7 @@
 set -e
 
 CB_HOME=${CB_HOME:-"$HOME/.certbot"}
-CERTBOT_BIN="$HOMEBREW_ROOT/opt/certbot/libexec/bin"
+CERTBOT_BIN="/usr/local/opt/certbot/libexec/bin"
 
 function usage {
   /usr/bin/grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
