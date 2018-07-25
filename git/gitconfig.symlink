@@ -147,9 +147,6 @@
   # Create a new branch by checking out another branch.
   checkout-as-new-branch = checkout -b
 
-  # Checkout an existing branch locally and track the origin.
-  checkout-and-track-branch = "!f() { git checkout --track \"origin/$1\" -b \"$1\"; }; f"
-
   # Preview branch names and recent commit then checkout selection
   checkout-with-relative-age = !git branches-with-relative-age \
                                | fzf --reverse --nth=1 --preview 'git log --patch --color {1}...{1}~3' \
@@ -225,8 +222,8 @@
   dh = !git diff HEAD
   mb = !git merge-base-master
   co = !git checkout-with-relative-age
+  cb = checkout
   br = !git branches-with-relative-age
-  bt = !git checkout-and-track-branch
   w = !git word-diff
   u = !git push-and-set-upstream
   b = !git checkout-as-new-branch
