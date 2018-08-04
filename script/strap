@@ -1,14 +1,13 @@
 #!/bin/bash
-#/ Usage: bin/strap.sh [--debug]
-#/ Install development dependencies on Mac OS X.
+#/ Usage: script/strap [--debug]
+#/ Install development dependencies on macOS.
 set -e
 
 # Keep sudo timestamp updated while Strap is running.
 if [ "$1" = "--sudo-wait" ]; then
   while true; do
-    mkdir -p "/var/db/sudo/$SUDO_USER"
-    touch "/var/db/sudo/$SUDO_USER"
-    sleep 1
+    sudo -v
+    sleep 5
   done
   exit 0
 fi
@@ -60,18 +59,16 @@ ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 SECRETS_VOLUME="/Volumes/Secrets"
 SECRETS_DMG="${ICLOUD_DRIVE}/secrets.dmg"
 
-if [ ! -f "$SECRETS_DMG" ]; then
-  echo "Encrypted secrets disk image 'secrets.dmg' was not found on iCloud Drive - exiting!"
-  exit 12
-fi
-
 abort() { STRAP_STEP="";   echo "!!! $*" >&2; exit 1; }
 log()   { STRAP_STEP="$*"; echo "--> $*"; }
 logn()  { STRAP_STEP="$*"; printf -- "--> %s " "$*"; }
 logk()  { STRAP_STEP="";   echo "OK"; }
+escape() {
+  echo "${1//\'/\\\'}"
+}
 
 sw_vers -productVersion | grep $Q -E "^10.(9|10|11|12|13)" || {
-  abort "Run Strap on Mac OS X 10.9/10/11/12/13."
+  abort "Run Strap on macOS 10.9/10/11/12/13."
 }
 
 [ "$USER" = "root" ] && abort "Run Strap as yourself, not root."
@@ -79,8 +76,7 @@ groups | grep $Q admin || abort "Add $USER to the admin group."
 
 # Initialise sudo now to save prompting later.
 log "Enter your password (for sudo access):"
-sudo -k
-sudo /usr/bin/true
+sudo -kv
 [ -f "$STRAP_FULL_PATH" ]
 sudo bash "$STRAP_FULL_PATH" --sudo-wait &
 STRAP_SUDO_WAIT_PID="$!"
@@ -110,7 +106,7 @@ sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/d
 if [ -n "$STRAP_NAME" ] && [ -n "$STRAP_EMAIL" ]; then
   sudo defaults write /Library/Preferences/com.apple.loginwindow \
     LoginwindowText \
-    "Found this computer? Please contact $STRAP_NAME at $STRAP_EMAIL."
+    "'Found this computer? Please contact $(escape "$STRAP_NAME") at $(escape "$STRAP_EMAIL").'"
 fi
 logk
 
@@ -127,16 +123,15 @@ else
 fi
 
 # Install the Xcode Command Line Tools.
-DEVELOPER_DIR=$("xcode-select" -print-path 2>/dev/null || true)
-if [ -z "$DEVELOPER_DIR" ] || ! [ -f "$DEVELOPER_DIR/usr/bin/git" ] \
-                           || ! [ -f "/usr/include/iconv.h" ]
+if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ] || \
+   ! [ -f "/usr/include/iconv.h" ]
 then
   log "Installing the Xcode Command Line Tools:"
   CLT_PLACEHOLDER="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
   sudo touch "$CLT_PLACEHOLDER"
   CLT_PACKAGE=$(softwareupdate -l | \
                 grep -B 1 -E "Command Line (Developer|Tools)" | \
-                awk -F"*" '/^ +\*/ {print $2}' | sed 's/^ *//' | head -n1)
+                awk -F"*" '/^ +\*/ {print $2}' | sed 's/^ *//' | tail -n1)
   sudo softwareupdate -i "$CLT_PACKAGE"
   sudo rm -f "$CLT_PLACEHOLDER"
   if ! [ -f "/usr/include/iconv.h" ]; then
@@ -165,18 +160,20 @@ then
     git config --global credential.helper osxkeychain
   fi
 
-  log "Reading GitHub API token from encrypted disk image"
+  if [ -f "$SECRETS_DMG" ]; then
+    log "Reading GitHub API token from encrypted disk image"
 
-  [ -d "$SECRETS_VOLUME" ] || hdiutil attach "$SECRETS_DMG"
-  STRAP_GITHUB_TOKEN=$(<"$SECRETS_VOLUME/secret/gh.token")
-  [ -d "$SECRETS_VOLUME" ] && hdiutil detach "$SECRETS_VOLUME"
+    [ -d "$SECRETS_VOLUME" ] || hdiutil attach "$SECRETS_DMG"
+    STRAP_GITHUB_TOKEN=$(<"$SECRETS_VOLUME/secret/gh.token")
+    [ -d "$SECRETS_VOLUME" ] && hdiutil detach "$SECRETS_VOLUME"
 
-  if [ -n "$STRAP_GITHUB_USER" ] && [ -n "$STRAP_GITHUB_TOKEN" ]
-  then
-    printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
-    printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n" \
-          "$STRAP_GITHUB_USER" "$STRAP_GITHUB_TOKEN" \
-          | git credential-osxkeychain store
+    if [ -n "$STRAP_GITHUB_USER" ] && [ -n "$STRAP_GITHUB_TOKEN" ]
+    then
+      printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+      printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n" \
+            "$STRAP_GITHUB_USER" "$STRAP_GITHUB_TOKEN" \
+            | git credential-osxkeychain store
+    fi
   fi
 fi
 logk
