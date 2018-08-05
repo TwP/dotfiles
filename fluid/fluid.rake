@@ -49,7 +49,7 @@ end
 class FluidApp
   # Path to the documents in iCloud Drive
   LIBRARY      = File.join(ENV['HOME'], "Library")
-  ICLOUD_DRIVE = File.join(LIBRARY, "Mobile Documents" "com~apple~CloudDocs")
+  ICLOUD_DRIVE = File.join(LIBRARY, "Mobile Documents", "com~apple~CloudDocs")
   PREFERENCES  = File.join(LIBRARY, "Preferences").freeze
   FLUID_DIR    = File.join(ICLOUD_DRIVE, "Fluid").freeze
   APPLICATIONS = "/Applications".freeze
