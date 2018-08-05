@@ -133,7 +133,7 @@ msg "Use 24-hour time"
 defaults write NSGlobalDomain AppleICUForce24HourTime -bool true
 
 msg "Set date and time formats"
-defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "1" "yyyy-MM-dd"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "1" "y-MM-dd"
 defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "2" "MMM d, y"
 defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "3" "MMMM d, y"
 defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "4" "EEEE, MMMM d, y"
