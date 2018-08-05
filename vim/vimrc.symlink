@@ -10,6 +10,12 @@ set rtp+=~/.vim/bundle/vundle/
 set rtp+=$GOROOT/misc/vim
 call vundle#begin()
 
+" Work around Python 3.7 deprecation warning
+" see https://github.com/vim/vim/issues/3117#issuecomment-402622616
+if has('python3')
+  silent! python3 1
+endif
+
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
