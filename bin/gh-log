@@ -8,7 +8,7 @@
 #/
 #/   This utility requires the `gh-creds` utility to be installed and
 #/   configured - this is how your GitHub username and access token is
-#/   retrieved.
+#/   retrieved. You can also set the GH_ACCESS_TOKEN env var instead.
 #/
 #/   OPTIONS:
 #/     -u  <username>      GitHub username to query on (defaults to you)
