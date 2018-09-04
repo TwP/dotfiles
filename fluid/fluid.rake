@@ -133,9 +133,11 @@ class FluidApp
     return false unless File.exists?(app_dest) && File.exists?(prefs_dest)
 
     puts "  application: #{app_dest.inspect}"
+    FileUtils.rm_r(app_bak, secure: true) if File.exists?(app_bak)
     FileUtils.cp_r(app_dest, app_bak)
 
     puts "  preferences: #{prefs_dest.inspect}"
+    FileUtils.rm_r(prefs_bak, secure: true) if File.exists?(prefs_bak)
     FileUtils.cp(prefs_dest, prefs_bak)
 
     true
@@ -147,18 +149,18 @@ class FluidApp
   def self.clobber!
     if File.exists?(FluidApp.apps_path)
       list = Dir.glob(FluidApp.apps_path("*"))
-      FileUtils.rm_r(list)
-      FileUtils.rm_r(FluidApp.apps_path)
+      FileUtils.rm_r(list, secure: true)
+      FileUtils.rm_r(FluidApp.apps_path, secure: true)
     end
 
     if File.exists?(FluidApp.prefs_path)
       list = Dir.glob(FluidApp.prefs_path("*"))
-      FileUtils.rm(list)
-      FileUtils.rm_r(FluidApp.prefs_path)
+      FileUtils.rm(list, secure: true)
+      FileUtils.rm_r(FluidApp.prefs_path, secure: true)
     end
 
     if File.exists?(FLUID_DIR)
-      FileUtils.rm_r(FLUID_DIR)
+      FileUtils.rm_r(FLUID_DIR, secure: true)
     end
 
     nil
