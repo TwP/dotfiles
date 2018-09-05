@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Version: 201709161232
 ! Title: Pea53Privacy
-! Last modified: Sep 16, 2017, 12:32
+! Last modified: Sep 05, 2018, 13:48
 ! Expires: 7 days (update frequency)
 ! Homepage: https://github.com/TwP/dotfiles/tree/master/adblock
 !
@@ -22,3 +22,4 @@
 ||rodale.com^
 ||c.amazon-adsystem.com^
 ||embed.ly^
+||vntsm.com^
