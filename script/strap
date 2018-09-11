@@ -1,5 +1,5 @@
 #!/bin/bash
-#/ Usage: script/strap [--debug]
+#/ Usage: strap
 #/ Install development dependencies on macOS.
 set -e
 
@@ -12,8 +12,8 @@ if [ "$1" = "--sudo-wait" ]; then
   exit 0
 fi
 
-[ "$1" = "--debug" ] && STRAP_DEBUG="1"
 STRAP_SUCCESS=""
+STRAP_FULL_PATH="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 
 cleanup() {
   set +e
@@ -36,43 +36,9 @@ cleanup() {
 
 trap "cleanup" EXIT
 
-if [ -n "$STRAP_DEBUG" ]; then
-  set -x
-else
-  STRAP_QUIET_FLAG="-q"
-  Q="$STRAP_QUIET_FLAG"
-fi
-
-STDIN_FILE_DESCRIPTOR="0"
-if [ ! -t "$STDIN_FILE_DESCRIPTOR" ]; then
-  echo "We need to run in an interactive shell - exiting!"
-  exit 42
-fi
-
-STRAP_NAME=""
-STRAP_EMAIL=""
-STRAP_GITHUB_USER=""
-STRAP_GITHUB_TOKEN=""
-STRAP_FULL_PATH="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
-
-ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
-SECRETS_VOLUME="/Volumes/Secrets"
-SECRETS_DMG="${ICLOUD_DRIVE}/secrets.dmg"
-
-abort() { STRAP_STEP="";   echo "!!! $*" >&2; exit 1; }
-log()   { STRAP_STEP="$*"; echo "--> $*"; }
-logn()  { STRAP_STEP="$*"; printf -- "--> %s " "$*"; }
-logk()  { STRAP_STEP="";   echo "OK"; }
-escape() {
-  echo "${1//\'/\\\'}"
-}
-
-sw_vers -productVersion | grep $Q -E "^10.(9|10|11|12|13)" || {
-  abort "Run Strap on macOS 10.9/10/11/12/13."
-}
-
-[ "$USER" = "root" ] && abort "Run Strap as yourself, not root."
-groups | grep $Q admin || abort "Add $USER to the admin group."
+log()  { STRAP_STEP="$*"; echo "--> $*"; }
+logn() { STRAP_STEP="$*"; printf -- "--> %s " "$*"; }
+logk() { STRAP_STEP="";   echo "OK"; }
 
 # Initialise sudo now to save prompting later.
 log "Enter your password (for sudo access):"
@@ -82,45 +48,6 @@ sudo bash "$STRAP_FULL_PATH" --sudo-wait &
 STRAP_SUDO_WAIT_PID="$!"
 ps -p "$STRAP_SUDO_WAIT_PID" &>/dev/null
 logk
-
-# Gather information about you
-log "We need to gather a wee bit of information about you"
-logn "Full Name: "
-read STRAP_NAME
-logn "Email: "
-read STRAP_EMAIL
-logn "GitHub Login: "
-read STRAP_GITHUB_USER
-
-# Set some basic security settings.
-logn "Configuring security settings:"
-defaults write com.apple.Safari \
-  com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled \
-  -bool false
-defaults write com.apple.Safari \
-  com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles \
-  -bool false
-sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
-sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/dev/null
-
-if [ -n "$STRAP_NAME" ] && [ -n "$STRAP_EMAIL" ]; then
-  sudo defaults write /Library/Preferences/com.apple.loginwindow \
-    LoginwindowText \
-    "'Found this computer? Please contact $(escape "$STRAP_NAME") at $(escape "$STRAP_EMAIL").'"
-fi
-logk
-
-# Check and enable full-disk encryption.
-logn "Checking full-disk encryption status:"
-if fdesetup status | grep $Q -E "FileVault is (On|Off, but will be enabled after the next restart)."; then
-  logk
-else
-  echo
-  log "Enabling full-disk encryption on next reboot:"
-  sudo fdesetup enable -user "$USER" \
-    | tee ~/Desktop/"FileVault Recovery Key.txt"
-  logk
-fi
 
 # Install the Xcode Command Line Tools.
 if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ] || \
@@ -144,7 +71,7 @@ fi
 
 # Check if the Xcode license is agreed to and agree if not.
 xcode_license() {
-  if /usr/bin/xcrun clang 2>&1 | grep $Q license; then
+  if /usr/bin/xcrun clang 2>&1 | grep -q license; then
     logn "Asking for Xcode license confirmation:"
     sudo xcodebuild -license
     logk
@@ -152,136 +79,18 @@ xcode_license() {
 }
 xcode_license
 
-# Setup GitHub HTTPS credentials.
-if git credential-osxkeychain 2>&1 | grep $Q "git.credential-osxkeychain"
-then
-  if [ "$(git config --global credential.helper)" != "osxkeychain" ]
-  then
-    git config --global credential.helper osxkeychain
-  fi
-
-  if [ -f "$SECRETS_DMG" ]; then
-    log "Reading GitHub API token from encrypted disk image"
-
-    [ -d "$SECRETS_VOLUME" ] || hdiutil attach "$SECRETS_DMG"
-    STRAP_GITHUB_TOKEN=$(<"$SECRETS_VOLUME/secret/gh.token")
-    [ -d "$SECRETS_VOLUME" ] && hdiutil detach "$SECRETS_VOLUME"
-
-    if [ -n "$STRAP_GITHUB_USER" ] && [ -n "$STRAP_GITHUB_TOKEN" ]
-    then
-      printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
-      printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n" \
-            "$STRAP_GITHUB_USER" "$STRAP_GITHUB_TOKEN" \
-            | git credential-osxkeychain store
-    fi
-  fi
-fi
-logk
-
-# Setup Homebrew directory and permissions.
-logn "Installing Homebrew:"
-HOMEBREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
-[ -n "$HOMEBREW_PREFIX" ] || HOMEBREW_PREFIX="/usr/local"
-[ -d "$HOMEBREW_PREFIX" ] || sudo mkdir -p "$HOMEBREW_PREFIX"
-if [ "$HOMEBREW_PREFIX" = "/usr/local" ]
-then
-  sudo chown "root:wheel" "$HOMEBREW_PREFIX" 2>/dev/null || true
-fi
-(
-  cd "$HOMEBREW_PREFIX"
-  sudo mkdir -p               Cellar Frameworks bin etc include lib opt sbin share var
-  sudo chown -R "$USER:admin" Cellar Frameworks bin etc include lib opt sbin share var
-)
-
-HOMEBREW_REPOSITORY="$(brew --repository 2>/dev/null || true)"
-[ -n "$HOMEBREW_REPOSITORY" ] || HOMEBREW_REPOSITORY="/usr/local/Homebrew"
-[ -d "$HOMEBREW_REPOSITORY" ] || sudo mkdir -p "$HOMEBREW_REPOSITORY"
-sudo chown -R "$USER:admin" "$HOMEBREW_REPOSITORY"
-
-if [ $HOMEBREW_PREFIX != $HOMEBREW_REPOSITORY ]
-then
-  ln -sf "$HOMEBREW_REPOSITORY/bin/brew" "$HOMEBREW_PREFIX/bin/brew"
-fi
-
-# Download Homebrew.
-export GIT_DIR="$HOMEBREW_REPOSITORY/.git" GIT_WORK_TREE="$HOMEBREW_REPOSITORY"
-[ -d "$GIT_DIR" ] && HOMEBREW_EXISTING="1"
-git init $Q
-git config remote.origin.url "https://github.com/Homebrew/brew"
-git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-if [ -n "$HOMEBREW_EXISTING" ]
-then
-  git fetch $Q
-else
-  git fetch $Q --no-tags --depth=1 --force --update-shallow
-fi
-git reset $Q --hard origin/master
-unset GIT_DIR GIT_WORK_TREE HOMEBREW_EXISTING
-logk
-
-# Update Homebrew.
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-log "Updating Homebrew:"
-brew update
-logk
-
-# Install Homebrew Bundle, Cask, Services and Versions tap.
-log "Installing Homebrew taps and extensions:"
-brew bundle --file=- <<EOF
-tap 'caskroom/cask'
-tap 'homebrew/core'
-tap 'homebrew/services'
-EOF
-logk
-
-# Check and install any remaining software updates.
-logn "Checking for software updates:"
-if softwareupdate -l 2>&1 | grep $Q "No new software available."; then
-  logk
-else
-  echo
-  log "Installing software updates:"
-  sudo softwareupdate --install --all
-  xcode_license
+# Install Ansible.
+if [ -z "$(command -v ansible)" ]; then
+  log "Installing Ansible:"
+  sudo easy_install pip
+  pip install --upgrade setuptools --user python
+  sudo pip install ansible --quiet
   logk
 fi
 
-# Setup dotfiles
-if [ -n "$STRAP_GITHUB_USER" ]; then
-  DOTFILES_URL="https://github.com/$STRAP_GITHUB_USER/dotfiles"
-
-  if git ls-remote "$DOTFILES_URL" &>/dev/null; then
-    log "Fetching $STRAP_GITHUB_USER/dotfiles from GitHub:"
-    if [ ! -d "$HOME/.dotfiles" ]; then
-      log "Cloning to ~/.dotfiles:"
-      git clone $Q "$DOTFILES_URL" ~/.dotfiles
-    else
-      (
-        cd ~/.dotfiles
-        git pull $Q --rebase --autostash
-      )
-    fi
-    (
-      cd ~/.dotfiles
-      for i in script/setup script/bootstrap; do
-        if [ -f "$i" ] && [ -x "$i" ]; then
-          log "Running dotfiles $i:"
-          "$i" 2>/dev/null
-          break
-        fi
-      done
-    )
-    logk
-  fi
-fi
-
-# Install from local Brewfile
-if [ -f "$HOME/.Brewfile" ]; then
-  log "Installing from user Brewfile on GitHub:"
-  brew bundle --global
-  xcode_license
-  logk
-fi
+# Install roles from Ansible Galaxy
+log "Installing Ansible Galaxy roles:"
+ansible-galaxy install -p "ansible/roles" -r "requirements.yml"
+logk
 
 STRAP_SUCCESS="1"
-log "Your system is now Strap'd!"
