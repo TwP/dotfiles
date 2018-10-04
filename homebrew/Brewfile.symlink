@@ -118,6 +118,7 @@ brew 'utf8proc'
 brew 'wget'
 brew 'wireshark', args: ['with-qt5']
 
+cask 'aerial'
 cask 'airfoil'
 cask 'appcleaner'
 cask 'arduino'
