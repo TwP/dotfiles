@@ -7,129 +7,76 @@ tap 'homebrew/services'
 cask 'java'
 
 brew 'ack'
-brew 'gdbm'
-brew 'openssl'
-brew 'readline'
-brew 'rsync'
-brew 'sqlite'
-brew 'python'
-brew 'libxml2'
-brew 'augeas'
+brew 'asdf'
 brew 'autoconf'
 brew 'automake'
-brew 'awscli'
 brew 'bash'
 brew 'bash-completion'
-brew 'botan'
-brew 'c-ares'
-brew 'libpng'
-brew 'fd'
-brew 'freetype'
-brew 'fontconfig'
-brew 'gettext'
-brew 'libffi'
-brew 'pcre'
-brew 'glib'
-brew 'pixman'
-brew 'cairo'
 brew 'cmake'
 brew 'cscope'
 brew 'ctags'
 brew 'curl'
-brew 'dbus'
-brew 'git'
 brew 'dos2unix'
-brew 'elasticsearch@2.4', restart_service: true
 brew 'faac'
-brew 'lame'
-brew 'x264'
-brew 'xvid'
+brew 'fd'
 brew 'ffmpeg'
 brew 'fzf'
-brew 'gmp'
-brew 'mpfr'
 brew 'gawk'
-brew 'isl'
-brew 'libmpc'
 brew 'gcc'
-brew 'geoip'
-brew 'gist'
-brew 'go'
-brew 'glide'
-brew 'libtasn1'
-brew 'nettle'
+brew 'git'
 brew 'gnutls'
+brew 'go'
 brew 'gotags'
 brew 'graphviz'
-brew 'htop-osx'
-brew 'xz'
-brew 'python3'
 brew 'httpie'
 brew 'hub'
-brew 'icu4c'
-brew 'jpeg'
-brew 'libtiff'
-brew 'libtool'
-brew 'perl'
-brew 'pstree'
 brew 'imagemagick'
-brew 'jansson'
-brew 'jemalloc'
-brew 'oniguruma'
 brew 'jq'
-brew 'launch_socket_server', restart_service: true
-brew 'launchdns', restart_service: true
+brew 'lame'
 brew 'lcov'
-brew 'libevent'
-brew 'libgpg-error'
-brew 'libgcrypt'
-brew 'libgda'
-brew 'libyaml'
 brew 'mas'
 brew 'md5sha1sum'
-brew 'memcached', restart_service: true
 brew 'mtr'
 brew 'mysql@5.7'
-brew 'openssl@1.1'
-brew 'nginx', restart_service: true
+brew 'nginx'
 brew 'nmap'
-brew 'nsq'
+brew 'oniguruma'
+brew 'openssl'
+brew 'openssl@1.1'
 brew 'parallel'
+brew 'perl'
 brew 'pidof'
-brew 'pigz'
-brew 'pkg-config'
 brew 'platypus'
+brew 'pstree'
 brew 'pv'
-brew 'qt5'
-brew 'ragel'
-brew 'ruby-build'
+brew 'python'
+brew 'python3'
 brew 'rbenv'
-brew 'redis', restart_service: true
+brew 'redis'
+brew 'rsync'
 brew 'ruby'
-brew 'snappy'
+brew 'ruby-build'
 brew 'socat'
-brew 'softhsm'
-brew 'syncthing', restart_service: true
+brew 'sqlite'
 brew 'switchaudio-osx'
+brew 'syncthing', restart_service: true
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tree'
-brew 'utf8proc'
 brew 'wget'
 brew 'wireshark', args: ['with-qt5']
+brew 'x264'
+brew 'xvid'
 
 cask 'aerial'
 cask 'airfoil'
 cask 'appcleaner'
-cask 'arduino'
 cask 'caffeine'
-cask 'calibre'
-cask 'encryptme'
 cask 'dash'
 cask 'docker'
 cask 'dropbox'
+cask 'encryptme'
 cask 'fluid'
-cask 'ftdi-vcp-driver'
 cask 'google-chrome'
 cask 'handbrake'
 cask 'intellij-idea'
@@ -138,10 +85,8 @@ cask 'licecap'
 cask 'makemkv'
 cask 'minecraft'
 cask 'monodraw'
-cask 'openscad'
 cask 'platypus'
 cask 'powerphotos'
-cask 'ripit'
 cask 'screenhero'
 cask 'skitch'
 cask 'slack'
@@ -152,25 +97,29 @@ cask 'viscosity'
 cask 'vlc'
 cask 'zoomus'
 
-mas 'Keynote', id: 409183694
-mas 'Twitter', id: 409789998
-mas 'iMovie', id: 408981434
-mas 'Evernote', id: 406056744
-mas 'Skitch', id: 425955336
+# cask 'arduino'
+# cask 'calibre'
+# cask 'ftdi-vcp-driver'
+# cask 'openscad'
+# cask 'ripit'
+
 mas '1Password 7', id: 1333542190
-mas 'Xcode', id: 497799835
-mas 'OmniGraffle', id: 711830901
-mas 'Wunderlist', id: 410628904
-mas 'Moom', id: 419330170
-mas 'Pages', id: 409201541
-mas 'Screeny', id: 440991524
-mas 'Marked', id: 448925439
-mas 'GarageBand', id: 682658836
-mas 'QuitsAppsMBI', id: 436884448
-mas 'Slack', id: 803453959
-mas 'Numbers', id: 409203825
-mas 'Things 3', id: 904280696
 mas 'Bear', id: 1091189122
+mas 'Evernote', id: 406056744
+mas 'GarageBand', id: 682658836
+mas 'Keynote', id: 409183694
+mas 'Marked', id: 448925439
+mas 'Moom', id: 419330170
+mas 'Numbers', id: 409203825
+mas 'OmniGraffle', id: 711830901
+mas 'Pages', id: 409201541
+mas 'QuitsAppsMBI', id: 436884448
+mas 'Screeny', id: 440991524
+mas 'Slack', id: 803453959
+mas 'Things3', id: 904280696
+mas 'Wunderlist', id: 410628904
+mas 'Xcode', id: 497799835
+mas 'iMovie', id: 408981434
 
 # you need to boot up Xcode and install some extras in order for vim to compile
 brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
