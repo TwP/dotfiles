@@ -144,4 +144,4 @@ let g:bgtags_user_commands = {
 \ }
 
 map  <leader>bg :BgtagsUpdateTags<CR>
-vmap <leader>tb :BgtagsUpdateTags<CR>
+vmap <leader>bg :BgtagsUpdateTags<CR>
