@@ -3,12 +3,12 @@ require 'fileutils'
 # The Fuild apps we want to manage
 FLUID_APPS = [
   "Coursera",
-  "GitHub Mail",
-  "Gmail",
   "Google Voice",
   "Instapaper",
   "Mint",
   "Pivotal Tracker",
+  "Pokemon Go",
+  "Soft Murmur",
   "Syncthing",
   "Trello",
 ]
@@ -155,7 +155,7 @@ class FluidApp
 
     if File.exists?(FluidApp.prefs_path)
       list = Dir.glob(FluidApp.prefs_path("*"))
-      FileUtils.rm(list, secure: true)
+      FileUtils.rm(list, force: true)
       FileUtils.rm_r(FluidApp.prefs_path, secure: true)
     end
 
