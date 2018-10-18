@@ -10,7 +10,7 @@ require 'socket'
 FILES = {
   "ssh" => {
     local: "~/.ssh",
-    globs: %w[authorized_keys config* *rsa*]
+    globs: %w[authorized_keys known_hosts config* *rsa*]
   },
   "gh_ssh" => {
     local: "~/GitHub/.ssh",
