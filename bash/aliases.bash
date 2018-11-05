@@ -27,8 +27,6 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 
 alias vi="$HOMEBREW_ROOT/bin/vim"
 
-alias nb='cd ~/Dropbox/Tim/notebook'
-
 alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Sync/Tim/Garmin\ Activities/2018/ && diskutil unmount GARMIN'
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
