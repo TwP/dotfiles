@@ -54,7 +54,12 @@ fi
 # configure rbenv
 eval "$(rbenv init -)"
 
+# configure asdf https://github.com/asdf-vm/asdf
+if [ -f "/usr/local/opt/asdf/asdf.sh" ]; then
+  source "/usr/local/opt/asdf/asdf.sh"
+fi
+
 # source the bashrc file
-if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
+if [ -f $HOME/.bashrc ]; then source $HOME/.bashrc ; fi
 
 # vim:ft=sh
