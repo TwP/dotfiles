@@ -51,9 +51,6 @@ if [ "$PS1" ] ; then
   export MYSQL_PS1='\u@\h \d \c> '
 fi
 
-# configure rbenv
-eval "$(rbenv init -)"
-
 # configure asdf https://github.com/asdf-vm/asdf
 if [ -f "/usr/local/opt/asdf/asdf.sh" ]; then
   source "/usr/local/opt/asdf/asdf.sh"
