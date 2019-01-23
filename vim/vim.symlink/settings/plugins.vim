@@ -127,8 +127,7 @@ let g:bgtags_user_commands = {
       \ 'git ls-files -c -o --exclude-standard '':^*.rb'' '':^*.rake'' '':^*.go'' '':^*.git'' | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
         \ 'parallel -j200\% -N 500 --pipe ''ctags -L - -f -'' > tags',
-      \ 'eval "$(rbenv init -)" && rbenv shell $(rbenv global) && ' .
-        \ 'git ls-files -c -o --exclude-standard | ' .
+      \ 'git ls-files -c -o --exclude-standard | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
         \ 'parallel -X -L200 ''ripper-tags -f - {}'' >> tags',
       \ 'git ls-files -c -o --exclude-standard ''*.go'' | ' .
@@ -137,8 +136,7 @@ let g:bgtags_user_commands = {
     \ 'default': 'ctags -R'
     \ },
   \ 'filetypes': {
-    \ 'ruby': 'eval "$(rbenv init -)" && rbenv shell $(rbenv global) && ' .
-        \ 'ripper-tags -f -',
+    \ 'ruby': 'ripper-tags -f -',
     \ 'default': 'ctags -f-'
     \}
 \ }
