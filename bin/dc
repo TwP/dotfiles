@@ -12,6 +12,7 @@
 #/     console <image>  Attach a bash console to a running container
 #/     cycle   <image>  Stop a container and then start it up again
 #/     ports   <image>  Show mapped ports for a running container
+#/     prune            Remove stopped containers and unused images
 #/     rebuild <image>  Build the image, stop, and then start the container
 #/     activate         Start the Docker for Mac application
 #/     deactivate       Stop the Docker for Mac application
@@ -35,6 +36,11 @@ function usage {
 function dc_clean {
   docker rm $(docker ps -aqf status=exited) 2>/dev/null || true
   docker rmi $(docker images -qf dangling=true) 2>/dev/null || true
+}
+
+function dc_prune {
+  docker container prune -f
+  docker image prune -f
 }
 
 function dc_console {
@@ -90,6 +96,9 @@ if [[ $# > 0 ]]; then
     ports )
       shift
       dc_ports "$@"
+      ;;
+    prune )
+      dc_prune
       ;;
     rebuild )
       shift
