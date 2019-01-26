@@ -6,7 +6,7 @@ alias dv="docker volume ls"
 alias dn="docker network ls"
 
 function _dc() {
-  local cmds="activate clean console cycle deactivate ports rebuild screen"
+  local cmds="activate clean console cycle deactivate ports prune rebuild screen"
   local cur=${COMP_WORDS[COMP_CWORD]}
   _docker_compose
   COMPREPLY=( $(compgen -W "$cmds" -- $cur) "${COMPREPLY[@]}" )
