@@ -13,6 +13,7 @@
 #/     cycle   <image>  Stop a container and then start it up again
 #/     ports   <image>  Show mapped ports for a running container
 #/     prune            Remove stopped containers and unused images
+#/     ready            Wait until Docker is running and ready
 #/     rebuild <image>  Build the image, stop, and then start the container
 #/     activate         Start the Docker for Mac application
 #/     deactivate       Stop the Docker for Mac application
@@ -29,6 +30,8 @@
 #/
 #------------------------------------------------------------------------------
 
+DOCKER_STARTUP_WAIT_TIME=60 # seconds
+
 function usage {
   grep '^#/' <"$0" | cut -c 4-
 }
@@ -41,6 +44,22 @@ function dc_clean {
 function dc_prune {
   docker container prune -f
   docker image prune -f
+}
+
+function dc_ready {
+  dc_activate
+  counter=0
+
+  echo -n "Waiting for Docker to be ready ..."
+  until $(docker info > /dev/null 2>&1); do
+    counter=$((counter+1))
+    if [ $counter -gt $DOCKER_STARTUP_WAIT_TIME ]; then
+      echo "\n-- Docker startup took longer than ${DOCKER_STARTUP_WAIT_TIME} seconds - exiting!"
+      exit 1
+    fi
+    sleep 1
+  done
+  echo " OK!"
 }
 
 function dc_console {
@@ -99,6 +118,9 @@ if [[ $# > 0 ]]; then
       ;;
     prune )
       dc_prune
+      ;;
+    ready )
+      dc_ready
       ;;
     rebuild )
       shift
