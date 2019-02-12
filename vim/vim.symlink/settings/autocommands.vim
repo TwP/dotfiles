@@ -17,3 +17,7 @@ endfunction
 
 " Do not create backups when editing crontab files
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+" Enable spell checking for markdown files and for git commit buffers
+autocmd BufEnter,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
