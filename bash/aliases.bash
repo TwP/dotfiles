@@ -122,7 +122,7 @@ function pint {
 # helper function to codesign brew packages and add them to the firewall rules
 function csign {
   if [ -z "$1" ]; then
-    echo "Usage: cs [brew formuula name]"
+    echo "Usage: csign [brew formuula name]"
     return 1
   fi
 
