@@ -119,6 +119,22 @@ function pint {
   fi
 }
 
+# helper function to codesign brew packages and add them to the firewall rules
+function csign {
+  if [ -z "$1" ]; then
+    echo "Usage: cs [brew formuula name]"
+    return 1
+  fi
+
+  BINARY=`brew info "$1" | grep "^${HOMEBREW_ROOT}.*\*\$" | sed -e "s/\\([^ ]*\\).*$/\\1\\/bin\\/$1/"`
+
+  # create an ad-hoc signature for the homebrew managed application
+  /usr/bin/codesign -f -s - $BINARY
+
+  # add the application to the firewall
+  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $BINARY
+}
+
 function findr {
   find . -name '*.rb' -print0 | xargs -0 grep "$*"
 }
