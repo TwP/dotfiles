@@ -66,6 +66,10 @@ function rem_setup {
 function rem {
   local version=${1:-}
 
+  if [ -z "$version" -a -f ".tool-versions" ]; then
+    version=`grep "^ruby " ".tool-versions" | sed -e "s/^ruby //"`
+  fi
+
   if [ "$version" == "--help" -o "$version" == "-h" -o -z "$version" ]; then
     echo "usage: rem <version>|reset|show|versions"
     echo
