@@ -9,6 +9,10 @@ alias c='clear'
 alias du='/usr/bin/du -h'
 alias find='/usr/bin/find'
 
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 alias l.='/bin/ls -lFdh .*'
 alias ls='/bin/ls -F'
 alias ll='/bin/ls -lFh'
