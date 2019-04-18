@@ -67,7 +67,8 @@ function cb_dnsimple {
 function cb_renew {
   shift  # consume the "renew" arg
 
-  /bin/echo "#### $(/bin/date "+[%Y-%m-%d %H:%M:%S]") ###################################################"
+  /bin/echo "\n###############################################################################"
+  /bin/echo "#### $(/bin/date "+[%Y-%m-%d %H:%M:%S]") ####################################################"
 
   cb_cmd renew \
     --dns-dnsimple \
