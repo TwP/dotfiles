@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -e
+
+source "${HOME}/.dotfiles/secret/dnsimple"
+
+CUR_IP=$(/usr/bin/dig @ns2.dnsimple.com +noall +answer "${PUBLIC_HOSTNAME}" | /usr/bin/cut -f6)
+NEW_IP=$(/usr/bin/curl -s http://icanhazip.com/)
+
+printf "$(/bin/date "+[%Y-%m-%d %H:%M:%S]") "
+
+if [ "$CUR_IP" = "$NEW_IP" ]; then
+  echo "IP address has not changed - no actions taken."
+  exit 0
+fi
+
+echo "IP addess has changed - updating IP address to $NEW_IP"
+
+/usr/bin/curl -sS \
+   -H "Authorization: Bearer $TOKEN" \
+   -H "Content-Type: application/json" \
+   -H "Accept: application/json" \
+   -X "PATCH" \
+   -i "https://api.dnsimple.com/v2/$ACCOUNT_ID/zones/$ZONE_ID/records/$RECORD_ID" \
+   -d "{\"content\":\"$NEW_IP\"}"
