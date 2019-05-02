@@ -12,10 +12,6 @@ FILES = {
     local: "~/.ssh",
     globs: %w[authorized_keys known_hosts config* *rsa*]
   },
-  "gh_ssh" => {
-    local: "~/GitHub/.ssh",
-    globs: "*"
-  },
   "secret" => {
     local: "~/.dotfiles/secret",
     globs: %w[**/* **/.*]
