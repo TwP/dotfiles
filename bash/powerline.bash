@@ -42,13 +42,15 @@ __powerline() {
     local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
     [ -n "$branch" ] || return  # git branch not found
 
+    # get the current status of the working tree
+    local git_status="$($git_eng status --porcelain --branch)"
     local marks
 
     # branch is modified?
-    [ -n "$($git_eng status --porcelain)" ] && marks+=" $GIT_SYMBOL_CHANGES"
+    [ -n "$(echo "$git_status" | grep -v '^##')" ] && marks+=" $GIT_SYMBOL_CHANGES"
 
     # how many commits local branch is ahead/behind of remote?
-    local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
+    local stat="$(echo "$git_status" | grep '^##' | grep -o '\[.\+\]$')"
     local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
     local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
     [ -n "$aheadN" ] && marks+=" $GIT_SYMBOL_PUSH$aheadN"
