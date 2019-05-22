@@ -85,9 +85,9 @@ __powerline() {
     local TX_GIT=$FG_TERM
 
     PS1="${FG_EXIT}${LEADER}${RESET} ${FG_APPLE}${PS_SYMBOL_MACOS} ";                            FG_SEP=$FG_TERM
-    PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${TX_CLOCK} ${PS_SYMBOL_CLOCK} $(date "+%H:%M:%S") "; FG_SEP=$FG_CLOCK
-    PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${TX_FOLDER} ${PS_SYMBOL_FOLDER} \w ";               FG_SEP=$FG_FOLDER
-    PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
+    PS1+="${FG_SEP}${BG_CLOCK}${SEPARATOR}${TX_CLOCK} ${PS_SYMBOL_CLOCK} $(date "+%H:%M:%S") ";  FG_SEP=$FG_CLOCK
+    PS1+="${FG_SEP}${BG_FOLDER}${SEPARATOR}${TX_FOLDER} ${PS_SYMBOL_FOLDER} \w ";                FG_SEP=$FG_FOLDER
+    # PS1+="${FG_SEP}${BG_RUBY}${SEPARATOR}${TX_RUBY} ${PS_SYMBOL_RUBY} $(ruby_version) ";         FG_SEP=$FG_RUBY
 
     if git -C . rev-parse 2>/dev/null; then
       __powerline_git_info="$(__git_info)"
