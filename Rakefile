@@ -1,6 +1,21 @@
 require 'rake'
 
-ICLOUD_DRIVE = "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".freeze
+ICLOUD_DRIVE = ENV["ICLOUD_DRIVE"] || "#{ENV['HOME']}/Library/Mobile Documents/com~apple~CloudDocs".freeze
+GOOGLE_DRIVE = ENV["GOOGLE_DRIVE"] || "/Volumes/GoogleDrive/My Drive".freeze
+STRAP_PATH   = "strap"
+
+if ENV.key? "BOOTSTRAP_DRIVE"
+  BOOTSTRAP_DRIVE = ENV["BOOTSTRAP_DRIVE"]
+else
+  [ICLOUD_DRIVE, GOOGLE_DRIVE].each do |dir|
+    path = File.join(dir, STRAP_PATH)
+    if File.directory?(path) && File.readable?(path)
+      BOOTSTRAP_DRIVE = path
+      break
+    end
+  end
+end
+abort "BOOTSTRAP_DRIVE is not configured" unless File.directory?(BOOTSTRAP_DRIVE) && File.readable?(BOOTSTRAP_DRIVE)
 
 # Load in any *.rake files from the subfolders
 Dir.glob("*/*.rake").each { |fn| load fn }
