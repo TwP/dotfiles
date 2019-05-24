@@ -29,7 +29,7 @@ FILES = {
 VOLUME_NAME = "Secrets".freeze
 VOLUME_SIZE = "10m".freeze
 VOLUME      = File.join("", "Volumes", VOLUME_NAME).freeze
-DMG_FILE    = File.join(ICLOUD_DRIVE, "secrets.dmg").freeze
+DMG_FILE    = File.join(BOOTSTRAP_DRIVE, "secrets.dmg").freeze
 IGNORE      = Set.new(%w[.DS_Store]).freeze
 
 namespace :secrets do

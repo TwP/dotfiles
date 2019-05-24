@@ -5,7 +5,21 @@
 export DOTS="$HOME/.dotfiles"
 export HOMEBREW_ROOT="/usr/local"
 export SRC_PATH="$HOME/work"
-export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+
+# configure important data locations
+ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+GOOGLE_DRIVE="/Volumes/GoogleDrive/My Drive"
+
+STRAP_PATH="strap"
+if [[ -d "${ICLOUD_DRIVE}/${STRAP_PATH}" && -x "${ICLOUD_DRIVE}/${STRAP_PATH}" ]]; then
+  BOOTSTRAP_DRIVE="${ICLOUD_DRIVE}/${STRAP_PATH}"
+elif [[ -d "${GOOGLE_DRIVE}/${STRAP_PATH}" && -x "${GOOGLE_DRIVE}/${STRAP_PATH}" ]]; then
+  BOOTSTRAP_DRIVE="${GOOGLE_DRIVE}/${STRAP_PATH}"
+fi
+
+export ICLOUD_DRIVE
+export GOOGLE_DRIVE
+export BOOTSTRAP_DRIVE
 
 # ==== PATH setup ====
 MYSQL_ROOT="$HOMEBREW_ROOT/opt/mysql@5.7"
@@ -48,11 +62,15 @@ if [ "$PS1" ] ; then
 fi
 
 # configure asdf https://github.com/asdf-vm/asdf
-if [ -f "/usr/local/opt/asdf/asdf.sh" ]; then
-  source "/usr/local/opt/asdf/asdf.sh"
-fi
+# if [ -f "/usr/local/opt/asdf/asdf.sh" ]; then
+#   source "/usr/local/opt/asdf/asdf.sh"
+# fi
 
 # source the bashrc file
 if [ -f $HOME/.bashrc ]; then source $HOME/.bashrc ; fi
+
+# Stripe setup stuff
+if [ -f $HOME/stripe/.bash_profile ]; then source $HOME/stripe/.bash_profile; fi
+if [ -f $HOME/stripe/.bashrc ]; then source $HOME/stripe/.bashrc ; fi
 
 # vim:ft=sh
