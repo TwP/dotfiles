@@ -1,6 +1,9 @@
 [include]
   path = ~/.gitconfig-user
 
+[includeIf "gitdir:~/stripe/"]
+  path = ~/stripe/.gitconfig
+
 [color]
   # Colour terminal command output when possible.
   ui = auto
