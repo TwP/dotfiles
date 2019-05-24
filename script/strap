@@ -55,9 +55,19 @@ STRAP_GITHUB_USER=""
 STRAP_GITHUB_TOKEN=""
 STRAP_FULL_PATH="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 
+# configure important data locations
 ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+GOOGLE_DRIVE="/Volumes/GoogleDrive/My Drive"
+
+STRAP_PATH="strap"
+if [[ -d "${ICLOUD_DRIVE}/${STRAP_PATH}" && -x "${ICLOUD_DRIVE}/${STRAP_PATH}" ]]; then
+  BOOTSTRAP_DRIVE="${ICLOUD_DRIVE}/${STRAP_PATH}"
+elif [[ -d "${GOOGLE_DRIVE}/${STRAP_PATH}" && -x "${GOOGLE_DRIVE}/${STRAP_PATH}" ]]; then
+  BOOTSTRAP_DRIVE="${GOOGLE_DRIVE}/${STRAP_PATH}"
+fi
+
 SECRETS_VOLUME="/Volumes/Secrets"
-SECRETS_DMG="${ICLOUD_DRIVE}/secrets.dmg"
+SECRETS_DMG="${BOOTSTRAP_DRIVE}/secrets.dmg"
 
 abort() { STRAP_STEP="";   echo "!!! $*" >&2; exit 1; }
 log()   { STRAP_STEP="$*"; echo "--> $*"; }
