@@ -34,6 +34,19 @@ COMPUTER_UUID=$(ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{
 # easy access to documents in iCloud Drive
 ICLOUD_DRIVE="${HOME}/Library/Mobile Documents/com~apple~CloudDocs"
 
+# easy access to documents in Google Drive
+GOOGLE_DRIVE="/Volumes/GoogleDrive/My Drive"
+
+BOOTSTRAP_DRIVE="${BOOTSTRAP_DRIVE:-""}"
+if [[ "${BOOTSTRAP_DRIVE}" == "" ]]; then
+  STRAP_PATH="strap"
+  if [[ -d "${ICLOUD_DRIVE}/${STRAP_PATH}" && -x "${ICLOUD_DRIVE}/${STRAP_PATH}" ]]; then
+    BOOTSTRAP_DRIVE="${ICLOUD_DRIVE}/${STRAP_PATH}"
+  elif [[ -d "${GOOGLE_DRIVE}/${STRAP_PATH}" && -x "${GOOGLE_DRIVE}/${STRAP_PATH}" ]]; then
+    BOOTSTRAP_DRIVE="${GOOGLE_DRIVE}/${STRAP_PATH}"
+  fi
+fi
+
 RELATIVE_PATH=$(dirname "$0")
 ABSOLUTE_PATH=$(cd "${RELATIVE_PATH}"; pwd)
 source "${RELATIVE_PATH}/colors.sh"

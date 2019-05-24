@@ -7,17 +7,20 @@ OLD_IFS="$IFS"
 IFS=$'\n'
 
 FONT_PATH="${HOME}/Library/Fonts"
-FILES=(${ICLOUD_DRIVE}/Fonts/*)
 
-msg "Copying fonts into place"
+if [[ -d "${BOOTSTRAP_DRIVE}/Fonts" && -x "${BOOTSTRAP_DRIVE}/Fonts" ]]; then
+  msg "Copying fonts into place"
 
-for file in "${FILES[@]}"; do
-  fontname=$(basename "$file")
-  if [ ! -f "${FONT_PATH}/$fontname" ]; then
-    msg "Adding: $fontname"
-    cp "$file" "${FONT_PATH}/"
-  fi
-done
+  FILES=(${BOOTSTRAP_DRIVE}/Fonts/*)
+
+  for file in "${FILES[@]}"; do
+    fontname=$(basename "$file")
+    if [ ! -f "${FONT_PATH}/$fontname" ]; then
+      msg "Adding: $fontname"
+      cp "$file" "${FONT_PATH}/"
+    fi
+  done
+fi
 
 # set the "internal field separator" back to its original value
 IFS="$OLD_IFS"
