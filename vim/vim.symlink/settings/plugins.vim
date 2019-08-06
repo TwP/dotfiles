@@ -124,10 +124,10 @@ let g:tagbar_type_puppet = {
 let g:bgtags_user_commands = {
   \ 'directories': {
     \ '.git': [
-      \ 'git ls-files -c -o --exclude-standard '':^*.rb'' '':^*.rake'' '':^*.go'' '':^*.git'' | ' .
+      \ 'git ls-files -c -o --exclude-standard '':^*.rb'' '':^*.rake'' '':^*.erb'' '':^*.go'' '':^*.git'' | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
         \ 'parallel -j200\% -N 500 --pipe ''ctags -L - -f -'' > tags',
-      \ 'git ls-files -c -o --exclude-standard | ' .
+      \ 'git ls-files -c -o --exclude-standard ''*.rb'' ''*.rake'' ''*.erb'' | ' .
         \ 'egrep -v ''^vendor/[^i][^n][^t]'' | ' .
         \ 'parallel -X -L200 ''ripper-tags -f - {}'' >> tags',
       \ 'git ls-files -c -o --exclude-standard ''*.go'' | ' .
@@ -137,9 +137,13 @@ let g:bgtags_user_commands = {
     \ },
   \ 'filetypes': {
     \ 'ruby': 'ripper-tags -f -',
-    \ 'default': 'ctags -f-'
+    \ 'go': 'gotags -f -',
+    \ 'default': 'ctags -f -'
     \}
 \ }
+
+" timeout in milliseconds
+let g:bgtags_timeout = 120000
 
 map  <leader>bg :BgtagsUpdateTags<CR>
 vmap <leader>bg :BgtagsUpdateTags<CR>
