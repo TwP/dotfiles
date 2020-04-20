@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 #/ Usage: cb <command> [options]
 #/
 #/   Helper script to make it a little easer to work with certbot and dnsimple

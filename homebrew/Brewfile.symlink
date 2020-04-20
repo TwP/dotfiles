@@ -68,6 +68,7 @@ brew 'xvid'
 cask 'aerial'
 cask 'appcleaner'
 cask 'caffeine'
+cask 'calibre'
 cask 'dash'
 cask 'docker'
 cask 'dropbox'
@@ -93,7 +94,6 @@ cask 'vlc'
 cask 'zoomus'
 
 # cask 'arduino'
-# cask 'calibre'
 # cask 'ftdi-vcp-driver'
 # cask 'openscad'
 # cask 'ripit'
@@ -112,7 +112,6 @@ mas 'QuitsAppsMBI', id: 436884448
 mas 'Screeny', id: 440991524
 mas 'Slack', id: 803453959
 mas 'Things3', id: 904280696
-mas 'Wunderlist', id: 410628904
 mas 'Xcode', id: 497799835
 mas 'iMovie', id: 408981434
 
