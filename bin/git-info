@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 # author: Duane Johnson
 # email: duane.johnson@gmail.com
 # date: 2008 Jun 12
 # license: MIT
-# 
+#
 # Based on discussion at http://kerneltrap.org/mailarchive/git/2007/11/12/406496
 
 # stolen from : # http://blog.inquirylabs.com/2008/06/12/git-info-kinda-like-svn-info/
@@ -40,4 +40,3 @@ else
 fi
 
 popd >/dev/null
-

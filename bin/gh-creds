@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #/ Usage: gh-creds <cmd>
 #/
 #/   setup  : set your GitHub HTTPS credentials in the MacOS keychain

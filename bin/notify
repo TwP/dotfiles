@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #/ Usage: notify <title> <message>
 #/
 #/ Show a MacOS notification with the given "title" and "message".

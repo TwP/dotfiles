@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #/ Usage: dc <command> [args]
 #/
 #/   Useful shortcuts for working with `docker` and `docker-compose`.
@@ -50,7 +50,7 @@ function dc_ready {
   dc_activate
   counter=0
 
-  echo -n "Waiting for Docker to be ready ..."
+  echo "Waiting for Docker to be ready ...\c"
   until $(docker info > /dev/null 2>&1); do
     counter=$((counter+1))
     if [ $counter -gt $DOCKER_STARTUP_WAIT_TIME ]; then

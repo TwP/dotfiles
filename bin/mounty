@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # This handy little script is used to mount or unmount a drive by name on OS X
 # Lion. I use this script within SuperDuper! to mount my backup drive before
