@@ -16,6 +16,10 @@
   # Push to the set upstream branch being tracked by default.
   default = simple
 
+[pull]
+  # Use fast-forward sementics when pulling from remote branches.
+  ff = only
+
 [fetch]
   # Always prune when fetching (and pulling).
   prune = 1
