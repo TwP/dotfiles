@@ -13,6 +13,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias gti='git'
+
 alias l.='/bin/ls -lFdh .*'
 alias ls='/bin/ls -F'
 alias ll='/bin/ls -lFh'
@@ -34,8 +36,6 @@ alias vi="$HOMEBREW_ROOT/bin/vim"
 alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Sync/Tim/Garmin\ Activities/2020/ && diskutil unmount GARMIN'
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
-
-alias bs='./script/bootstrap'
 
 # use to turn wi-fi on and off
 # `wifi on` and `wifi off`
