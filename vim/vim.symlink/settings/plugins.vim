@@ -85,6 +85,8 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 nnoremap <silent> <Leader>cg :Gbrowse!<CR>
 vnoremap <silent> <Leader>cg :'<,'>Gbrowse!<CR>
 
+let g:github_enterprise_urls = ['https://git.corp.stripe.com/', 'git@git.corp.stripe.com']
+
 """ tagbar
 map  <leader>tb :TagbarToggle<CR>
 vmap <leader>tb :TagbarToggle<CR>
