@@ -1,7 +1,7 @@
 # .ruby.bash
 
 function asdf_ruby_version {
-  asdf current ruby 2> /dev/null | sed 's/\([^ ]*\).*/\1/'
+  asdf current ruby 2> /dev/null | awk '{print $2}'
 }
 alias ruby_version=asdf_ruby_version
 
