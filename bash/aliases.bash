@@ -31,6 +31,9 @@ alias scl='screen -list'
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 
+alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias unix='date -u +"%s"'
+
 alias vi="$HOMEBREW_ROOT/bin/vim"
 
 alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Sync/Tim/Garmin\ Activities/2020/ && diskutil unmount GARMIN'
