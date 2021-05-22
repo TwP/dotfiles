@@ -36,7 +36,7 @@ alias unix='date -u +"%s"'
 
 alias vi="$HOMEBREW_ROOT/bin/vim"
 
-alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Sync/Tim/Garmin\ Activities/2020/ && diskutil unmount GARMIN'
+alias garmin="mv /Volumes/GARMIN/Garmin/Activities/* ${HOME}/Sync/Tim/Garmin\ Activities/$(date +"%Y")/ && diskutil unmount GARMIN"
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
