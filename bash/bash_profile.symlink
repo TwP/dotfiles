@@ -3,8 +3,13 @@
 
 # shortcut to this dotfiles path is $DOTS
 export DOTS="$HOME/.dotfiles"
-export HOMEBREW_ROOT="/usr/local"
 export SRC_PATH="$HOME/work"
+
+if [[ "$(/usr/bin/uname -m)" == "arm64" ]]; then
+  export HOMEBREW_ROOT="/opt/homebrew"
+else
+  export HOMEBREW_ROOT="/usr/local"
+fi
 
 # configure important data locations
 ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
