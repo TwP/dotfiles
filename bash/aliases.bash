@@ -142,6 +142,11 @@ function csign {
   sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $BINARY
 }
 
+# find a ruby class or module of the given name
+function agcm {
+  ag "(class|module)\s+.*\b$1\b"
+}
+
 function findr {
   find . -name '*.rb' -print0 | xargs -0 grep "$*"
 }
