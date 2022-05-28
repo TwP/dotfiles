@@ -36,8 +36,6 @@ alias unix='date -u +"%s"'
 
 alias vi="$HOMEBREW_ROOT/bin/vim"
 
-alias garmin="mv /Volumes/GARMIN/Garmin/Activities/* ${HOME}/Sync/Tim/Garmin\ Activities/$(date +"%Y")/ && diskutil unmount GARMIN"
-
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
 # use to turn wi-fi on and off
@@ -153,6 +151,13 @@ function findr {
 
 function cdiff {
   diff -c "$1" "$2" 2>&1 | awk -f "$DOTS/bash/cdiff.awk"
+}
+
+function garmin {
+  orig="/Volumes/GARMIN/Garmin/Activities"
+  dest="${HOME}/Sync/Tim/Garmin Activities/$(date '+%Y')"
+  mkdir -p "${dest}"
+  mv "${orig}/*" "${dest}" && diskutil unmount GARMIN
 }
 
 # from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
