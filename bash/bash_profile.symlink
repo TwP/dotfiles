@@ -75,7 +75,7 @@ fi
 if [ -f $HOME/.bashrc ]; then source $HOME/.bashrc ; fi
 
 # Stripe setup stuff
-if [ -f $HOME/stripe/.bash_profile ]; then source $HOME/stripe/.bash_profile; fi
-if [ -f $HOME/stripe/.bashrc ]; then source $HOME/stripe/.bashrc ; fi
+# if [ -f $HOME/stripe/.bash_profile ]; then source $HOME/stripe/.bash_profile; fi
+# if [ -f $HOME/stripe/.bashrc ]; then source $HOME/stripe/.bashrc ; fi
 
 # vim:ft=sh
