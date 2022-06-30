@@ -157,7 +157,7 @@ function garmin {
   orig="/Volumes/GARMIN/Garmin/Activities"
   dest="${HOME}/Sync/Tim/Garmin Activities/$(date '+%Y')"
   mkdir -p "${dest}"
-  mv "${orig}/*" "${dest}" && diskutil unmount GARMIN
+  mv ${orig}/* "${dest}" && diskutil unmount GARMIN
 }
 
 # from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
