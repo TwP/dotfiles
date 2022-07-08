@@ -4,8 +4,6 @@ tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
-cask 'java'
-
 brew 'ack'
 brew 'asdf'
 brew 'autoconf'
@@ -70,7 +68,6 @@ cask 'docker'
 cask 'fluid'
 cask 'google-chrome'
 cask 'handbrake'
-cask 'intellij-idea'
 cask 'launchbar'
 cask 'licecap'
 cask 'mailplane'
@@ -79,11 +76,9 @@ cask 'minecraft'
 cask 'monodraw'
 cask 'platypus'
 cask 'powerphotos'
-cask 'skitch'
 cask 'slack'
 cask 'steam'
 cask 'subler'
-cask 'superduper'
 cask 'viscosity'
 cask 'vlc'
 cask 'zoomus'
@@ -92,22 +87,24 @@ cask 'zoomus'
 # cask 'ftdi-vcp-driver'
 # cask 'openscad'
 # cask 'ripit'
+# cask 'superduper'
 
-mas '1Password 7', id: 1333542190
-mas 'Bear', id: 1091189122
-mas 'Evernote', id: 406056744
-mas 'GarageBand', id: 682658836
-mas 'Keynote', id: 409183694
-mas 'Marked', id: 448925439
-mas 'Moom', id: 419330170
-mas 'Numbers', id: 409203825
-mas 'OmniGraffle', id: 711830901
-mas 'Pages', id: 409201541
-mas 'Screeny', id: 440991524
-mas 'Slack', id: 803453959
-mas 'Things3', id: 904280696
-mas 'Xcode', id: 497799835
-mas 'iMovie', id: 408981434
+mas '1Password 7',  id: 1333542190
+mas 'Bear',         id: 1091189122
+mas 'GarageBand',   id: 682658836
+mas 'Keynote',      id: 409183694
+mas 'Moom',         id: 419330170
+mas 'Numbers',      id: 409203825
+mas 'Pages',        id: 409201541
+mas 'Screeny',      id: 440991524
+mas 'Slack',        id: 803453959
+mas 'Things3',      id: 904280696
+mas 'Xcode',        id: 497799835
+mas 'iMovie',       id: 408981434
+
+# mas 'Evernote', id: 406056744
+# mas 'Marked', id: 448925439
+# mas 'OmniGraffle', id: 711830901
 
 # you need to boot up Xcode and install some extras in order for vim to compile
 # brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
