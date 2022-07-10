@@ -24,6 +24,10 @@
   # Always prune when fetching (and pulling).
   prune = 1
 
+[url "https://github.com"]
+  # Use `https` for github.com access
+  insteadOf = git://github.com
+
 [rerere]
   # Store and re-use manual conflict resolution changes.
   enabled = 1
