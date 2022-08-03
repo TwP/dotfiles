@@ -47,9 +47,14 @@ class FluidApp
   APPLICATIONS = "/Applications".freeze
 
   def self.apps
-    plist_glob = File.join(PREFERENCES, "#{FLUID_PREFIX}.*.plist")
-    apps = Dir.glob(plist_glob).map {|plist| plist.match(%r/#{FLUID_PREFIX}\.([\w\s]+)\.plist/)[1]}
-    apps.sort
+    list_apps = lambda do |glob|
+      Dir.glob(glob).map {|plist| plist.match(%r/#{FLUID_PREFIX}\.([\w\s]+)\.plist/)[1]}
+    end
+    apps = []
+    apps.concat(list_apps.call(File.join(PREFERENCES, "#{FLUID_PREFIX}.*.plist")))
+    apps.concat(list_apps.call(File.join(prefs_path,  "#{FLUID_PREFIX}.*.plist")))
+
+    apps.sort.uniq
   end
 
   def self.apps_path(*args)
@@ -100,8 +105,10 @@ class FluidApp
     return false unless File.exists?(app_bak)
 
     puts "  application: #{app_dest.inspect}"
-    FileUtils.cp_r(app_bak, app_dest)
-    true
+    # FileUtils.cp_r(app_bak, app_dest)
+    # the call to `FileUtils` was not copying the application icon, so I'm using
+    # a call to `system` to properly copy application directories
+    system(%Q/cp -r "#{app_bak}" "#{app_dest}"/)
   end
 
   # Only install the application preferences if the destination file does not exist.
@@ -132,7 +139,10 @@ class FluidApp
 
     puts "  application: #{app_dest.inspect}"
     FileUtils.rm_r(app_bak, secure: true) if File.exists?(app_bak)
-    FileUtils.cp_r(app_dest, app_bak)
+    # FileUtils.cp_r(app_dest, app_bak)
+    # the call to `FileUtils` was not copying the application icon, so I'm using
+    # a call to `system` to properly copy application directories
+    system(%Q/cp -r "#{app_dest}" "#{app_bak}"/)
 
     puts "  preferences: #{prefs_dest.inspect}"
     FileUtils.rm_r(prefs_bak, secure: true) if File.exists?(prefs_bak)
