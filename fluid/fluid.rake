@@ -1,22 +1,9 @@
 require 'fileutils'
 
-# The Fuild apps we want to manage
-FLUID_APPS = [
-  "Coursera",
-  "Deezer",
-  "Google Voice",
-  "Instapaper",
-  "Mint",
-  "Pivotal Tracker",
-  "Soft Murmur",
-  "Syncthing",
-  "Trello",
-]
-
 namespace :fluid do
   desc "Install Fluid apps and their stored preferences"
   task :install do
-    FLUID_APPS.each do |name|
+    FluidApp.apps.each do |name|
       app = FluidApp.new(name)
 
       puts "Installing: #{app.app_name.inspect}"
@@ -27,7 +14,7 @@ namespace :fluid do
 
   desc "Backup Fluid apps to iCloud Drive"
   task :backup => :setup do
-    FLUID_APPS.each do |name|
+    FluidApp.apps.each do |name|
       app = FluidApp.new(name)
 
       puts "Backing up: #{app.app_name.inspect}"
@@ -38,6 +25,11 @@ namespace :fluid do
   desc "Delete all Fluid apps from iCloud Drive"
   task :clobber do
     FluidApp.clobber!
+  end
+
+  desc "List the Fluid apps to back up"
+  task :apps do
+    puts FluidApp.apps
   end
 
   task :setup do
@@ -51,7 +43,14 @@ class FluidApp
   LIBRARY      = File.join(ENV["HOME"], "Library")
   PREFERENCES  = File.join(LIBRARY, "Preferences").freeze
   FLUID_DIR    = File.join(BOOTSTRAP_DRIVE, "Fluid").freeze
+  FLUID_PREFIX = "com.fluidapp.FluidApp2".freeze
   APPLICATIONS = "/Applications".freeze
+
+  def self.apps
+    plist_glob = File.join(PREFERENCES, "#{FLUID_PREFIX}.*.plist")
+    apps = Dir.glob(plist_glob).map {|plist| plist.match(%r/#{FLUID_PREFIX}\.([\w\s]+)\.plist/)[1]}
+    apps.sort
+  end
 
   def self.apps_path(*args)
     if args.empty?
