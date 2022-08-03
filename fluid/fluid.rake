@@ -3,11 +3,11 @@ require 'fileutils'
 # The Fuild apps we want to manage
 FLUID_APPS = [
   "Coursera",
+  "Deezer",
   "Google Voice",
   "Instapaper",
   "Mint",
   "Pivotal Tracker",
-  "Pokemon Go",
   "Soft Murmur",
   "Syncthing",
   "Trello",
@@ -76,7 +76,7 @@ class FluidApp
     @app_bak  = FluidApp.apps_path(app_name).freeze
     @app_dest = File.join(APPLICATIONS, app_name).freeze
 
-    @prefs_name = "com.fluidapp.FluidApp.#{name}.plist".freeze
+    @prefs_name = "com.fluidapp.FluidApp2.#{name}.plist".freeze
     @prefs_bak  = FluidApp.prefs_path(prefs_name).freeze
     @prefs_dest = File.join(PREFERENCES, prefs_name).freeze
   end
