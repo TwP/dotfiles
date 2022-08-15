@@ -48,6 +48,6 @@ when the pomodoro interval is over.</string>
   </dict>
   <key>LBTextInputTitle</key>         <string>Pomodoro Task [interval]</string>
   <key>LSMinimumSystemVersion</key>   <string>10.11</string>
-  <key>NSHumanReadableCopyright</key> <string>Copyright ©️ 2016 Tim Pease</string>
+  <key>NSHumanReadableCopyright</key> <string>Copyright ©️ 2022 Tim Pease</string>
 </dict>
 </plist>

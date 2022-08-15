@@ -50,7 +50,13 @@ function run(argument) {
     var prefs = getPreferences();
 
     // running via Cmd-Enter ⌘↩︎ will show the pomodoro settings
-    if (LaunchBar.options.commandKey == 1) {
+    // FIXME - this was broken by the release of LaunchBar 6.15 - Cmd-Enter is
+    //         now intercepted and instead launches the Action Editor 😡 - https://www.obdev.at/products/launchbar/releasenotes.html
+    //         I've open a ticket with the developer, and we'll see if they respond.
+    //         I'm hoping they will fix this or add a configuration preference
+    //         for controlling this behavior.
+    // if (LaunchBar.options.commandKey) {
+    if (LaunchBar.options.controlKey) {
       return [
         {title: 'History', icon: 'font-awesome:history', badge: prefs.history.length.toString(), children: getHistory()},
         {title: 'Interval', icon: 'font-awesome:clock-o', badge: prefs.interval},
