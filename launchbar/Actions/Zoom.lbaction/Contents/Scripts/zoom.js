@@ -102,7 +102,6 @@ function getPreferences() {
 function parseInput(string) {
   if (string.match(/^https?:\/\/[^\/]+\/my\//)) {
     string = LaunchBar.execute('/bin/bash', 'zoom_lookup.sh', string);
-    LaunchBar.alert('replaced', string);
   }
   const rgxp = /^(?:https?:\/\/([^\/]+)\/(?:j\/)?)?([0-9a-fA-F]{9,11})(?:\?pwd=([^&]+))?/;
   var match = string.match(rgxp);
