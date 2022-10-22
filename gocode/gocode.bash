@@ -2,6 +2,7 @@
 # All the fucntions useful for working with GO
 
 export GOPATH="${SRC_PATH}/gocode"
+export GO111MODULE="auto"
 
 # ==== PATH setup ====
 [ -d $GOPATH ] && PATH="$GOPATH/bin:$PATH"
