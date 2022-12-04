@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+#/ Usage: bb-creds <cmd>
+#/
+#/   setup  : store your BitBucket HTTPS credentials in the MacOS keychain
+#/   erase  : erase your BitBucket HTTPS credentials from the MacOS keychain
+#/   show   : show your BitBucket HTTPS credentials
+#/   token  : just the auth token (suitable for use in other scripts)
+#/   user   : just the BitBucket username (suitable for use in other scripts)
+#/   base64 : the "user:token" pair as a base64 encoded string
+#/   help   : show this help message
+#/
+#/ This script will confgiure your BitBucket HTTPS crednetials in the OSX keychain,
+#/ and it will configure your git environment to read these credentials from
+#/ the OSX keychain. You will need a BitBucket personal access token.
+#/
+#/ https://confluence.atlassian.com/bitbucketserver072/personal-access-tokens-1005335924.html
+#-----------------------------------------------------------------------------
+set -e
+
+BITBUCKET_USER=""
+BITBUCKET_TOKEN=""
+
+assert_osxkeychain() {
+  if ! git credential-osxkeychain 2>&1 | grep -q "git.credential-osxkeychain"; then
+    exit 0
+  fi
+}
+
+show_help() {
+  str=$(grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-)
+  echo "$str"
+}
+
+erase_creds() {
+  echo -n "Erasing BitBucket HTTPS credentials ... "
+  printf "protocol=https\nhost=bitbucket.org\n" | git credential-osxkeychain erase
+  echo "OK"
+}
+
+setup_creds() {
+  echo "Please enter your BitBucket username and personal access token."
+  read -p    "  username: " BITBUCKET_USER
+  read -s -p "     token: " BITBUCKET_TOKEN
+  echo ""
+
+  if [ "$(git config --global credential.helper)" != "osxkeychain" ]; then
+    git config --global credential.helper osxkeychain
+  fi
+
+  if [ -n "$BITBUCKET_USER" ] && [ -n "$BITBUCKET_TOKEN" ]; then
+    echo -n "Setting BitBucket username and token ... "
+    printf "protocol=https\nhost=bitbucket.org\n" | git credential-osxkeychain erase
+    printf "protocol=https\nhost=bitbucket.org\nusername=%s\npassword=%s\n" \
+          "$BITBUCKET_USER" "$BITBUCKET_TOKEN" \
+          | git credential-osxkeychain store
+    echo "OK"
+  fi
+}
+
+show_creds() {
+  echo "Your BitBucket HTTPS credentials are ..."
+  printf "protocol=https\nhost=bitbucket.org\n" | git credential-osxkeychain get
+}
+
+token() {
+  token_str=$(printf "protocol=https\nhost=bitbucket.org\n" \
+    | git credential-osxkeychain get \
+    | awk 'BEGIN { FS = "=" }; $1 ~ /password/ { print $2 }')
+}
+
+user() {
+  user_str=$(printf "protocol=https\nhost=bitbucket.org\n" \
+    | git credential-osxkeychain get \
+    | awk 'BEGIN { FS = "=" }; $1 ~ /username/ { print $2 }')
+}
+
+encoded() {
+  user
+  token
+  echo -n "${user_str}:${token_str}" | base64
+}
+
+case "$1" in
+  setup)
+    assert_osxkeychain
+    setup_creds
+    ;;
+  erase)
+    assert_osxkeychain
+    erase_creds
+    ;;
+  show)
+    assert_osxkeychain
+    show_creds
+    ;;
+  token)
+    assert_osxkeychain
+    token
+    echo "${token_str}"
+    ;;
+  user)
+    assert_osxkeychain
+    user
+    echo "${user_str}"
+    ;;
+  base64)
+    assert_osxkeychain
+    encoded
+    ;;
+  *)
+    show_help
+    ;;
+esac
+
+# vim:ft=sh
