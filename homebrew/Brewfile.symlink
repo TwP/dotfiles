@@ -47,6 +47,4 @@ mas 'Xcode',        id: 497799835
 # you need to boot up Xcode and install some extras in order for vim to compile
 # brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
 
-main ~/.dotfiles/homebrew/Brewfile.$HOSTNAME
-
 # vim: ft=ruby
