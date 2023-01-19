@@ -1,0 +1,5 @@
+# Brewfile for the work laptop
+
+brew 'netbirdio/tap/netbird'
+
+# vim: ft=ruby

@@ -1,113 +1,52 @@
-tap 'caskroom/cask'
-tap 'caskroom/drivers'
+# Main Brewfile used on all machines
+
 tap 'homebrew/bundle'
+tap 'homebrew/cask'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
 brew 'ack'
 brew 'asdf'
-brew 'autoconf'
-brew 'automake'
 brew 'bash'
 brew 'bash-completion'
 brew 'cmake'
-brew 'cscope'
-brew 'ctags'
 brew 'curl'
-brew 'dos2unix'
-brew 'faac'
 brew 'fd'
-brew 'ffmpeg'
-brew 'fzf'
-brew 'gawk'
-brew 'gcc'
 brew 'git'
-brew 'gnutls'
-brew 'go'
-brew 'gotags'
-brew 'graphviz'
-brew 'httpie'
-brew 'hub'
-brew 'imagemagick'
 brew 'jq'
-brew 'lame'
-brew 'lcov'
 brew 'mas'
-brew 'md5sha1sum'
 brew 'mtr'
 brew 'nmap'
-brew 'oniguruma'
-brew 'openssl'
-brew 'parallel'
-brew 'perl'
-brew 'pidof'
-brew 'platypus'
-brew 'pstree'
-brew 'pv'
-brew 'python'
-brew 'python3'
 brew 'rsync'
 brew 'socat'
 brew 'sqlite'
 brew 'switchaudio-osx'
-brew 'syncthing', restart_service: true
-brew 'the_silver_searcher'
-brew 'tmux'
 brew 'tree'
 brew 'wget'
-brew 'wireshark', args: ['with-qt5']
-brew 'x264'
-brew 'xvid'
 
 cask 'aerial'
 cask 'appcleaner'
-cask 'caffeine'
-cask 'calibre'
-cask 'dash'
+cask 'audio-hijack'
 cask 'docker'
-cask 'fluid'
 cask 'google-chrome'
-cask 'handbrake'
 cask 'hammerspoon'
-cask 'launchbar'
 cask 'licecap'
-cask 'mailplane'
-cask 'makemkv'
-cask 'minecraft'
-cask 'monodraw'
-cask 'platypus'
-cask 'powerphotos'
+cask 'loopback'
+cask 'obsidian'
 cask 'slack'
-cask 'steam'
-cask 'subler'
-cask 'viscosity'
-cask 'vlc'
+cask 'soundcource'
+cask 'visual-studio-code'
 cask 'zoomus'
 
-# cask 'arduino'
-# cask 'ftdi-vcp-driver'
-# cask 'openscad'
-# cask 'ripit'
-# cask 'superduper'
-
-mas '1Password 7',  id: 1333542190
-mas 'Bear',         id: 1091189122
-mas 'GarageBand',   id: 682658836
-mas 'Keynote',      id: 409183694
+mas 'Hand Mirror',  id: 1502839586
 mas 'Moom',         id: 419330170
-mas 'Numbers',      id: 409203825
-mas 'Pages',        id: 409201541
-mas 'Screeny',      id: 440991524
 mas 'Slack',        id: 803453959
-mas 'Things3',      id: 904280696
+mas 'Things',       id: 904280696
 mas 'Xcode',        id: 497799835
-mas 'iMovie',       id: 408981434
-
-# mas 'Evernote', id: 406056744
-# mas 'Marked', id: 448925439
-# mas 'OmniGraffle', id: 711830901
 
 # you need to boot up Xcode and install some extras in order for vim to compile
 # brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
+
+main ~/.dotfiles/homebrew/Brewfile.$HOSTNAME
 
 # vim: ft=ruby
