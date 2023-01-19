@@ -36,7 +36,7 @@ cask 'obsidian'
 cask 'slack'
 cask 'soundcource'
 cask 'visual-studio-code'
-cask 'zoomus'
+cask 'zoom'
 
 mas 'Hand Mirror',  id: 1502839586
 mas 'Moom',         id: 419330170
