@@ -34,7 +34,7 @@ cask 'licecap'
 cask 'loopback'
 cask 'obsidian'
 cask 'slack'
-cask 'soundcource'
+cask 'soundsource'
 cask 'visual-studio-code'
 cask 'zoom'
 
