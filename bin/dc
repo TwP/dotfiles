@@ -32,26 +32,26 @@
 
 DOCKER_STARTUP_WAIT_TIME=60 # seconds
 
-function usage {
+usage() {
   grep '^#/' <"$0" | cut -c 4-
 }
 
-function dc_clean {
+dc_clean() {
   docker rm $(docker ps -aqf status=exited) 2>/dev/null || true
   docker rmi $(docker images -qf dangling=true) 2>/dev/null || true
 }
 
-function dc_prune {
+dc_prune() {
   docker container prune -f
   docker image prune -f
 }
 
-function dc_ready {
+dc_ready() {
   dc_activate
   counter=0
 
   echo "Waiting for Docker to be ready ...\c"
-  until $(docker info > /dev/null 2>&1); do
+  until docker info > /dev/null 2>&1; do
     counter=$((counter+1))
     if [ $counter -gt $DOCKER_STARTUP_WAIT_TIME ]; then
       echo "\n-- Docker startup took longer than ${DOCKER_STARTUP_WAIT_TIME} seconds - exiting!"
@@ -62,82 +62,51 @@ function dc_ready {
   echo " OK!"
 }
 
-function dc_console {
+dc_console() {
   docker exec -it "$1" /bin/bash
 }
 
-function dc_cycle {
+dc_cycle() {
   docker-compose stop "$@" &&
   docker-compose up -d "$@"
 }
 
-function dc_ports {
+dc_ports() {
   docker ps --filter name="$1" --format "{{.Names}}: {{.Ports}}"
 }
 
-function dc_rebuild {
+dc_rebuild() {
   docker-compose build "$@" &&
   docker-compose stop "$@" &&
   docker-compose up -d "$@"
 }
 
-function dc_activate {
+dc_activate() {
   open "/Applications/Docker.app"
 }
 
-function dc_deactivate {
-  osascript -e "quit app \"docker\""
+dc_deactivate() {
+  osascript -e "quit app \"docker\"" -e "quit app \"docker desktop\""
 }
 
-function dc_screen {
+dc_screen() {
   screen "${HOME}/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty"
 }
 
-if [[ $# > 0 ]]; then
+if [ $# -gt 0 ]; then
   case "$1" in
-    --help )
-      usage
-      ;;
-    -h )
-      usage
-      ;;
-    clean )
-      dc_clean
-      ;;
-    console )
-      shift
-      dc_console "$@"
-      ;;
-    cycle )
-      shift
-      dc_cycle "$@"
-      ;;
-    ports )
-      shift
-      dc_ports "$@"
-      ;;
-    prune )
-      dc_prune
-      ;;
-    ready )
-      dc_ready
-      ;;
-    rebuild )
-      shift
-      dc_rebuild "$@"
-      ;;
-    activate )
-      dc_activate
-      ;;
-    deactivate )
-      dc_deactivate
-      ;;
-    screen )
-      dc_screen
-      ;;
-    *)
-      docker-compose "$@"
-      ;;
+    -h | --help ) usage ;;
+    clean ) dc_clean ;;
+    console ) shift && dc_console "$@" ;;
+    cycle ) shift && dc_cycle "$@" ;;
+    ports ) shift && dc_ports "$@" ;;
+    prune ) dc_prune ;;
+    ready ) dc_ready ;;
+    rebuild ) shift && dc_rebuild "$@" ;;
+    activate ) dc_activate ;;
+    deactivate ) dc_deactivate ;;
+    screen ) dc_screen ;;
+    *) docker-compose "$@" ;;
   esac
 else
   docker-compose
