@@ -131,13 +131,13 @@ function csign {
     return 1
   fi
 
-  BINARY=`brew info "$1" | grep "^${HOMEBREW_ROOT}.*\*\$" | sed -e "s/\\([^ ]*\\).*$/\\1\\/bin\\/$1/"`
+  BINARY=$(brew info "$1" | grep "^${HOMEBREW_ROOT}.*\*\$" | sed -e "s/\\([^ ]*\\).*$/\\1\\/bin\\/$1/")
 
   # create an ad-hoc signature for the homebrew managed application
-  /usr/bin/codesign -f -s - $BINARY
+  /usr/bin/codesign -f -s - "$BINARY"
 
   # add the application to the firewall
-  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $BINARY
+  sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add "$BINARY"
 }
 
 # find a ruby class or module of the given name
