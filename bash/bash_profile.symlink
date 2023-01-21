@@ -68,15 +68,11 @@ if [ "$PS1" ] ; then
 fi
 
 # configure asdf https://github.com/asdf-vm/asdf
-if [ -f "/usr/local/opt/asdf/asdf.sh" ]; then
-  source "/usr/local/opt/asdf/asdf.sh"
+if [ -f "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh" ]; then
+  source "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh"
 fi
 
 # source the bashrc file
-if [ -f $HOME/.bashrc ]; then source $HOME/.bashrc ; fi
-
-# Stripe setup stuff
-# if [ -f $HOME/stripe/.bash_profile ]; then source $HOME/stripe/.bash_profile; fi
-# if [ -f $HOME/stripe/.bashrc ]; then source $HOME/stripe/.bashrc ; fi
+if [ -f "$HOME/.bashrc" ]; then source "$HOME/.bashrc" ; fi
 
 # vim:ft=sh
