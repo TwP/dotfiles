@@ -37,7 +37,9 @@ CURL_ROOT="$HOMEBREW_ROOT/opt/curl"
 [ -d $DOTS ]          && PATH="$DOTS/bin:$PATH"
 export PATH
 
-export EDITOR=$(type -P vim || type -P vi || type -P nano)
+EDITOR=$(type -P vim || type -P vi || type -P nano)
+export EDITOR
+
 export FIGNORE=".o:DS_Store"
 export PAGER=/usr/bin/less
 export TEMP=/tmp
