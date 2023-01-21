@@ -42,8 +42,8 @@ defaults write com.apple.dock expose-group-apps -bool false
 #   1: Off (disable dashboard entirely)
 #   2: As Space
 #   3: As Overlay
-msg "Show the Dashboard as an overlay"
-defaults write com.apple.dashboard dashboard-enabled-state -int 3
+# msg "Show the Dashboard as an overlay"
+# defaults write com.apple.dashboard dashboard-enabled-state -int 3
 
 msg "Don’t automatically rearrange Spaces based on most recent use"
 defaults write com.apple.dock mru-spaces -bool false
@@ -82,15 +82,18 @@ defaults write com.apple.dock showhidden -bool true
 # Hot corners
 # Possible values:
 #  0: no-op
+#  1: None (-)
 #  2: Mission Control
-#  3: Show application windows
+#  3: Application windows
 #  4: Desktop
 #  5: Start screen saver
 #  6: Disable screen saver
-#  7: Dashboard
+#  7: Dashboard (no longer supported)
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
+# 13: Lock Screen
+# 14: Quick Note
 
 msg "Top left screen corner → Disabled"
 defaults write com.apple.dock wvous-tl-corner -int 0

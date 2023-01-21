@@ -20,8 +20,8 @@ sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/d
 # msg "Disable the sound effects on boot"
 # sudo nvram SystemAudioVolume=" "
 
-msg "Disable transparency in the menu bar and elsewhere on Yosemite"
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# msg "Disable transparency in the menu bar and elsewhere on Yosemite"
+# defaults write com.apple.universalaccess reduceTransparency -bool true
 
 msg "Menu bar: hide the Time Machine, Volume, and User icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
@@ -39,8 +39,8 @@ defaults write com.apple.systemuiserver menuExtras -array \
 # msg "Set highlight color to green"
 # defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
-msg "Set highlight color to Apple default blue"
-defaults delete NSGlobalDomain AppleHighlightColor
+# msg "Set highlight color to Apple default blue"
+# defaults delete NSGlobalDomain AppleHighlightColor
 
 msg "Set sidebar icon size to medium"
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
