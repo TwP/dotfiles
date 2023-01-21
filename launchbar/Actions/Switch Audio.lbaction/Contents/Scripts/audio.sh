@@ -1,5 +1,5 @@
 #!/bin/bash
-CMD=/usr/local/bin/SwitchAudioSource
+CMD="$HOMEBREW_ROOT/bin/SwitchAudioSource"
 
 if [ ! -f "$CMD" ]
 then
@@ -7,32 +7,32 @@ then
   exit 1
 fi
 
-if [ ! -z "$1" ]
+if [ -n "$1" ]
 then
   $CMD -s "$1" -t "$2"
   exit $?
 fi
 
-CINPUT=`$CMD -c -t input`
-COUTPUT=`$CMD -c -t output`
+CINPUT=$($CMD -c -t input)
+COUTPUT=$($CMD -c -t output)
 
 while read -r INPUT
 do
-  if [ ! -z "${INS}" ]
+  if [ -n "${INS}" ]
   then
     INS="${INS}, "
   fi
   INS="${INS}\"${INPUT}\""
-done <<< "`$CMD -a -t input | sed 's/ (input)$//'`"
+done <<< "$($CMD -a -t input | sed 's/ (input)$//')"
 
 while read -r OUTPUT
 do
-  if [ ! -z "${OUTS}" ]
+  if [ -n "${OUTS}" ]
   then
     OUTS="${OUTS}, "
   fi
   OUTS="${OUTS}\"${OUTPUT}\""
-done <<< "`$CMD -a -t output | sed 's/ (output)$//'`"
+done <<< "$($CMD -a -t output | sed 's/ (output)$//')"
 
 cat << EOF
 {

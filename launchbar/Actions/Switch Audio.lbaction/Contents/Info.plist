@@ -13,7 +13,7 @@
     <key>LBSummary</key>
     <string>Switch Input and Output Audio devices. Requires switchaudio-osx which is mostly
 easily installed via homebrew: "brew install switchaudio-osx" (command must be
-installed to /usr/local/bin/SwitchAudioSource). When invoked it returns items
+installed to $HOMEBREW_ROOT/bin/SwitchAudioSource). When invoked it returns items
 for each output device (headphones) and each input device (microphone). The
 currently selected item for each is prefixed with *. Select an item and hit
 enter to switch to that item, the action will respond by refreshing the items
