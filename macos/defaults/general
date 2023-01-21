@@ -108,7 +108,7 @@ defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 # sudo systemsetup -setrestartfreeze on
 
 msg "Never go into computer sleep mode"
-sudo systemsetup -setcomputersleep Off > /dev/null 2>&1
+sudo systemsetup -setcomputersleep Off > /dev/null
 
 # msg "Check for software updates daily, not just once per week"
 # defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1

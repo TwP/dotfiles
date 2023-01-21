@@ -110,16 +110,4 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 msg "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-# see if AdBlock has been installed and install it if needed
-if [ ! -f "${HOME}/Library/Safari/Extensions/AdBlock.safariextz" ]; then
-  msg "Download and install AdBlock for Safari"
-  open -a "Safari" "https://safari-extensions.apple.com/details/?id=com.betafish.adblockforsafari-UAMUU4S2D9"
-fi
-
-# see if Instapaper has been installed and install it if needed
-if [ ! -f "${HOME}/Library/Safari/Extensions/Instapaper.safariextz" ]; then
-  msg "Download and install Instapaper extension for Safari"
-  open -a "Safari" "https://safari-extensions.apple.com/details/?id=com.instapaper.extension-CAM49M58WK"
-fi
-
 # vim:ft=sh
