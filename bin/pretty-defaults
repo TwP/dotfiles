@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+for d in $(defaults domains | tr ',' '\n'); do
+  echo "========( $d )========"
+  defaults read "$d"
+done
