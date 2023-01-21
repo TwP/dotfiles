@@ -182,4 +182,3 @@ function ssh-setup {
 function enable-yubikey() {
   ps ux | grep [y]ubiswitch >/dev/null && osascript -e 'tell application "yubiswitch" to KeyOn'
 }
-
