@@ -20,3 +20,11 @@ function _gh-creds() {
   COMPREPLY=( $(compgen -W "$cmds" -- $cur) )
 }
 complete -F _gh-creds gh-creds
+
+# Completions for our `bb-creds` token management script.
+function _bb-creds() {
+  local cmds="base64 erase help setup show token user"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "$cmds" -- $cur) )
+}
+complete -F _bb-creds bb-creds
