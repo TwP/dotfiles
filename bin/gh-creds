@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #/ Usage: gh-creds <cmd>
 #/
 #/   setup  : set your GitHub HTTPS credentials in the MacOS keychain
@@ -13,6 +13,8 @@
 #/ the OSX keychain. You will need a GitHub personal access token.
 #/
 #/   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
+#/
+#-----------------------------------------------------------------------------
 set -e
 
 GITHUB_USER=""
@@ -37,8 +39,8 @@ erase_creds() {
 
 setup_creds() {
   echo "Please enter your GitHub username and personal access token."
-  read -p    "  username: " GITHUB_USER
-  read -s -p "     token: " GITHUB_TOKEN
+  read -rp    "  username: " GITHUB_USER
+  read -s -rp "     token: " GITHUB_TOKEN
   echo ""
 
   if [ "$(git config --global credential.helper)" != "osxkeychain" ]; then

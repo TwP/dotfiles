@@ -14,6 +14,7 @@
 #/ the OSX keychain. You will need a BitBucket personal access token.
 #/
 #/ https://confluence.atlassian.com/bitbucketserver072/personal-access-tokens-1005335924.html
+#/
 #-----------------------------------------------------------------------------
 set -e
 
@@ -39,8 +40,8 @@ erase_creds() {
 
 setup_creds() {
   echo "Please enter your BitBucket username and personal access token."
-  read -p    "  username: " BITBUCKET_USER
-  read -s -p "     token: " BITBUCKET_TOKEN
+  read -rp    "  username: " BITBUCKET_USER
+  read -s -rp "     token: " BITBUCKET_TOKEN
   echo ""
 
   if [ "$(git config --global credential.helper)" != "osxkeychain" ]; then
