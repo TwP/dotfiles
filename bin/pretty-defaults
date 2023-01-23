@@ -1,4 +1,8 @@
-#!/usr/bin/env sh
+#!/bin/sh
+
+echo "========( NSGlobalDomain )========"
+defaults read "NSGlobalDomain"
+
 for d in $(defaults domains | sed -e 's/, /\n/g'); do
   echo "========( $d )========"
   defaults read "$d"
