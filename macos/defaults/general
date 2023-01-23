@@ -116,12 +116,6 @@ sudo systemsetup -setcomputersleep Off > /dev/null
 # msg "Disable Notification Center and remove the menu bar icon"
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
-msg "Disable smart quotes as they’re annoying when typing code"
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-msg "Disable smart dashes as they’re annoying when typing code"
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
 # msg "Set the desktop wallpaper"
 # osascript <<EOD
 # tell application "Finder"
