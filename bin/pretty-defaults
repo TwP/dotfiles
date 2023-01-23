@@ -1,4 +1,32 @@
 #!/bin/sh
+#/ Usage: pretty-defaults
+#/
+#/   Print all `defaults` in a consistent format so that the output from
+#/   two subsequent runs of this script can be diffed in a sensible manner.
+#/   This tool is useful for finding application default settings so they
+#/   can be configurated via automation tools.
+#/
+#/   EXAMPLE:
+#/     pretty-defaults > before.txt
+#/     # change some system settings
+#/     pretty-defaults > after.txt
+#/     diff before.txt after.txt
+#/
+#------------------------------------------------------------------------------
+set -o errexit
+set -o nounset
+if [ "${TRACE:-0}" -eq "1" ]; then
+  set -o xtrace
+fi
+
+usage() {
+  grep "^#/" "$0" | cut -c 4-
+}
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  usage
+  exit
+fi
 
 echo "========( NSGlobalDomain )========"
 defaults read "NSGlobalDomain"
