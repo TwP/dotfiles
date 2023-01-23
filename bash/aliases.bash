@@ -72,17 +72,17 @@ function stuff {
 
 function ql {
   qlmanage -p "$@" & pid=$!
-  read -sn1
+  read -rsn1
   kill $pid; wait $pid
 } 2>/dev/null
 
 function psg {
-  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+  ps wwwaux | grep -E "($1|%CPU)" | grep -v grep
 }
 
 function p {
   if [ -n "$1" ]; then
-    ps -O ppid -U $USER | grep "$1" | grep -v grep
+    ps -O ppid -U $USER | grep -i "$1" | grep -v grep
   else
     ps -O ppid -U $USER
   fi
