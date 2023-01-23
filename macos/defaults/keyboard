@@ -30,6 +30,18 @@ sudo systemsetup -settimezone "America/Denver" > /dev/null
 msg "Enable auto-correct"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
+msg "Disable automatic capitalization of words"
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+msg "Disable automatic period insertion with double-space"
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+msg "Disable smart quotes as they’re annoying when typing code"
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+msg "Disable smart dashes as they’re annoying when typing code"
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
 # msg "Stop iTunes from responding to the keyboard media keys"
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
