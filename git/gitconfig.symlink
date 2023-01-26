@@ -1,8 +1,8 @@
 [include]
   path = ~/.gitconfig-user
 
-[includeIf "gitdir:~/stripe/"]
-  path = ~/stripe/.gitconfig
+[includeIf "gitdir:~/eoi/"]
+  path = ~/eoi/.gitconfig
 
 [color]
   # Colour terminal command output when possible.
