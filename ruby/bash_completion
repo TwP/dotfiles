@@ -10,7 +10,7 @@ complete -F _rb rb
 function _rem() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   local words="reset show versions"
-  words="$words $(asdf list ruby "$cur" 2>/dev/null)"
+  words="$words $(asdf list ruby "$cur" 2> /dev/null)"
   COMPREPLY=( $(compgen -W "$words" -- "$cur") )
 }
 complete -F _rem rem
