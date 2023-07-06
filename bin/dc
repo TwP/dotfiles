@@ -86,7 +86,7 @@ dc_activate() {
 }
 
 dc_deactivate() {
-  osascript -e "quit app \"docker\"" -e "quit app \"docker desktop\""
+  osascript -e "quit app \"docker desktop\""
 }
 
 dc_screen() {
