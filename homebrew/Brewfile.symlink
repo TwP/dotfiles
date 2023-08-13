@@ -1,8 +1,6 @@
 # Main Brewfile used on all machines
 
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/core'
 tap 'homebrew/services'
 
 brew 'ack'
