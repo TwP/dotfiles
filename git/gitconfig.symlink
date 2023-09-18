@@ -248,3 +248,5 @@
   s = status --short --branch
 
 # vim: ft=gitconfig
+[init]
+	defaultBranch = main
