@@ -1,7 +1,10 @@
 # ==== GO Development Setup ====
 # All the fucntions useful for working with GO
 
-export GOPATH="${SRC_PATH}/gocode"
+GOPATH=$(go env GOPATH)
+[ -d "${HOME}/.go" ] && GOPATH="${HOME}/.go"
+[ -d "${SRC_PATH}/gocode" ] && GOPATH="${SRC_PATH}/gocode"
+export GOPATH
 export GO111MODULE="auto"
 
 # ==== PATH setup ====
