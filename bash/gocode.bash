@@ -3,7 +3,6 @@
 
 GOPATH=$(go env GOPATH)
 [ -d "${HOME}/.go" ] && GOPATH="${HOME}/.go"
-[ -d "${SRC_PATH}/gocode" ] && GOPATH="${SRC_PATH}/gocode"
 export GOPATH
 export GO111MODULE="auto"
 
@@ -11,17 +10,19 @@ export GO111MODULE="auto"
 [ -d $GOPATH ] && PATH="$GOPATH/bin:$PATH"
 export PATH
 
+GOCODE="${SRC_PATH}/gocode"
+
 function goto() {
   if [ -n "$1" ]; then
-    cd ${GOPATH}/src/$1
+    cd "${GOCODE}/$1"
   else
-    cd ${GOPATH}/src
+    cd "${GOCODE}"
   fi
 }
 
 function _goto() {
   declare -A dirs_map
-  dirs=`find ${GOPATH}/src -type d -depth 3 -maxdepth 3 | cut -d/ -f7,8,9`
+  dirs=$(find "${GOCODE}" -type d -depth 1 -maxdepth 1 | cut -d/ -f6)
   local cur=${COMP_WORDS[COMP_CWORD]}
   COMPREPLY=( $(compgen -W "$dirs" -- $cur) )
 }
