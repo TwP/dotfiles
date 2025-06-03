@@ -3,7 +3,7 @@
 
 # confiure direnv tool
 if [ -f "$HOMEBREW_ROOT/bin/direnv" ]; then
-  eval $(direnv hook bash)
+  eval "$(direnv hook bash)"
 fi
 
 if [[ -a $HOME/.localrc ]] ; then source $HOME/.localrc ; fi
