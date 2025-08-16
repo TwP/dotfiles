@@ -4,6 +4,8 @@
 # https://github.com/riobard/bash-powerline
 #
 # This prompt requires the patched Fira Code (or Mono) font found here:
+# https://www.nerdfonts.com/
+# https://nerdfonts.ytyng.com/
 # https://github.com/ryanoasis/nerd-fonts/
 #
 # A handy guide to color codes and formatting in bash
