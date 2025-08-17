@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Current Date & Time",
+    "text": "{date \"yyyy-MM-dd, HH:mm\"}"
+  },
+  {
+    "name": "Current Date (ISO Format)",
+    "text": "{date \"yyyy-MM-dd\"}"
+  },
+  {
+    "name": "Lorem Ipsum",
+    "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+  },
+  {
+    "name": "Astonished",
+    "text": "◉_◉"
+  },
+  {
+    "name": "Shrug",
+    "text": "¯\\_(ツ)_/¯"
+  },
+  {
+    "name": "º Degree",
+    "text": "º"
+  },
+  {
+    "name": "⌘ Command",
+    "text": "⌘"
+  },
+  {
+    "name": "⌃ Control",
+    "text": "⌃"
+  },
+  {
+    "name": "‽ Interrobang",
+    "text": "‽"
+  },
+  {
+    "name": "⌥ Option",
+    "text": "⌥"
+  },
+  {
+    "name": "⇧ Shift",
+    "text": "⇧"
+  }
+]
