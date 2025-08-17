@@ -133,6 +133,7 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+detect_files =[ "Gemfile", "Rakefile", ".ruby-version" ]
 
 [rust]
 symbol = ""
