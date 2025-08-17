@@ -19,6 +19,7 @@ brew 'nmap'
 brew 'rsync'
 brew 'socat'
 brew 'sqlite'
+brew 'starship'
 brew 'switchaudio-osx'
 brew 'the_silver_searcher'
 brew 'tree'
@@ -27,9 +28,8 @@ brew 'wget'
 cask 'aerial'
 cask 'appcleaner'
 cask 'audio-hijack'
-cask 'docker'
+cask 'orbstack'
 cask 'google-chrome'
-cask 'hammerspoon'
 cask 'licecap'
 cask 'loopback'
 cask 'obsidian'
@@ -40,9 +40,9 @@ cask 'zoom'
 
 mas 'Hand Mirror',  id: 1502839586
 mas 'Moom',         id: 419330170
-mas 'Slack',        id: 803453959
 mas 'Things',       id: 904280696
 mas 'Xcode',        id: 497799835
+# mas 'Slack',        id: 803453959
 
 # you need to boot up Xcode and install some extras in order for vim to compile
 # brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
