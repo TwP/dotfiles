@@ -21,7 +21,7 @@ abort "BOOTSTRAP_DRIVE is not configured" unless File.directory?(BOOTSTRAP_DRIVE
 Dir.glob("*/*.rake").each { |fn| load fn }
 
 desc "Hook our dotfiles into system-standard positions."
-task :install do
+task :install => "starship:install" do
   linkables = Dir.glob('**/*.symlink')
 
   skip_all = !!ENV['SKIP_ALL'] || false
@@ -35,10 +35,10 @@ task :install do
     file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
 
-    if File.exists?(target) && File.symlink?(target) && ENV['PWD'] + '/' + linkable == File.readlink(target)
+    if File.exist?(target) && File.symlink?(target) && ENV['PWD'] + '/' + linkable == File.readlink(target)
       puts "Skipping #{linkable} - already set correctly"
     else
-      if File.exists?(target) || File.symlink?(target)
+      if File.exist?(target) || File.symlink?(target)
         unless skip_all || overwrite_all || backup_all
           puts "File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
           case STDIN.gets.chomp
@@ -60,7 +60,6 @@ task :install do
 end
 
 task :uninstall do
-
   Dir.glob('**/*.symlink').each do |linkable|
 
     file = linkable.split('/').last.split('.symlink').last
@@ -72,7 +71,7 @@ task :uninstall do
     end
 
     # Replace any backups made during installation
-    if File.exists?("#{ENV["HOME"]}/.#{file}.backup")
+    if File.exist?("#{ENV["HOME"]}/.#{file}.backup")
       `mv "$HOME/.#{file}.backup" "$HOME/.#{file}"`
     end
 
