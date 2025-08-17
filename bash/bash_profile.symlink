@@ -48,6 +48,8 @@ export HISTCONTROL=ignoredups;
 export HISTSIZE=10000;
 shopt -s histappend; # append not rewrite history
 
+export LC_CTYPE="en_US.UTF-8"
+
 # autocompletion options
 if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
   source "$HOMEBREW_ROOT/etc/bash_completion"

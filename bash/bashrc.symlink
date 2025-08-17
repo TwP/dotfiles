@@ -1,5 +1,10 @@
 # ~/.bashrc
 # Executed by login and subshells
+#
+# confiure starship prompt
+if [ -f "$HOMEBREW_ROOT/bin/starship" ]; then
+  eval "$(starship init bash)"
+fi
 
 # confiure direnv tool
 if [ -f "$HOMEBREW_ROOT/bin/direnv" ]; then
