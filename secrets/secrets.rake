@@ -58,13 +58,13 @@ namespace :secrets do
 
         # skip these files if the backup directory does not exist
         src_dir = File.join(VOLUME, backup)
-        next unless File.exists?(src_dir) && File.directory?(src_dir)
+        next unless File.exist?(src_dir) && File.directory?(src_dir)
 
         Dir.chdir(src_dir)
         dest_dir = File.expand_path(local)
 
         install_file = ->(file) do
-          next if !File.exists?(file) || File.directory?(file)
+          next if !File.exist?(file) || File.directory?(file)
           next if IGNORE.include? file
 
           d      = File.join(dest_dir, file)
@@ -73,7 +73,7 @@ namespace :secrets do
           s      = File.join(src_dir, file)
           s_name = File.join(backup,  file)
 
-          if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+          if !File.exist?(d) || (File.mtime(s) > File.mtime(d))
             puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
             FileUtils.mkdir_p(File.dirname(d))
             FileUtils.cp(s, d, preserve: true)
@@ -102,13 +102,13 @@ namespace :secrets do
 
         # skip these files if the local directory does not exist
         src_dir = File.expand_path(local)
-        next unless File.exists?(src_dir) && File.directory?(src_dir)
+        next unless File.exist?(src_dir) && File.directory?(src_dir)
 
         Dir.chdir(src_dir)
         dest_dir = File.join(VOLUME, backup)
 
         backup_file = ->(file) do
-          next if !File.exists?(file) || File.directory?(file)
+          next if !File.exist?(file) || File.directory?(file)
           next if IGNORE.include? file
 
           d      = File.join(dest_dir, file)
@@ -117,7 +117,7 @@ namespace :secrets do
           s      = File.join(src_dir, file)
           s_name = File.join(local,   file)
 
-          if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+          if !File.exist?(d) || (File.mtime(s) > File.mtime(d))
             puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
             FileUtils.mkdir_p(File.dirname(d))
             FileUtils.cp(s, d, preserve: true)
@@ -139,7 +139,7 @@ namespace :secrets do
   task :teardown => :detach_volume
 
   task :create_dmg do
-    unless File.exists? DMG_FILE
+    unless File.exist? DMG_FILE
       cmd = %Q{hdiutil create -type UDIF -encryption AES-256 -size #{VOLUME_SIZE} -fs "Journaled HFS+" -volname "#{VOLUME_NAME}" -attach "#{DMG_FILE}"}
       puts "Creating an ecrypted disk image for storing secrets ..."
       puts cmd
@@ -148,7 +148,7 @@ namespace :secrets do
   end
 
   task :mount_volume do
-    unless File.exists? VOLUME
+    unless File.exist? VOLUME
       cmd = %Q{hdiutil attach "#{DMG_FILE}"}
       puts "Mounting encrypted secrets disk image ..."
       puts cmd
@@ -157,7 +157,7 @@ namespace :secrets do
   end
 
   task :detach_volume do
-    if File.exists? VOLUME
+    if File.exist? VOLUME
       cmd = %Q{hdiutil detach "#{VOLUME}"}
       puts "Detaching encrypted secrets disk image ..."
       puts cmd

@@ -93,7 +93,7 @@ class FluidApp
   #
   # Returns `true` if the app was installed; `false` otherwise.
   def install_app
-    return false if File.exists?(app_dest)
+    return false if File.exist?(app_dest)
     install_app!
   end
 
@@ -102,7 +102,7 @@ class FluidApp
   #
   # Returns `true` if the app was installed; `false` otherwise.
   def install_app!
-    return false unless File.exists?(app_bak)
+    return false unless File.exist?(app_bak)
 
     puts "  application: #{app_dest.inspect}"
     # FileUtils.cp_r(app_bak, app_dest)
@@ -115,7 +115,7 @@ class FluidApp
   #
   # Returns `true` if the app was installed; `false` otherwise.
   def install_prefs
-    return false if File.exists?(prefs_dest)
+    return false if File.exist?(prefs_dest)
     install_prefs!
   end
 
@@ -124,7 +124,7 @@ class FluidApp
   #
   # Returns `true` if the prefs were installed; `false` otherwise.
   def install_prefs!
-    return false unless File.exists?(prefs_bak)
+    return false unless File.exist?(prefs_bak)
 
     puts "  preferences: #{prefs_dest.inspect}"
     FileUtils.cp(prefs_bak, prefs_dest)
@@ -135,17 +135,17 @@ class FluidApp
   #
   # Returns `true` if the files were copied; `false` otherwise
   def backup!
-    return false unless File.exists?(app_dest) && File.exists?(prefs_dest)
+    return false unless File.exist?(app_dest) && File.exist?(prefs_dest)
 
     puts "  application: #{app_dest.inspect}"
-    FileUtils.rm_r(app_bak, secure: true) if File.exists?(app_bak)
+    FileUtils.rm_r(app_bak, secure: true) if File.exist?(app_bak)
     # FileUtils.cp_r(app_dest, app_bak)
     # the call to `FileUtils` was not copying the application icon, so I'm using
     # a call to `system` to properly copy application directories
     system(%Q/cp -r "#{app_dest}" "#{app_bak}"/)
 
     puts "  preferences: #{prefs_dest.inspect}"
-    FileUtils.rm_r(prefs_bak, secure: true) if File.exists?(prefs_bak)
+    FileUtils.rm_r(prefs_bak, secure: true) if File.exist?(prefs_bak)
     FileUtils.cp(prefs_dest, prefs_bak)
 
     true
@@ -155,19 +155,19 @@ class FluidApp
   # directories. All traces of the Fuild apps will be wiped clean from iCloud
   # Drive. Local Fluid apps are not affected.
   def self.clobber!
-    if File.exists?(FluidApp.apps_path)
+    if File.exist?(FluidApp.apps_path)
       list = Dir.glob(FluidApp.apps_path("*"))
       FileUtils.rm_r(list, secure: true)
       FileUtils.rm_r(FluidApp.apps_path, secure: true)
     end
 
-    if File.exists?(FluidApp.prefs_path)
+    if File.exist?(FluidApp.prefs_path)
       list = Dir.glob(FluidApp.prefs_path("*"))
       FileUtils.rm(list, force: true)
       FileUtils.rm_r(FluidApp.prefs_path, secure: true)
     end
 
-    if File.exists?(FLUID_DIR)
+    if File.exist?(FLUID_DIR)
       FileUtils.rm_r(FLUID_DIR, secure: true)
     end
 

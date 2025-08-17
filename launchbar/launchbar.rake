@@ -5,7 +5,7 @@ namespace :launchbar do
   task :install => %i[backup build] do
     path = File.expand_path("..", __FILE__)
     dest = File.expand_path("~/Library/Application Support/LaunchBar")
-    abort "LaunchBar does not appear to be installed" unless File.exists?(dest)
+    abort "LaunchBar does not appear to be installed" unless File.exist?(dest)
 
     actions = File.join(dest, "Actions")
     FileUtils.symlink(File.join(path, ".Actions.pkg"), actions) unless File.symlink?(actions)
@@ -39,7 +39,7 @@ namespace :launchbar do
     pkg  = File.expand_path("../.Actions.pkg", __FILE__)
     actions = Dir.glob(File.join(path, "*.lbaction"))
 
-    FileUtils.rm_r(pkg) if File.exists? pkg
+    FileUtils.rm_r(pkg) if File.exist? pkg
     FileUtils.mkdir(pkg)
     actions.each { |action| FileUtils.cp_r(action, pkg) }
   end
@@ -49,6 +49,6 @@ namespace :launchbar do
     path = File.expand_path("..", __FILE__)
     pkg  = File.join(path, ".Actions.pkg")
 
-    FileUtils.rm_r(pkg) if File.exists?(pkg)
+    FileUtils.rm_r(pkg) if File.exist?(pkg)
   end
 end
