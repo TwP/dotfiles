@@ -63,6 +63,8 @@ done
 
 # prompt and colors
 if [ "$PS1" ] ; then
+  export PROMPT_COMMAND="printf '\e]0;\7'"
+
   # Colorize directory listsings
   export CLICOLOR=1
   export LSCOLORS="gxfxcxdxbxegedabagacad"
