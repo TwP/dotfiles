@@ -30,7 +30,7 @@ $conda\
 $pixi\
 [](fg:prev_bg bg:color_bg1)\
 $time\
-[ ](fg:prev_bg bg:none)\
+[](fg:prev_bg bg:none)\
 $line_break$character"""
 
 palette = 'gruvbox_ansi'
@@ -123,12 +123,12 @@ style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [c]
-symbol = " "
+symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [cpp]
-symbol = " "
+symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
@@ -190,7 +190,7 @@ format = '[[ $symbol( $version)( $environment) ](fg:color_fg0 bg:color_bg3)]($st
 disabled = false
 time_format = "%T"
 style = "bg:color_bg1"
-format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+format = '[[  $time 󰏩 ](fg:color_fg0 bg:color_bg1)]($style)'
 
 [line_break]
 disabled = false
