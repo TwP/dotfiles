@@ -58,7 +58,7 @@ renew() {
 parse_params "$@"
 
 if [ -n "${command}" ]; then
-  ${command} "${args[*]}"
+  ${command} "${args[@]}"
 else
   usage
 fi
