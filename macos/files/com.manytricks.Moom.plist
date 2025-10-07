@@ -31,12 +31,16 @@
 			<true/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Identifier</key>
 			<string>46B98B59-F36C-4075-A969-3B0FA02171A5</string>
 			<key>Loop Through Displays</key>
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -71,6 +75,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -88,6 +94,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -120,6 +128,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -137,6 +147,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -169,6 +181,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -186,6 +200,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -218,6 +234,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -235,6 +253,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -267,12 +287,16 @@
 			<true/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Identifier</key>
 			<string>C86B9219-2246-4316-8999-FEEA56341B29</string>
 			<key>Loop Through Displays</key>
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -307,6 +331,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -324,6 +350,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -356,6 +384,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -373,6 +403,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -405,6 +437,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -422,6 +456,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -454,6 +490,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -471,6 +509,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -503,6 +543,8 @@
 			<false/>
 			<key>Confine to Display</key>
 			<false/>
+			<key>Generic</key>
+			<false/>
 			<key>Hot Key</key>
 			<dict>
 				<key>Identifier</key>
@@ -520,6 +562,8 @@
 			<false/>
 			<key>Move Delta</key>
 			<integer>50</integer>
+			<key>Move Delta Unit</key>
+			<integer>0</integer>
 			<key>Move Direction</key>
 			<integer>5</integer>
 			<key>Move to Edge/Corner Direction</key>
@@ -643,8 +687,607 @@
 			<string>Work</string>
 		</dict>
 	</array>
+	<key>Custom Controls (4001)</key>
+	<array>
+		<dict>
+			<key>Action</key>
+			<integer>10001</integer>
+			<key>Chain Mode</key>
+			<integer>0</integer>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<integer>61</integer>
+					<key>Identifier</key>
+					<string>1E379F0E-7710-40EB-B5E1-CA53C0EE818A</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>1001</integer>
+					<key>Activate Applications</key>
+					<false/>
+					<key>Apply to Active Display</key>
+					<false/>
+					<key>Apply to Overlapping Windows</key>
+					<true/>
+					<key>Auto-Trigger</key>
+					<false/>
+					<key>Auto-Trigger Display Count</key>
+					<integer>1</integer>
+					<key>Generic</key>
+					<true/>
+					<key>Identifier</key>
+					<string>E5454600-857D-4CF8-815F-3A84E0D2748A</string>
+					<key>Snapshot</key>
+					<array>
+						<dict>
+							<key>Application Name</key>
+							<string>Safari</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.safari</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{0, 50}, {1370, 1235}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>Untitled</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Dictionary</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.dictionary</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{1371, 50}, {685, 1235}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>Dictionary</string>
+						</dict>
+					</array>
+					<key>Snapshot Screens</key>
+					<array>
+						<string>{{0, 0}, {2056, 1329}}</string>
+					</array>
+					<key>Stubborn</key>
+					<false/>
+					<key>Title</key>
+					<string>Sidebar</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>1001</integer>
+					<key>Activate Applications</key>
+					<false/>
+					<key>Apply to Active Display</key>
+					<false/>
+					<key>Apply to Overlapping Windows</key>
+					<true/>
+					<key>Auto-Trigger</key>
+					<false/>
+					<key>Auto-Trigger Display Count</key>
+					<integer>1</integer>
+					<key>Generic</key>
+					<true/>
+					<key>Identifier</key>
+					<string>BA740E25-2D5D-42A4-B98F-62B3F3D3EB27</string>
+					<key>Snapshot</key>
+					<array>
+						<dict>
+							<key>Application Name</key>
+							<string>TextEdit</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.textedit</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{0, 50}, {1028, 1235}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>1.txt</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>TextEdit</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.textedit</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{1029, 50}, {1027, 1235}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>2.txt</string>
+						</dict>
+					</array>
+					<key>Snapshot Screens</key>
+					<array>
+						<string>{{0, 0}, {2056, 1329}}</string>
+					</array>
+					<key>Stubborn</key>
+					<false/>
+					<key>Title</key>
+					<string>Left &amp; Right</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>1001</integer>
+					<key>Activate Applications</key>
+					<false/>
+					<key>Apply to Active Display</key>
+					<false/>
+					<key>Apply to Overlapping Windows</key>
+					<true/>
+					<key>Auto-Trigger</key>
+					<false/>
+					<key>Auto-Trigger Display Count</key>
+					<integer>1</integer>
+					<key>Generic</key>
+					<true/>
+					<key>Identifier</key>
+					<string>94945551-B722-4920-ADE0-C3BED157EC8E</string>
+					<key>Snapshot</key>
+					<array>
+						<dict>
+							<key>Application Name</key>
+							<string>Finder</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.finder</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{0, 668}, {2056, 617}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>Desktop</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Finder</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 50}, {2056, 1235}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.apple.finder</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2056, 1329}}</string>
+							<key>Window Frame</key>
+							<string>{{0, 50}, {2056, 617}}</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>Documents</string>
+						</dict>
+					</array>
+					<key>Snapshot Screens</key>
+					<array>
+						<string>{{0, 0}, {2056, 1329}}</string>
+					</array>
+					<key>Stubborn</key>
+					<false/>
+					<key>Title</key>
+					<string>Top &amp; Bottom</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>19</integer>
+							<key>Configuration Grid</key>
+							<dict>
+								<key>Configuration Grid: Columns</key>
+								<integer>3</integer>
+								<key>Configuration Grid: Rows</key>
+								<integer>1</integer>
+							</dict>
+							<key>Identifier</key>
+							<string>B67589EB-789F-4104-84BB-74AFFC73736A</string>
+							<key>Relative Frame</key>
+							<string>{{0, 0}, {0.33333333333333331, 1}}</string>
+							<key>Title</key>
+							<string>Left Third</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>19</integer>
+							<key>Configuration Grid</key>
+							<dict>
+								<key>Configuration Grid: Columns</key>
+								<integer>3</integer>
+								<key>Configuration Grid: Rows</key>
+								<integer>1</integer>
+							</dict>
+							<key>Identifier</key>
+							<string>4C66BC62-CC86-4DA0-A25E-5E67552DAE4F</string>
+							<key>Relative Frame</key>
+							<string>{{0.33333333333333331, 0}, {0.33333333333333331, 1}}</string>
+							<key>Title</key>
+							<string>Middle Third</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>19</integer>
+							<key>Configuration Grid</key>
+							<dict>
+								<key>Configuration Grid: Columns</key>
+								<integer>3</integer>
+								<key>Configuration Grid: Rows</key>
+								<integer>1</integer>
+							</dict>
+							<key>Identifier</key>
+							<string>8D3DB60E-39FF-443D-8D76-36ECE76EFE55</string>
+							<key>Relative Frame</key>
+							<string>{{0.66666666666666663, 0}, {0.33333333333333337, 1}}</string>
+							<key>Title</key>
+							<string>Right Third</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>0</integer>
+							<key>Identifier</key>
+							<string>2B656938-09E8-4190-A0F8-671201CB3D80</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>41</integer>
+							<key>Identifier</key>
+							<string>E00366B2-773C-49F0-A7E0-2C5C76289D09</string>
+							<key>Loop Through Displays</key>
+							<true/>
+							<key>Move Direction</key>
+							<integer>9</integer>
+							<key>Resize Proportionally</key>
+							<true/>
+						</dict>
+					</array>
+					<key>Identifier</key>
+					<string>64A4DE97-CC78-47D5-AFB8-16FF8C28FF09</string>
+					<key>Title</key>
+					<string>More Examples</string>
+				</dict>
+			</array>
+			<key>Children Expanded</key>
+			<true/>
+			<key>Identifier</key>
+			<string>2C66A3A9-8CFE-4836-BEC7-A208AEFF2CDF</string>
+			<key>Title</key>
+			<string>Examples</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>-101</integer>
+			<key>Identifier</key>
+			<string>46B98B59-F36C-4075-A969-3B0FA02171A5</string>
+			<key>Title</key>
+			<string>Window Resizing</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>37C030A0-1194-411E-9B2E-AF218EFBB2F2</string>
+				<key>Key Code</key>
+				<integer>4</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>H</string>
+			</dict>
+			<key>Identifier</key>
+			<string>37C030A0-1194-411E-9B2E-AF218EFBB2F2</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0}, {0.625, 1}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>2D0E5553-1FF0-4B0E-A5DC-126A5233C94E</string>
+				<key>Key Code</key>
+				<integer>37</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>L</string>
+			</dict>
+			<key>Identifier</key>
+			<string>2D0E5553-1FF0-4B0E-A5DC-126A5233C94E</string>
+			<key>Relative Frame</key>
+			<string>{{0.375, 0}, {0.625, 1}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>594565A8-33B9-4275-9055-542FC21A7B96</string>
+				<key>Key Code</key>
+				<integer>40</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>K</string>
+			</dict>
+			<key>Identifier</key>
+			<string>594565A8-33B9-4275-9055-542FC21A7B96</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0.33333333333333331}, {1, 0.66666666666666674}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>875E182F-FBB2-448C-AEAE-28CD3BA37938</string>
+				<key>Key Code</key>
+				<integer>38</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>J</string>
+			</dict>
+			<key>Identifier</key>
+			<string>875E182F-FBB2-448C-AEAE-28CD3BA37938</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0}, {1, 0.66666666666666663}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>-101</integer>
+			<key>Identifier</key>
+			<string>C86B9219-2246-4316-8999-FEEA56341B29</string>
+			<key>Title</key>
+			<string>Window Placement</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>33</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>3A089689-99A3-488D-B0D9-F8FB53695E6E</string>
+				<key>Key Code</key>
+				<integer>0</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>A</string>
+			</dict>
+			<key>Identifier</key>
+			<string>3A089689-99A3-488D-B0D9-F8FB53695E6E</string>
+			<key>Move to Edge/Corner Direction</key>
+			<integer>8</integer>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>33</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>36F650DF-A8B2-453F-AAFA-ABBEF8DEE717</string>
+				<key>Key Code</key>
+				<integer>1</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>S</string>
+			</dict>
+			<key>Identifier</key>
+			<string>36F650DF-A8B2-453F-AAFA-ABBEF8DEE717</string>
+			<key>Move to Edge/Corner Direction</key>
+			<integer>10</integer>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>33</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>8166DB65-A5A1-4FD1-93B4-115BEBFC14FB</string>
+				<key>Key Code</key>
+				<integer>2</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>D</string>
+			</dict>
+			<key>Identifier</key>
+			<string>8166DB65-A5A1-4FD1-93B4-115BEBFC14FB</string>
+			<key>Move to Edge/Corner Direction</key>
+			<integer>4</integer>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>33</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>710C748F-8332-4F97-B9F2-B4653F29E8EB</string>
+				<key>Key Code</key>
+				<integer>3</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>F</string>
+			</dict>
+			<key>Identifier</key>
+			<string>710C748F-8332-4F97-B9F2-B4653F29E8EB</string>
+			<key>Move to Edge/Corner Direction</key>
+			<integer>6</integer>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>1001</integer>
+			<key>Activate Applications</key>
+			<false/>
+			<key>Apply to Active Display</key>
+			<false/>
+			<key>Apply to Overlapping Windows</key>
+			<true/>
+			<key>Auto-Trigger</key>
+			<true/>
+			<key>Auto-Trigger Display Count</key>
+			<integer>1</integer>
+			<key>Generic</key>
+			<false/>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>CE09E4D0-1C5C-4FB5-A749-F11CDD116958</string>
+				<key>Key Code</key>
+				<integer>6</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>Z</string>
+			</dict>
+			<key>Identifier</key>
+			<string>CE09E4D0-1C5C-4FB5-A749-F11CDD116958</string>
+			<key>Snapshot</key>
+			<array>
+				<dict>
+					<key>Application Name</key>
+					<string>GitHub Mail</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.fluidapp.fluidapp.github mail</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{171, 187}, {1600, 1023}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Inbox (3) - tim.pease@github.com - GitHub Mail</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>MacVim</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>org.vim.macvim</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{957, 12}, {1603, 1405}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>elastomer.rb (~/GitHub/github/lib) - GITHUB</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Terminal</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.terminal</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{76, 110}, {1159, 928}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Vilya - /Users/tpease/GitHub/github — -bash — 162×50</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Slack</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.tinyspeck.slackmacgap</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{236, 283}, {1600, 942}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Slack - GitHub</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Safari</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.safari</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{798, 314}, {1677, 1023}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>Time Sink · Many Tricks</string>
+				</dict>
+				<dict>
+					<key>Application Name</key>
+					<string>Safari</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 4}, {2560, 1413}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.apple.safari</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {2560, 1440}}</string>
+					<key>Window Frame</key>
+					<string>{{880, 395}, {1680, 1022}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>bhilburn/powerlevel9k: The most awesome Powerline theme for ZSH around!</string>
+				</dict>
+			</array>
+			<key>Snapshot Screens</key>
+			<array>
+				<string>{{0, 0}, {2560, 1440}}</string>
+			</array>
+			<key>Stubborn</key>
+			<false/>
+			<key>Title</key>
+			<string>Work</string>
+		</dict>
+	</array>
 	<key>Dismiss After Moving</key>
 	<false/>
+	<key>Grid Spacing</key>
+	<true/>
+	<key>Grid Spacing: Auto-Enabled Default Spacing</key>
+	<true/>
+	<key>Grid Spacing: Gap</key>
+	<integer>1</integer>
 	<key>Key Control: Arrow</key>
 	<integer>32</integer>
 	<key>Key Control: Arrow: Control</key>
@@ -674,6 +1317,30 @@
 	<true/>
 	<key>Mouse Controls Include Custom Controls: Show On Hover</key>
 	<false/>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{800, 448}</string>
+	<key>NSOSPLastRootDirectory</key>
+	<data>
+	Ym9va5gDAAAAAAQQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAIA
+	AAQAAAADAwAAAAQAAAUAAAABAQAAVXNlcnMAAAAGAAAAAQEAAHRwZWFzZQAABwAAAAEB
+	AABMaWJyYXJ5ABAAAAABAQAATW9iaWxlIERvY3VtZW50cxMAAAABAQAAY29tfmFwcGxl
+	fkNsb3VkRG9jcwAFAAAAAQEAAHN0cmFwAAAACAAAAAEBAABMaWNlbnNlcxwAAAABBgAA
+	EAAAACAAAAAwAAAAQAAAAFgAAAB0AAAAhAAAAAgAAAAEAwAAkjgAAAAAAAAIAAAABAMA
+	ACCXBAAAAAAACAAAAAQDAAAklwQAAAAAAAgAAAAEAwAAQcoEAAAAAAAIAAAABAMAAD09
+	BQAAAAAACAAAAAQDAAAaDwYAAAAAAAgAAAAEAwAAsEMHAAAAAAAcAAAAAQYAALgAAADI
+	AAAA2AAAAOgAAAD4AAAACAEAABgBAAAIAAAAAAQAAEHEjZlVgAAAGAAAAAECAAACAAAA
+	AAAAAB8CAAAAAAAAHwIAAAAAAAAAAAAAAQUAAAgAAAAEAwAABQAAAAAAAAAEAAAAAwMA
+	APYBAAAIAAAAAQkAAGZpbGU6Ly8vBgAAAAEBAABTaXJpb24AAAgAAAAEAwAAAJCClucA
+	AAAIAAAAAAQAAEHHKISGgAAAJAAAAAEBAAAyQUMwOTY0OC0wMzc3LTRGOTEtQkIxMi1B
+	NkExMTRDQzRDOTkYAAAAAQIAAIEAAAABAAAA7xMAAAEAAADvEwAAAQAAAAEAAAABAQAA
+	LwAAADAAAAABAgAAZG5pYgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcmRs
+	ZgIAAAAAAAAA8AAAAP7///8BAAAAAAAAABMAAAAEEAAAlAAAAAAAAAAFEAAAKAEAAAAA
+	AAAQEAAAXAEAAAAAAABAEAAATAEAAAAAAAACIAAALAIAAAAAAAAFIAAAoAEAAAAAAAAQ
+	IAAAsAEAAAAAAAARIAAA4AEAAAAAAAASIAAAwAEAAAAAAAATIAAA0AEAAAAAAAAgIAAA
+	DAIAAAAAAAAwIAAAfAEAAAAAAAABwAAAhAEAAAAAAAARwAAAIAAAAAAAAAASwAAAlAEA
+	AAAAAAAB0AAAfAEAAAAAAAAQ0AAABAAAAAAAAAAX8AAAhAAAAAAAAAAi8AAAOAIAAAAA
+	AAA=
+	</data>
 	<key>NSStatusItem Preferred Position Item-0</key>
 	<real>291</real>
 	<key>NSToolbar Configuration Preferences (App Store) 2.0</key>
@@ -709,26 +1376,47 @@
 		<key>TB Size Mode</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>880 711 800 448 0 0 2560 1415 </string>
+	<key>NSWindow Frame PMHelpManager: Moom Help</key>
+	<string>596 415 800 842 0 0 2560 1415 </string>
+	<key>NSWindow Frame Settings Window (4001)</key>
+	<string>913 658 736 710 0 0 2560 1415 </string>
 	<key>PMSparkleWrapper Status</key>
 	<dict>
 		<key>Check Date</key>
-		<integer>1451924283</integer>
+		<integer>1759777596</integer>
 		<key>Current Version</key>
-		<string>3.2.2</string>
+		<string>4.3</string>
 		<key>Update Version</key>
 		<string></string>
 	</dict>
 	<key>PMStatusItemCoveredNotificationsDisabled</key>
 	<true/>
+	<key>Palette</key>
+	<dict>
+		<key>3-2</key>
+		<string>1E379F0E-7710-40EB-B5E1-CA53C0EE818A</string>
+		<key>4-2</key>
+		<string>E5454600-857D-4CF8-815F-3A84E0D2748A</string>
+		<key>5-2</key>
+		<string>BA740E25-2D5D-42A4-B98F-62B3F3D3EB27</string>
+		<key>6-2</key>
+		<string>94945551-B722-4920-ADE0-C3BED157EC8E</string>
+		<key>7-2</key>
+		<string>64A4DE97-CC78-47D5-AFB8-16FF8C28FF09</string>
+	</dict>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-01-04T16:18:02Z</date>
+	<date>2025-10-06T19:06:35Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Show Cheat Sheet</key>
+	<false/>
+	<key>Show Intro Popover</key>
 	<false/>
 	<key>Stealth Mode</key>
 	<true/>
