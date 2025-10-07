@@ -1,66 +1,45 @@
 # Brewfile for the personal laptop
 
-brew 'cscope'
-brew 'ctags'
-brew 'dos2unix'
-brew 'faac'
-brew 'ffmpeg'
-brew 'gawk'
-brew 'gcc'
-brew 'gnutls'
-brew 'go'
-brew 'gotags'
-brew 'graphviz'
-brew 'httpie'
-brew 'lame'
-brew 'lcov'
-brew 'pidof'
-brew 'platypus'
-brew 'pstree'
-brew 'pv'
 brew 'syncthing', restart_service: true
-brew 'wireshark', args: ['with-qt5']
-brew 'x264'
-brew 'xvid'
+
+cask '1password'
+cask 'calibre'
+cask 'fluid'
+cask 'mailplane'
+cask 'platypus'
+cask 'steam'
+cask 'subler'
+
+mas 'Audiobook Builder', id: 1437681957
+mas 'GarageBand',        id: 682658836
+mas 'Keynote',           id: 409183694
+mas 'Numbers',           id: 409203825
+mas 'Pages',             id: 409201541
+mas 'iMovie',            id: 408981434
+
+# Retired Programs
+# -----------------
 
 # cask 'arduino'
 # cask 'balenaetcher'
 # cask 'bzflag'
+# cask 'farrago'
 # cask 'ftdi-vcp-driver'
+# cask 'handbrake'
+# cask 'makemkv'
+# cask 'minecraft'
 # cask 'openscad'
+# cask 'powerphotos'
 # cask 'ripit'
+# cask 'signal'
+# cask 'sonos'
 # cask 'superduper'
 # cask 'viscosity'
 
-cask 'calibre'
-cask 'dash'
-cask 'farrago'
-cask 'fluid'
-cask 'handbrake'
-cask 'launchbar'
-cask 'mailplane'
-cask 'makemkv'
-cask 'minecraft'
-cask 'monodraw'
-cask 'platypus'
-cask 'plex'
-cask 'powerphotos'
-cask 'signal'
-cask 'sonos'
-cask 'steam'
-cask 'subler'
-cask 'vlc'
-
-mas '1Password 7',       id: 1333542190
-mas 'Audiobook Builder', id: 1437681957
-mas 'Bear',              id: 1091189122
-mas 'GarageBand',        id: 682658836
-mas 'HomeControl',       id: 1547121417
-mas 'Keynote',           id: 409183694
-mas 'Marked',            id: 448925439
-mas 'Numbers',           id: 409203825
-mas 'Pages',             id: 409201541
-mas 'Screeny',           id: 440991524
-mas 'iMovie',            id: 408981434
+# mas '1Password 7',       id: 1333542190
+# mas 'Bear',              id: 1091189122
+# mas 'HomeControl',       id: 1547121417
+# mas 'Marked',            id: 448925439
+# mas 'Screeny',           id: 440991524
 
 # vim: ft=ruby
