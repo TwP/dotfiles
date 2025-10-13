@@ -20,10 +20,11 @@ brew 'pidof'
 brew 'pstree'
 brew 'rsync'
 brew 'starship'
-brew 'switchaudio-osx'
 brew 'the_silver_searcher'
 brew 'tree'
 brew 'wget'
+
+# brew 'switchaudio-osx'
 
 cask 'aerial'
 cask 'appcleaner'
