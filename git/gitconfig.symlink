@@ -150,7 +150,8 @@
 
   # Get the current diff but show differences between characters
   # instead of just the differences between lines.
-  word-diff = diff --word-diff
+  #word-diff = diff --word-diff
+  word-diff = -c diff.external=difft diff
 
   # Push the current branch and set it as the default upstream branch.
   push-and-set-upstream = push --set-upstream
@@ -209,7 +210,10 @@
   merge-base-master = merge-base origin/master HEAD
 
   # Diff against the current branch's merge-base
-  diff-merge-base = !git diff $(git merge-base-master)
+  diff-merge-base = !git -c diff.external=difft diff $(git merge-base-master)
+
+  # Diff against the HEAD of the current branch
+  diff-head = -c diff.external=difft diff HEAD
 
   # Prune branches and collect garbage
   prune-and-gc = !git remote prune origin && git prune && git gc
@@ -229,7 +233,7 @@
   fa = !git fetch --all
   pf = !git push --force-with-lease
   dm = !git diff-merge-base
-  dh = !git diff HEAD
+  dh = !git diff-head
   mb = !git merge-base-master
   co = !git checkout-with-relative-age
   cb = checkout
