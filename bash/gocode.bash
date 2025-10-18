@@ -28,7 +28,7 @@ function _goto() {
 complete -F _goto goto
 
 function gotest() {
-  go test $@
+  go test "$@"
 }
 
 function _gotest() {
