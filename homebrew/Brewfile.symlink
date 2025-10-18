@@ -50,7 +50,7 @@ cask 'wireshark-app'
 
 mas 'Hand Mirror',  id: 1502839586
 mas 'Things',       id: 904280696
-mas 'Xcode',        id: 497799835
+# mas 'Xcode',        id: 497799835
 # mas 'Slack',        id: 803453959
 
 # you need to boot up Xcode and install some extras in order for vim to compile
