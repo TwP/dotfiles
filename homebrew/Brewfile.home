@@ -4,6 +4,7 @@ brew 'syncthing', restart_service: true
 
 cask '1password'
 cask 'calibre'
+cask 'carbon-copy-cloner'
 cask 'steam'
 cask 'subler'
 
