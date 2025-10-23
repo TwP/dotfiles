@@ -1,5 +1,6 @@
 # Brewfile for the personal laptop
 
+brew '1password-cli'
 brew 'syncthing', restart_service: true
 
 cask '1password'
