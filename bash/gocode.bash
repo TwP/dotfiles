@@ -1,7 +1,9 @@
 # ==== GO Development Setup ====
 # All the fucntions useful for working with GO
 
-GOPATH=$(go env GOPATH)
+if command -v go > /dev/null 2>&1; then
+  GOPATH=$(go env GOPATH)
+fi
 [ -d "${HOME}/.go" ] && GOPATH="${HOME}/.go"
 export GOPATH
 export GO111MODULE="auto"
