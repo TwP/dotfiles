@@ -78,12 +78,17 @@ if [ -f "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh" ]; then
   source "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh"
 fi
 
-# source the bashrc file
-if [ -f "$HOME/.bashrc" ]; then
-  source "$HOME/.bashrc"
+# configure completions for the 1Password CLI tool
+if command -v op > /dev/null 2>&1; then
+  source <(op completion bash)
 fi
 
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+# source the bashrc file
+if [ -f "$HOME/.bashrc" ]; then
+  source "$HOME/.bashrc"
+fi
 
 # vim:ft=sh
