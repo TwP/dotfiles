@@ -1,21 +1,20 @@
 # Main Brewfile used on all machines
 
 brew 'ack'
-brew 'asdf'
 brew 'bash'
-brew 'bash-completion'
+brew 'bash-completion@2'
 brew 'btop'
 brew 'cmake'
 brew 'curl'
 brew 'difftastic'
-brew 'direnv'
 brew 'fd'
 brew 'ffmpeg'
 brew 'fzf'
 brew 'git'
 brew 'jq'
-brew 'libyaml'  # needed for ruby-build and asdf / mise
+brew 'libyaml'  # needed for ruby-build and mise/asdf
 brew 'mas'
+brew 'mise'
 brew 'mtr'
 brew 'nmap'
 brew 'pstree'
@@ -25,6 +24,8 @@ brew 'the_silver_searcher'
 brew 'tree'
 brew 'wget'
 
+# brew 'asdf'
+# brew 'direnv'
 # brew 'go'
 # brew 'switchaudio-osx'
 

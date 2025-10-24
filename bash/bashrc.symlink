@@ -1,14 +1,19 @@
 # ~/.bashrc
 # Executed by login and subshells
 
-# confiure starship prompt
+# configure starship prompt
 if [ -f "$HOMEBREW_ROOT/bin/starship" ]; then
   eval "$(starship init bash)"
 fi
 
-# confiure direnv tool
+# configure direnv tool
 if [ -f "$HOMEBREW_ROOT/bin/direnv" ]; then
   eval "$(direnv hook bash)"
+fi
+
+# configure mise tool manager
+if [ -f "$HOMEBREW_ROOT/bin/mise" ]; then
+  eval "$(mise activate bash)"
 fi
 
 if [[ -a $HOME/.localrc ]] ; then source $HOME/.localrc ; fi
