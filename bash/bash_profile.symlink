@@ -51,8 +51,8 @@ shopt -s histappend; # append not rewrite history
 export LC_CTYPE="en_US.UTF-8"
 
 # autocompletion options
-if [ -f "$HOMEBREW_ROOT/etc/bash_completion" ]; then
-  source "$HOMEBREW_ROOT/etc/bash_completion"
+if [ -f "$HOMEBREW_ROOT/etc/profile.d/bash_completion.sh" ]; then
+  source "$HOMEBREW_ROOT/etc/profile.d/bash_completion.sh"
 fi
 
 for file in $(find -L $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'); do
