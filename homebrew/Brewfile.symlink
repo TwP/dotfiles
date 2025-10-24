@@ -14,6 +14,7 @@ brew 'ffmpeg'
 brew 'fzf'
 brew 'git'
 brew 'jq'
+brew 'libyaml'  # needed for ruby-build and asdf / mise
 brew 'mas'
 brew 'mtr'
 brew 'nmap'
