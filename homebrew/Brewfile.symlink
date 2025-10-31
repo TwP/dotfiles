@@ -23,6 +23,7 @@ brew 'starship'
 brew 'the_silver_searcher'
 brew 'tree'
 brew 'wget'
+brew 'yt-dlp'
 
 # brew 'asdf'
 # brew 'direnv'
