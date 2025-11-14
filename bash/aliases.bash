@@ -3,11 +3,9 @@
 # setup aliases
 #---------------
 alias ..='cd ..'
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 alias b='cd $OLDPWD'
 alias c='clear'
 alias du='/usr/bin/du -h'
-alias find='/usr/bin/find'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
