@@ -2,17 +2,22 @@
 # Executed by login and subshells
 
 # configure starship prompt
-if [ -f "$HOMEBREW_ROOT/bin/starship" ]; then
+if [ -f "$HOMEBREW_PREFIX/bin/starship" ]; then
   eval "$(starship init bash)"
 fi
 
 # configure direnv tool
-if [ -f "$HOMEBREW_ROOT/bin/direnv" ]; then
+if [ -f "$HOMEBREW_PREFIX/bin/direnv" ]; then
   eval "$(direnv hook bash)"
 fi
 
+# configure asdf https://github.com/asdf-vm/asdf
+if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+  source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+fi
+
 # configure mise tool manager
-if [ -f "$HOMEBREW_ROOT/bin/mise" ]; then
+if [ -f "$HOMEBREW_PREFIX/bin/mise" ]; then
   eval "$(mise activate bash)"
 fi
 

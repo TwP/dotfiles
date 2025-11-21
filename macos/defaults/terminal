@@ -6,9 +6,9 @@
 # defaults write com.apple.terminal StringEncodings -array 4
 
 msg "Add Homebrew bash to the list of allowed shells"
-if ! grep -Fxq "${HOMEBREW_ROOT}/bin/bash" /etc/shells; then
-  echo "${HOMEBREW_ROOT}/bin/bash" | sudo tee -a /etc/shells > /dev/null
-  chsh -s "${HOMEBREW_ROOT}/bin/bash"
+if ! grep -Fxq "${HOMEBREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${HOMEBREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells > /dev/null
+  chsh -s "${HOMEBREW_PREFIX}/bin/bash"
 fi
 
 msg "Use the “Pea53” theme by default in Terminal.app"

@@ -32,7 +32,7 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias unix='date -u +"%s"'
 
-# alias vi="$HOMEBREW_ROOT/bin/vim"
+# alias vi="$HOMEBREW_PREFIX/bin/vim"
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
@@ -129,7 +129,7 @@ function csign {
     return 1
   fi
 
-  BINARY=$(brew info "$1" | grep "^${HOMEBREW_ROOT}.*\*\$" | sed -e "s/\\([^ ]*\\).*$/\\1\\/bin\\/$1/")
+  BINARY=$(brew info "$1" | grep "^${HOMEBREW_PREFIX}.*\*\$" | sed -e "s/\\([^ ]*\\).*$/\\1\\/bin\\/$1/")
 
   # create an ad-hoc signature for the homebrew managed application
   /usr/bin/codesign -f -s - "$BINARY"

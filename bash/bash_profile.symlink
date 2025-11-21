@@ -6,9 +6,10 @@ export DOTS="$HOME/.dotfiles"
 export SRC_PATH="$HOME/work"
 
 if [[ "$(/usr/bin/uname -m)" == "arm64" ]]; then
-  export HOMEBREW_ROOT="/opt/homebrew"
+  [ -d /opt/homebrew/bin ] && eval $(/opt/homebrew/bin/brew shellenv)
 else
-  export HOMEBREW_ROOT="/usr/local"
+  echo "==== HOMEBREW IS NOT FULLY CONFIGURED ===="
+  export HOMEBREW_PREFIX="/usr/local"
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -28,13 +29,10 @@ export GOOGLE_DRIVE
 export BOOTSTRAP_DRIVE
 
 # ==== PATH setup ====
-MYSQL_ROOT="$HOMEBREW_ROOT/opt/mysql@5.7"
-CURL_ROOT="$HOMEBREW_ROOT/opt/curl"
+CURL_ROOT="$HOMEBREW_PREFIX/opt/curl"
 
-[ -d "$MYSQL_ROOT" ]    && PATH="$MYSQL_ROOT/bin:$PATH"
-[ -d "$CURL_ROOT" ]     && PATH="$CURL_ROOT/bin:$PATH"
-[ -d "$HOMEBREW_ROOT" ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
-[ -d "$DOTS" ]          && PATH="$DOTS/bin:$PATH"
+[ -d "$CURL_ROOT" ]  && PATH="$CURL_ROOT/bin:$PATH"
+[ -d "$DOTS" ]       && PATH="$DOTS/bin:$PATH"
 export PATH
 
 EDITOR=$(type -P vim || type -P vi || type -P nano)
@@ -51,8 +49,8 @@ shopt -s histappend; # append not rewrite history
 export LC_CTYPE="en_US.UTF-8"
 
 # autocompletion options
-if [ -f "$HOMEBREW_ROOT/etc/profile.d/bash_completion.sh" ]; then
-  source "$HOMEBREW_ROOT/etc/profile.d/bash_completion.sh"
+if [ -f "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+  source "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 fi
 
 for file in $(find -L $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'); do
@@ -71,11 +69,6 @@ if [ "$PS1" ] ; then
 
   # MySQL prompt
   export MYSQL_PS1='\u@\h \d \c> '
-fi
-
-# configure asdf https://github.com/asdf-vm/asdf
-if [ -f "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh" ]; then
-  source "$HOMEBREW_ROOT/opt/asdf/libexec/asdf.sh"
 fi
 
 # configure completions for the 1Password CLI tool
