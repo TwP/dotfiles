@@ -3,6 +3,8 @@
   name = Tim Pease
   # Email used in commit messages.
   email = tim.pease@gmail.com
+  # SSH code signing public key
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+iZP4Ob0buMwtiqix2EVI0sEK+CkSyAnteVA9KlA5t
 
 [shell]
   # Default SSH username.
@@ -11,5 +13,17 @@
 [github]
   # GitHub username for command-line tools.
   user = TwP
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
 
 # vim: ft=gitconfig
