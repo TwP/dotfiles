@@ -1,6 +1,6 @@
 # ==== EOI Setup ====
 
-EOI_HOME="${HOME}/eoi"
+EOI_HOME="${HOME}/work/eoi"
 AWS_PROFILE="eoi-dev-software"
 export AWS_PROFILE
 
