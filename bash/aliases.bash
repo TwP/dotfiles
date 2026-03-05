@@ -40,8 +40,8 @@ alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e Ven
 # `wifi on` and `wifi off`
 alias wifi='networksetup -setairportpower en0'
 
-# open a file using the Marked application
-alias marked='open -a Marked'
+# open the Obsidian command line interface
+alias obs='/Applications/Obsidian.app/Contents/MacOS/Obsidian'
 
 # search for system icons
 function icons {

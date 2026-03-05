@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+#/ Usage: cpa <command> [options]
+#/
+#/   This helper script simplifies running the `cliproxyapi` command line
+#/   tool with custom configuration files. This script assumes that
+#/   `cliproxyapi` is installed and managed via Homebrew, and that the
+#/   services is run via `brew` commands.
+#/
+#/   This script looks for configuration files and service `.plist` files
+#/   in the following directory path:
+#/
+#/     ~/.config/cliproxyapi/
+#/
+#/   There should be a `conf.yaml` file and a `service.plist` file.
+#/
+#/   COMMANDS:
+#/     start              Start `cliproxyapi` as a service
+#/     stop               Stop the `cliproxyapi` service
+#/     restart            Restart the `cliproxyapi` service
+#/
+#/   OPTIONS
+#/     -h, --help         Show this help message
+#/     -v, --verbose      Print script debug info
+#/
+#/   EXAMPLE:
+#/     cpa -v start
+#/     cpa restart
+#/     cpa --help
+#/     cpa
+#/
+#------------------------------------------------------------------------------
+set -o errexit
+set -o nounset
+if [ "${TRACE:-0}" -eq "1" ]; then
+  set -o xtrace
+fi
+
+CPA_HOME="$HOME/.config/cliproxyapi"
+
+usage() {
+  grep "^#/" "$0" | cut -c 4-
+}
+
+parse_params() {
+  command=''
+
+  while :; do
+    case "${1:-}" in
+    -h | --help ) usage && exit ;;
+    -v | --verbose ) set -o xtrace ;;
+    start | stop | restart ) command="$1" ;;
+    *) break ;;
+    esac
+    shift
+  done
+
+  args=("$@")
+}
+
+start() {
+  brew services start cliproxyapi --file "$CPA_HOME/service.plist"
+}
+
+stop() {
+  brew services stop cliproxyapi
+}
+
+restart() {
+  brew services restart cliproxyapi --file "$CPA_HOME/service.plist"
+}
+
+parse_params "$@"
+
+if [ -n "${command}" ]; then
+  ${command} "${args[@]}"
+else
+  usage
+fi
