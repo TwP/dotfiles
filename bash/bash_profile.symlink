@@ -48,6 +48,9 @@ shopt -s histappend; # append not rewrite history
 
 export LC_CTYPE="en_US.UTF-8"
 
+# cliproxyapi configuration
+export CPA_HOME="$HOME/.config/cliproxyapi"
+
 # autocompletion options
 if [ -f "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
   source "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"

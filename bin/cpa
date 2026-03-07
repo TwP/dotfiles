@@ -17,12 +17,18 @@
 #/     start              Start `cliproxyapi` as a service
 #/     stop               Stop the `cliproxyapi` service
 #/     restart            Restart the `cliproxyapi` service
+#/     login              Login to your claude.ai account
+#/     get                Get credentials from 1Password
+#/     store              Store credentials in 1Password
+#/     expires            Show when the credentials expire
+#/     reset              Remove local claude.ai credentials
 #/
 #/   OPTIONS
 #/     -h, --help         Show this help message
 #/     -v, --verbose      Print script debug info
 #/
 #/   EXAMPLE:
+#/     cap login
 #/     cpa -v start
 #/     cpa restart
 #/     cpa --help
@@ -35,7 +41,11 @@ if [ "${TRACE:-0}" -eq "1" ]; then
   set -o xtrace
 fi
 
-CPA_HOME="$HOME/.config/cliproxyapi"
+cpa_cfg="$CPA_HOME/config.yaml"
+cpa_cred="${CPA_CRED:-}"
+cpa_op_acct="${CPA_OP_ACCT:-}"
+cpa_op_vault="${CPA_OP_VAULT:-}"
+cpa_op_doc="Claude OAuth"
 
 usage() {
   grep "^#/" "$0" | cut -c 4-
@@ -48,7 +58,8 @@ parse_params() {
     case "${1:-}" in
     -h | --help ) usage && exit ;;
     -v | --verbose ) set -o xtrace ;;
-    start | stop | restart ) command="$1" ;;
+    login | expires | reset | start | stop | restart ) command="cpa_$1" ;;
+    store | get ) command="cpa_${1}_token" ;;
     *) break ;;
     esac
     shift
@@ -57,15 +68,77 @@ parse_params() {
   args=("$@")
 }
 
-start() {
+cpa_login() {
+  if [ -z "${cpa_cred}" ]; then
+    echo "CPA_CRED is not set"
+    exit 1
+  fi
+
+  local now expired
+  expired="$(jq -r '.expired' "$cpa_cred" | sed 's/:\([^:]*\)$/\1/')"
+  expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
+  now=$(date '+%s')
+
+  if [ "$now" -ge "$expired" ]; then
+    echo "Renewing Claude OAtuh token"
+    cliproxyapi --claude-login --config "$cpa_cfg"
+    cpa_store_token
+  else
+    echo "Claude OAuth token is valid"
+  fi
+}
+
+cpa_expires() {
+  if [ -z "${cpa_cred}" ]; then
+    echo "CPA_CRED is not set"
+    exit 1
+  fi
+  jq '.expired' "$cpa_cred"
+}
+
+cpa_reset() {
+  if [ -z "${cpa_cred}" ]; then
+    echo "CPA_CRED is not set"
+    exit 1
+  fi
+  echo "Removing claude.ai authentication credentials"
+  echo "---- ${cpa_cred}"
+  rm "${cpa_cred}"
+}
+
+cpa_get_token() {
+  if [ -z "${cpa_op_acct}" ]; then exit 0; fi
+  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$cpa_op_doc" > /dev/null 2>&1; then
+    echo "Loading document from 1Passowrd: '$cpa_op_doc'"
+    op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
+      document get "$cpa_op_doc" --out-file "$cpa_cred" --file-mode 0644 --force
+  else
+    echo "Document not found in 1Passowrd: '$cpa_op_doc'"
+  fi
+}
+
+cpa_store_token() {
+  if [ -z "${cpa_op_acct}" ]; then exit 0; fi
+  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$cpa_op_doc" > /dev/null 2>&1; then
+    echo "Updating document in 1Passowrd: '$cpa_op_doc'"
+    op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
+      document edit "$cpa_op_doc" "$cpa_cred"
+  else
+    echo "Creating document in 1Passowrd: '$cpa_op_doc'"
+    op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
+      document create --title "$cpa_op_doc" "$cpa_cred" > /dev/null
+  fi
+}
+
+cpa_start() {
   brew services start cliproxyapi --file "$CPA_HOME/service.plist"
 }
 
-stop() {
+cpa_stop() {
   brew services stop cliproxyapi
 }
 
-restart() {
+cpa_restart() {
   brew services restart cliproxyapi --file "$CPA_HOME/service.plist"
 }
 
