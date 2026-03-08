@@ -75,9 +75,12 @@ cpa_login() {
   fi
 
   local now expired
-  expired="$(jq -r '.expired' "$cpa_cred" | sed 's/:\([^:]*\)$/\1/')"
-  expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
   now=$(date '+%s')
+  expired=0
+  if [ -f "$cpa_cred" ]; then
+    expired="$(jq -r '.expired' "$cpa_cred" | sed 's/:\([^:]*\)$/\1/')"
+    expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
+  fi
 
   if [ "$now" -ge "$expired" ]; then
     echo "Renewing Claude OAtuh token"
