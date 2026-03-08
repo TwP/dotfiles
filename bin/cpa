@@ -32,6 +32,7 @@
 #/     cap login
 #/     cpa -v start
 #/     cpa restart
+#/     cpa login -f
 #/     cpa --help
 #/     cpa
 #/
