@@ -24,6 +24,7 @@
 #/     reset              Remove local claude.ai credentials
 #/
 #/   OPTIONS
+#/     -f, --force        Renew credentials even when not expired
 #/     -h, --help         Show this help message
 #/     -v, --verbose      Print script debug info
 #/
@@ -53,11 +54,13 @@ usage() {
 
 parse_params() {
   command=''
+  force=0
 
   while :; do
     case "${1:-}" in
     -h | --help ) usage && exit ;;
     -v | --verbose ) set -o xtrace ;;
+    -f | --force ) force=1 ;;
     login | expires | reset | start | stop | restart ) command="cpa_$1" ;;
     store | get ) command="cpa_${1}_token" ;;
     *) break ;;
@@ -82,7 +85,7 @@ cpa_login() {
     expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
   fi
 
-  if [ "$now" -ge "$expired" ]; then
+  if [[ $force -eq 1 || $now -ge $expired ]]; then
     echo "Renewing Claude OAtuh token"
     cliproxyapi --claude-login --config "$cpa_cfg"
     cpa_store_token
