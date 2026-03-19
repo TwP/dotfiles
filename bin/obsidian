@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+/Applications/Obsidian.app/Contents/MacOS/Obsidian "$@"
+
