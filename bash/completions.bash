@@ -28,3 +28,11 @@ function _bb-creds() {
   COMPREPLY=( $(compgen -W "$cmds" -- $cur) )
 }
 complete -F _bb-creds bb-creds
+
+# Completions for the `cpa` cliproxyapi management script.
+function _cpa() {
+  local cmds="start stop restart login get store expires reset"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "$cmds" -- $cur) )
+}
+complete -F _cpa cpa

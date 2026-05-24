@@ -36,7 +36,7 @@
 #/     cpa --help
 #/     cpa
 #/
-#------------------------------------------------------------------------------
+#——————————————————————————————————————————————————————————————————————————————
 set -o errexit
 set -o nounset
 if [ "${TRACE:-0}" -eq "1" ]; then
@@ -44,10 +44,10 @@ if [ "${TRACE:-0}" -eq "1" ]; then
 fi
 
 cpa_cfg="$CPA_HOME/config.yaml"
-cpa_cred="${CPA_CRED:-}"
+cpa_claude_cred="${CPA_CL_CRED:-}"
+cpa_codex_cred="${CPA_CO_CRED:-}"
 cpa_op_acct="${CPA_OP_ACCT:-}"
 cpa_op_vault="${CPA_OP_VAULT:-}"
-cpa_op_doc="Claude OAuth"
 
 usage() {
   grep "^#/" "$0" | cut -c 4-
@@ -62,8 +62,8 @@ parse_params() {
     -h | --help ) usage && exit ;;
     -v | --verbose ) set -o xtrace ;;
     -f | --force ) force=1 ;;
-    login | expires | reset | start | stop | restart ) command="cpa_$1" ;;
-    store | get ) command="cpa_${1}_token" ;;
+    login | expires | reset | store | get ) command="cpa_$1" ;;
+    start | stop | restart ) command="cpa_$1" ;;
     *) break ;;
     esac
     shift
@@ -73,69 +73,87 @@ parse_params() {
 }
 
 cpa_login() {
-  if [ -z "${cpa_cred}" ]; then
-    echo "CPA_CRED is not set"
-    exit 1
-  fi
-
-  local now expired
-  now=$(date '+%s')
-  expired=0
-  if [ -f "$cpa_cred" ]; then
-    expired="$(jq -r '.expired' "$cpa_cred" | sed 's/:\([^:]*\)$/\1/')"
-    expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
-  fi
-
-  if [[ $force -eq 1 || $now -ge $expired ]]; then
-    echo "Renewing Claude OAtuh token"
-    cliproxyapi --claude-login --config "$cpa_cfg"
-    cpa_store_token
-  else
-    echo "Claude OAuth token is valid"
-  fi
+  cpa_claude_login
+  cpa_codex_login
 }
 
 cpa_expires() {
-  if [ -z "${cpa_cred}" ]; then
-    echo "CPA_CRED is not set"
-    exit 1
+  # Claude
+  if [ -n "${cpa_claude_cred}" ]; then
+    echo "Claude: $(jq -r '.expired' "$cpa_claude_cred")"
   fi
-  jq '.expired' "$cpa_cred"
+
+  # Codex
+  if [ -n "${cpa_codex_cred}" ]; then
+    echo " Codex: $(jq -r '.expired' "$cpa_codex_cred")"
+  fi
 }
 
 cpa_reset() {
-  if [ -z "${cpa_cred}" ]; then
-    echo "CPA_CRED is not set"
-    exit 1
+  # Claude
+  if [ -n "${cpa_claude_cred}" ]; then
+    echo "Removing claude.ai authentication credentials"
+    echo "---- ${cpa_claude_cred}"
+    rm "${cpa_claude_cred}"
   fi
-  echo "Removing claude.ai authentication credentials"
-  echo "---- ${cpa_cred}"
-  rm "${cpa_cred}"
+
+  # Codex
+  if [ -n "${cpa_codex_cred}" ]; then
+    echo "Removing chatgpt.com authentication credentials"
+    echo "---- ${cpa_codex_cred}"
+    rm "${cpa_codex_cred}"
+  fi
+}
+
+cpa_get() {
+  if [ -n "${cpa_claude_cred}" ]; then
+    cpa_get_token "$cpa_claude_cred" "Claude OAuth"
+  fi
+  if [ -n "${cpa_codex_cred}" ]; then
+    cpa_get_token "$cpa_codex_cred" "Codex OAuth"
+  fi
+}
+
+cpa_store() {
+  if [ -n "${cpa_claude_cred}" ]; then
+    cpa_store_token "$cpa_claude_cred" "Claude OAuth"
+  fi
+  if [ -n "${cpa_codex_cred}" ]; then
+    cpa_store_token "$cpa_codex_cred" "Codex OAuth"
+  fi
 }
 
 cpa_get_token() {
+  local cred_file="$1"
+  local op_doc="$2"
+
   if [ -z "${cpa_op_acct}" ]; then exit 0; fi
-  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$cpa_op_doc" > /dev/null 2>&1; then
-    echo "Loading document from 1Passowrd: '$cpa_op_doc'"
+  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$op_doc" > /dev/null 2>&1; then
+    echo "Loading document from 1Passowrd: '$op_doc'"
     op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
-      document get "$cpa_op_doc" --out-file "$cpa_cred" --file-mode 0644 --force
+      document get "$op_doc" --out-file "$cred_file" --file-mode 0644 --force
   else
-    echo "Document not found in 1Passowrd: '$cpa_op_doc'"
+    echo "Document not found in 1Passowrd: '$op_doc'"
   fi
 }
 
 cpa_store_token() {
+  local cred_file="$1"
+  local op_doc="$2"
+
   if [ -z "${cpa_op_acct}" ]; then exit 0; fi
-  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$cpa_op_doc" > /dev/null 2>&1; then
-    echo "Updating document in 1Passowrd: '$cpa_op_doc'"
+  if op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" document list | grep "$op_doc" > /dev/null 2>&1; then
+    echo "Updating document in 1Passowrd: '$op_doc'"
     op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
-      document edit "$cpa_op_doc" "$cpa_cred"
+      document edit "$op_doc" "$cred_file"
   else
-    echo "Creating document in 1Passowrd: '$cpa_op_doc'"
+    echo "Creating document in 1Passowrd: '$op_doc'"
     op --account "${cpa_op_acct}" --vault "${cpa_op_vault}" \
-      document create --title "$cpa_op_doc" "$cpa_cred" > /dev/null
+      document create --title "$op_doc" "$cred_file" > /dev/null
   fi
 }
+
+#—— cliproxyapi ———————————————————————————————————————————————————————————————
 
 cpa_start() {
   brew services start cliproxyapi --file "$CPA_HOME/service.plist"
@@ -148,6 +166,56 @@ cpa_stop() {
 cpa_restart() {
   brew services restart cliproxyapi --file "$CPA_HOME/service.plist"
 }
+
+#—— Claude ————————————————————————————————————————————————————————————————————
+
+cpa_claude_login() {
+  if [ -z "${cpa_claude_cred}" ]; then
+    return
+  fi
+
+  local now expired
+  now=$(date '+%s')
+  expired=0
+  if [ -f "$cpa_claude_cred" ]; then
+    expired="$(jq -r '.expired' "$cpa_claude_cred" | sed 's/:\([^:]*\)$/\1/')"
+    expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
+  fi
+
+  if [[ $force -eq 1 || $now -ge $expired ]]; then
+    echo "Renewing Claude OAuth token"
+    cliproxyapi --claude-login --config "$cpa_cfg"
+    cpa_store_token "$cpa_claude_cred" "Claude OAuth"
+  else
+    echo "Claude OAuth token is valid"
+  fi
+}
+
+#—— Codex —————————————————————————————————————————————————————————————————————
+
+cpa_codex_login() {
+  if [ -z "${cpa_codex_cred}" ]; then
+    return
+  fi
+
+  local now expired
+  now=$(date '+%s')
+  expired=0
+  if [ -f "$cpa_codex_cred" ]; then
+    expired="$(jq -r '.expired' "$cpa_codex_cred" | sed 's/:\([^:]*\)$/\1/')"
+    expired=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "${expired}" '+%s')
+  fi
+
+  if [[ $force -eq 1 || $now -ge $expired ]]; then
+    echo "Renewing Codex OAuth token"
+    cliproxyapi --codex-login --config "$cpa_cfg"
+    cpa_store_token "$cpa_codex_cred" "Codex OAuth"
+  else
+    echo "Codex OAuth token is valid"
+  fi
+}
+
+#—— main ——————————————————————————————————————————————————————————————————————
 
 parse_params "$@"
 

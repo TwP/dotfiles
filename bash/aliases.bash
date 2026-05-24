@@ -32,6 +32,8 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias unix='date -u +"%s"'
 
+alias oc='opencode'
+
 # alias vi="$HOMEBREW_PREFIX/bin/vim"
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
