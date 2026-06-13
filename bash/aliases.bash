@@ -34,7 +34,8 @@ alias unix='date -u +"%s"'
 
 alias oc='opencode'
 
-# alias vi="$HOMEBREW_PREFIX/bin/vim"
+alias vi="$HOMEBREW_PREFIX/bin/nvim"
+alias vim="$HOMEBREW_PREFIX/bin/nvim"
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
