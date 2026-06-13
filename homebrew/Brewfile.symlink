@@ -16,6 +16,7 @@ brew 'libyaml'  # needed for ruby-build and mise/asdf
 brew 'mas'
 brew 'mise'
 brew 'mtr'
+brew 'neovim'
 brew 'nmap'
 brew 'pstree'
 brew 'ripgrep'
