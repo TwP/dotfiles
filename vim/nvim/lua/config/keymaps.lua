@@ -49,6 +49,9 @@ map({ "n", "v" }, "<Space>", ":")
 -- easy tabs
 map({ "n", "v" }, "<leader>tn", ":tabnew<CR>")
 
+-- new empty vertical split (to the right)
+map({ "n", "v" }, "<C-w>N", ":vnew<CR>", { silent = true })
+
 -- moving quickly between splits
 map({ "n", "v" }, "<C-j>", "<C-w>j")
 map({ "n", "v" }, "<C-k>", "<C-w>k")
@@ -63,14 +66,14 @@ map({ "n", "v" }, "<D-j>", "gt")
 map({ "n", "v" }, "<D-k>", "gT")
 
 -- indent/outdent keeping selection (Cmd-] / Cmd-[, GUI only)
-map("v", "<D-]>", ">gv")
-map("v", "<D-[>", "<gv")
-map("n", "<D-]>", ">>")
-map("n", "<D-[>", "<<")
-map("o", "<D-]>", ">>")
-map("o", "<D-[>", "<<")
-map("i", "<D-]>", "<Esc>>>i")
-map("i", "<D-[>", "<Esc><<i")
+map("v", "<A-]>", ">gv")
+map("v", "<A-[>", "<gv")
+map("n", "<A-]>", ">>")
+map("n", "<A-[>", "<<")
+map("o", "<A-]>", ">>")
+map("o", "<A-[>", "<<")
+map("i", "<A-]>", "<Esc>>>i")
+map("i", "<A-[>", "<Esc><<i")
 
 -- Cmd-# to switch tabs (GUI only)
 for i = 0, 9 do
