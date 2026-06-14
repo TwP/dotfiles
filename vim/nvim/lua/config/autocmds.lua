@@ -46,7 +46,7 @@ autocmd("FileType", {
   end,
 })
 
--- vim-go did `set nolist` for go files; preserve that
+-- do not show tab characters in go files
 autocmd("FileType", {
   group = augroup("GoNoList", { clear = true }),
   pattern = "go",
