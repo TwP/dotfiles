@@ -48,6 +48,7 @@ map({ "n", "v" }, "<Space>", ":")
 
 -- easy tabs
 map({ "n", "v" }, "<leader>tn", ":tabnew<CR>")
+map({ "n", "v" }, "<A-t>", ":tabnew<CR>")
 
 -- new empty vertical split (to the right)
 map({ "n", "v" }, "<C-w>N", ":vnew<CR>", { silent = true })
@@ -81,24 +82,20 @@ for i = 0, 9 do
   map("i", "<D-" .. i .. ">", "<Esc>" .. i .. "gt")
 end
 
--- tab movement (via ara howard)
-local function tab_move(n)
+-- tab movement (via ara howard), with wraparound
+local function tab_move(dir) -- dir: -1 = left, 1 = right
   local nr = vim.fn.tabpagenr()
   local size = vim.fn.tabpagenr("$")
-  if n ~= 0 then
-    nr = nr - 2
+  if dir > 0 then
+    vim.cmd(nr == size and "tabm 0" or "tabm +1")
+  else
+    vim.cmd(nr == 1 and "tabm" or "tabm -1")
   end
-  if nr < 0 then
-    nr = size - 1
-  elseif nr == size then
-    nr = 0
-  end
-  vim.cmd("tabm" .. nr)
 end
 map({ "n", "v" }, "<Leader>m", "gT")
 map({ "n", "v" }, "<Leader>.", "gt")
-map({ "n", "v" }, "<C-Left>", function() tab_move(1) end)
-map({ "n", "v" }, "<C-Right>", function() tab_move(0) end)
+map({ "n", "v" }, "<C-Left>", function() tab_move(-1) end)
+map({ "n", "v" }, "<C-Right>", function() tab_move(1) end)
 
 -- Fake '|' as text object (via coderwall.com/p/zfqmiw)
 for _, action in ipairs({ "d", "c", "y", "v" }) do

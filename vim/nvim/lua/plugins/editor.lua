@@ -17,6 +17,8 @@ return {
       view = { width = 35 },
       renderer = { group_empty = true },
       filters = { custom = { "^\\.git$", "\\.pyc$", "\\.rbc$", "\\~$" } },
+      -- mirror the tree across tabs: open it on a new tabpage (and close with it)
+      tab = { sync = { open = true, close = true } },
     },
     config = function(_, opts)
       require("nvim-tree").setup(opts)
