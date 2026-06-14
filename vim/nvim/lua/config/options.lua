@@ -14,7 +14,7 @@ opt.sidescrolloff = 7  -- and at least 7 columns next to cursor
 opt.sidescroll = 1     -- and one to the left or right
 
 opt.list = true        -- show invisible characters
-opt.listchars = { tab = "➤·", trail = "·", nbsp = "⋅", extends = "»", precedes = "«" }
+opt.listchars = { tab = "➤ ", trail = "•", nbsp = "–", extends = "»", precedes = "«" }
 
 opt.formatoptions:remove("o") -- don't continue comments when pushing o/O
 

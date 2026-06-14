@@ -46,11 +46,14 @@ autocmd("FileType", {
   end,
 })
 
--- do not show tab characters in go files
+-- Go indents with hard tabs: show the usual invisible characters
+-- (from options.lua) but render tabs as blank instead of marking them.
 autocmd("FileType", {
-  group = augroup("GoNoList", { clear = true }),
+  group = augroup("GoListNoTab", { clear = true }),
   pattern = "go",
   callback = function()
-    vim.wo.list = false
+    local listchars = vim.opt_global.listchars:get()
+    listchars.tab = "  "
+    vim.opt_local.listchars = listchars
   end,
 })
