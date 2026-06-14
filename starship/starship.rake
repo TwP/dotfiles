@@ -5,7 +5,7 @@ namespace :starship do
     dst_path = File.join("#{ENV["HOME"]}", ".config/")
     target = File.join(dst_path, cfg)
 
-    FileUtils.mkdir_p(dst_path) unless File.directory?(dst_path)
+    FileUtils.mkdir_p(dst_path)
 
     if File.exist?(target) && File.symlink?(target) && src == File.readlink(target)
       puts "Skipping #{cfg} - already set correctly"

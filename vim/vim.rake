@@ -1,16 +1,19 @@
 namespace :vim do
-  desc "Install the Vundle plug-in manager for Vim"
   task :install do
-    path = File.expand_path("..", __FILE__)
-    vundle_path = File.join(path, "vim.symlink", "bundle", "vundle")
+    cfg_path = File.join("#{ENV["HOME"]}", ".config/")
+    source = File.join(File.expand_path("..", __FILE__), "nvim")
+    target = File.join(cfg_path, "nvim")
 
-    cmd = if File.exist?(vundle_path)
-      "cd '#{vundle_path}' && git pull"
+    FileUtils.mkdir_p(cfg_path)
+
+    if File.exist?(target) && File.symlink?(target) && source == File.readlink(target)
+      puts "Skipping nvim - already set correctly"
     else
-      "git clone https://github.com/VundleVim/Vundle.vim.git '#{vundle_path}'"
+      if File.exist?(target) || File.symlink?(target)
+        FileUtils.rm_rf(target)
+      end
+      puts "Linking nvim"
+      `ln -s "$PWD/#{source}" "#{target}"`
     end
-
-    puts "Executing: `#{cmd}`"
-    puts `#{cmd}`
   end
 end

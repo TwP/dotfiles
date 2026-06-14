@@ -21,7 +21,7 @@ abort "BOOTSTRAP_DRIVE is not configured" unless File.directory?(BOOTSTRAP_DRIVE
 Dir.glob("*/*.rake").each { |fn| load fn }
 
 desc "Hook our dotfiles into system-standard positions."
-task :install => "starship:install" do
+task :install => ["starship:install", "vim:install"] do
   linkables = Dir.glob('**/*.symlink')
 
   skip_all = !!ENV['SKIP_ALL'] || false
