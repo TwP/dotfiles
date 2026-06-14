@@ -38,6 +38,8 @@ map("v", "<C-f>", [["hy:/\V<C-r>=escape(@h,'/')<CR>/<CR>]])
 -- clearing search highlights (Cmd-l, GUI only)
 map("n", "<D-l>", ":nohls<CR>", { silent = true })
 map("i", "<D-l>", "<C-o>:nohls<CR>", { silent = true })
+map("n", "<A-l>", ":nohls<CR>", { silent = true })
+map("i", "<A-l>", "<C-o>:nohls<CR>", { silent = true })
 
 -- fullscreen toggle (Cmd-Esc, GUI only)
 map("n", "<D-Esc>", ":set fullscreen!<CR>")
