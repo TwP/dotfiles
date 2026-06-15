@@ -96,7 +96,7 @@ local function tab_move(dir) -- dir: -1 = left, 1 = right
 end
 map({ "n", "v" }, "<Leader>m", "gT")
 map({ "n", "v" }, "<Leader>.", "gt")
-map({ "n", "v" }, "<C-m>", function() tab_move(-1) end)
+map({ "n", "v" }, "<C-,>", function() tab_move(-1) end)
 map({ "n", "v" }, "<C-.>", function() tab_move(1) end)
 
 -- Fake '|' as text object (via coderwall.com/p/zfqmiw)

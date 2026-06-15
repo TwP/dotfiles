@@ -9,6 +9,7 @@ return {
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("nord")
+      vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#4c5363" })
     end,
   },
 
