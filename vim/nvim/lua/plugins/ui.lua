@@ -1,15 +1,27 @@
 -- Colorscheme and statusline.
 
 return {
-  -- Active colorscheme: nord. priority=1000 + lazy=false means it loads
-  -- before everything else so the UI is themed from the very first frame.
+  -- Active colorscheme: kanagawa-wave. priority=1000 + lazy=false means it
+  -- loads before everything else so the UI is themed from the very first frame.
   {
-    "shaunsingh/nord.nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("nord")
-      vim.api.nvim_set_hl(0, "QuickFixLine", { bg = "#4c5363" })
+      require("kanagawa").setup({
+        -- Turn off italics everywhere (comments, keywords, statements).
+        commentStyle = { italic = false },
+        keywordStyle = { italic = false },
+        statementStyle = { italic = false },
+        -- Lighten the window dividers.
+        overrides = function(colors)
+          return {
+            -- WinSeparator = { fg = colors.theme.ui.fg },
+            WinSeparator = { fg = colors.palette.crystalBlue },
+          }
+        end,
+      })
+      vim.cmd.colorscheme("kanagawa-wave")
     end,
   },
 
@@ -17,6 +29,7 @@ return {
   -- (e.g. `:colorscheme tokyonight-storm` or `:colorscheme molokai`).
   { "folke/tokyonight.nvim", lazy = true },
   { "tomasr/molokai", lazy = true },
+  { "shaunsingh/nord.nvim", lazy = true },
 
   -- statusline -> lualine (replaces the hand-rolled statusline.vim).
   -- Shows mode, git branch, diagnostics, filetype, and cursor position.
@@ -26,7 +39,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "nord",
+        theme = "kanagawa",
         globalstatus = true,
         section_separators = "",
         component_separators = "|",
