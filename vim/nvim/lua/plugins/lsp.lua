@@ -27,19 +27,16 @@ return {
       --   pyright     -> Python
       --   lua_ls      -> Lua (handy for editing this config)
       --
-      -- gopls (Go) is intentionally NOT here: Mason's current gopls needs
-      -- Go >= 1.26, but you have Go 1.25.x with a working system gopls already
-      -- on PATH. We enable that one manually below instead.
+      -- gopls (Go) is intentionally NOT here: it's installed and managed
+      -- globally via mise, and we enable it manually below.
       local servers = { "ruby_lsp", "ts_ls", "pyright", "lua_ls" }
 
       -- Advertise nvim-cmp's completion capabilities to every server.
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       vim.lsp.config("*", { capabilities = capabilities })
 
-      -- Go: use the system gopls (installed via Go/mise), found on PATH.
-      if vim.fn.executable("gopls") == 1 then
-        vim.lsp.enable("gopls")
-      end
+      -- Go: gopls installed globally via mise.
+      vim.lsp.enable("gopls")
 
       -- Lua server: teach it about the `vim` global so it stops warning.
       vim.lsp.config("lua_ls", {
