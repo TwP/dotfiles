@@ -28,6 +28,12 @@ return {
       vim.api.nvim_create_autocmd("VimEnter", {
         group = vim.api.nvim_create_augroup("NvimTreeOpenOnStart", { clear = true }),
         callback = function(data)
+          -- A session restore (auto-session) may have wiped the original
+          -- startup buffer by the time this runs, leaving data.buf invalid.
+          if not vim.api.nvim_buf_is_valid(data.buf) then
+            return
+          end
+
           -- Don't pop the tree when nvim was launched to edit a git message
           -- (commit, rebase todo, merge, tag, etc.) -- it's just noise there.
           local git_filetypes = { gitcommit = true, gitrebase = true }
