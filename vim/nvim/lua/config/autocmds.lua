@@ -33,7 +33,7 @@ autocmd("FileType", {
 -- enable spell checking for markdown and git commit buffers
 autocmd({ "BufEnter", "BufNewFile" }, {
   group = augroup("MarkdownSpell", { clear = true }),
-  pattern = "*.md",
+  pattern = "markdown",
   callback = function()
     vim.wo.spell = true
   end,
@@ -53,6 +53,7 @@ autocmd("FileType", {
   callback = function()
     vim.bo.textwidth = 0
     vim.bo.wrapmargin = 0
+    vim.wo.wrap = true
   end,
 })
 
