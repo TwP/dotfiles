@@ -21,6 +21,12 @@ return {
     local luasnip = require("luasnip")
 
     cmp.setup({
+      -- Don't pop up the menu on every keypress by default. Buffers with an
+      -- LSP attached re-enable autocomplete (see lsp.lua / LspAttach). Other
+      -- files (markdown, plain text, etc.) only complete on demand via <C-Space>.
+      completion = {
+        autocomplete = false,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)

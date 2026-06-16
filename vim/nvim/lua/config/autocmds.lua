@@ -46,6 +46,31 @@ autocmd("FileType", {
   end,
 })
 
+-- disable automatic line wrapping for markdown files
+autocmd("FileType", {
+  group = augroup("MarkdownNoWrap", { clear = true }),
+  pattern = "markdown",
+  callback = function()
+    vim.bo.textwidth = 0
+    vim.bo.wrapmargin = 0
+  end,
+})
+
+-- In help buffers, restore the built-in <C-]> (jump to help tag under cursor).
+-- A global <C-]> mapping (Telescope tag jump, see plugins/telescope.lua) would
+-- otherwise shadow it; a buffer-local mapping takes precedence here.
+autocmd("FileType", {
+  group = augroup("HelpTagJump", { clear = true }),
+  pattern = "help",
+  callback = function(args)
+    vim.keymap.set("n", "<C-]>", "<C-]>", {
+      buffer = args.buf,
+      remap = false,
+      desc = "Jump to help tag under cursor",
+    })
+  end,
+})
+
 -- Go indents with hard tabs: show the usual invisible characters
 -- (from options.lua) but render tabs as blank instead of marking them.
 autocmd("FileType", {

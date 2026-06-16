@@ -70,6 +70,15 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
         callback = function(event)
+          -- Re-enable nvim-cmp's auto-popup for this buffer. Autocomplete is
+          -- off by default (see completion.lua); buffers with an LSP get it back.
+          local ok, cmp = pcall(require, "cmp")
+          if ok then
+            cmp.setup.buffer({
+              completion = { autocomplete = { cmp.TriggerEvent.TextChanged } },
+            })
+          end
+
           local function bmap(keys, fn, desc, mode)
             vim.keymap.set(mode or "n", keys, fn, { buffer = event.buf, desc = "LSP: " .. desc })
           end
