@@ -41,6 +41,17 @@ return {
             return
           end
 
+          -- `gh` (and similar tools) open a markdown tempfile to write a PR/
+          -- issue body. Skip the tree for markdown only when it lives in a temp
+          -- dir, so editing your own .md files still pops the tree.
+          if vim.bo[data.buf].filetype == "markdown" then
+            local tmp = vim.fn.resolve((vim.uv or vim.loop).os_tmpdir() or "/tmp")
+            local file = vim.fn.resolve(vim.fn.fnamemodify(data.file, ":p"))
+            if file:sub(1, #tmp) == tmp then
+              return
+            end
+          end
+
           local real_file = vim.fn.filereadable(data.file) == 1
           local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
           if not real_file and not no_name then
