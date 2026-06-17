@@ -61,15 +61,16 @@ return {
         end,
       })
 
-      -- Quit Neovim when the only remaining real window is being closed, even
-      -- if the nvim-tree sidebar is still visible. This lets `:q` on the last
-      -- buffer exit instead of leaving just the tree open.
+      -- When the last real window in a tab is closed and only nvim-tree (plus
+      -- any floating windows) would remain, close the tree too. This collapses
+      -- the now-empty tab -- and if it was the last tab, exits Neovim -- instead
+      -- of leaving a tab (or the whole editor) showing just the sidebar.
       vim.api.nvim_create_autocmd("QuitPre", {
         group = vim.api.nvim_create_augroup("NvimTreeQuitOnLast", { clear = true }),
         callback = function()
           local tree_wins = {}
           local floating_wins = {}
-          local wins = vim.api.nvim_list_wins()
+          local wins = vim.api.nvim_tabpage_list_wins(0)
           for _, w in ipairs(wins) do
             local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
             if bufname:match("NvimTree_") ~= nil then
@@ -79,8 +80,9 @@ return {
               table.insert(floating_wins, w)
             end
           end
-          -- If the window being quit is the last non-tree, non-floating window,
-          -- close the tree windows too so Neovim actually exits.
+          -- If the window being quit is the last non-tree, non-floating window
+          -- in this tab, close the tree window(s) so the tab collapses (or
+          -- Neovim exits when it's the only tab left).
           if 1 == #wins - #floating_wins - #tree_wins then
             for _, w in ipairs(tree_wins) do
               vim.api.nvim_win_close(w, true)

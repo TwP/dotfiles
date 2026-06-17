@@ -49,7 +49,7 @@ return {
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = { { "filename", path = 1 } },
         lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { "progress" },
+        lualine_y = { "lsp_status", "progress" },
         lualine_z = { "location" },
       },
       -- Native tabpage line (manages tabs, not buffers). `mode = 2` shows the
