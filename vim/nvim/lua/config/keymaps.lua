@@ -98,6 +98,8 @@ map({ "n", "v" }, "<Leader>m", "gT")
 map({ "n", "v" }, "<Leader>.", "gt")
 map({ "n", "v" }, "<C-,>", function() tab_move(-1) end)
 map({ "n", "v" }, "<C-.>", function() tab_move(1) end)
+map({ "n", "v" }, "<Leader>tc", ":tabclose<CR>")
+map({ "n", "v" }, "<Leader>to", ":tabonly<CR>")
 
 -- Fake '|' as text object (via coderwall.com/p/zfqmiw)
 for _, action in ipairs({ "d", "c", "y", "v" }) do

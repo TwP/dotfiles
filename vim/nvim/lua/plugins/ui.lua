@@ -52,6 +52,34 @@ return {
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
+      -- Native tabpage line (manages tabs, not buffers). `mode = 2` shows the
+      -- tab number plus the active window's filename for each tabpage.
+      tabline = {
+        lualine_a = {
+          {
+            "tabs",
+            mode = 2,
+            max_length = vim.o.columns,
+            -- `mode = 2` labels each tab with its *active* window's buffer.
+            -- When nvim-tree is focused that's "NvimTree"; swap in the first
+            -- real file buffer in the tab instead so the label stays useful.
+            fmt = function(name, context)
+              -- nvim-tree buffers are named "NvimTree_1", "NvimTree_2", ...
+              if not name:match("^NvimTree_%d+$") then
+                return name
+              end
+              for _, win in ipairs(vim.api.nvim_tabpage_list_wins(context.tabId)) do
+                local buf = vim.api.nvim_win_get_buf(win)
+                if vim.bo[buf].filetype ~= "NvimTree" then
+                  local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
+                  return fname ~= "" and fname or "[No Name]"
+                end
+              end
+              return name
+            end,
+          },
+        },
+      },
     },
   },
 }
