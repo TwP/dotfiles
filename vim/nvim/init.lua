@@ -12,6 +12,14 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_cursor_trail_size = 0
+vim.g.neovide_cursor_animate_in_insert_mode = false
+vim.g.neovide_cursor_animate_command_line = false
+
+-- vim.o.guifont = "FiraCode Nerd Font:h14:#e-subpixelantialias:#f-liga=0:#f-calt=0"
+-- vim.o.guifont = "FiraCode Nerd Font:h14:#f-calt=0:#f-liga=0"
+
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
