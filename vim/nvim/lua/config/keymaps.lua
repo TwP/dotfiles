@@ -45,6 +45,15 @@ map("i", "<A-l>", "<C-o>:nohls<CR>", { silent = true })
 map("n", "<D-Esc>", ":set fullscreen!<CR>")
 map("i", "<D-Esc>", "<C-O>:set fullscreen!<CR>")
 
+-- paste system clipboard (Cmd-v, GUI only)
+map("n", "<D-v>", '"+p', { silent = true, desc = "Paste clipboard" })
+map("i", "<D-v>", "<C-r><C-o>+", { silent = true, desc = "Paste clipboard" })
+map("v", "<D-v>", '"_d"+P', { silent = true, desc = "Paste clipboard" })
+
+-- copy to system clipboard (Cmd-c, GUI only)
+map("v", "<D-c>", '"+y', { silent = true, desc = "Copy to clipboard" })
+map("n", "<D-c>", '"+yy', { silent = true, desc = "Copy line to clipboard" })
+
 -- easy command
 map({ "n", "v" }, "<Space>", ":")
 
