@@ -43,9 +43,31 @@ return {
   },
   config = function()
     local telescope = require("telescope")
+
+    -- nvim-treesitter's `main` branch (see plugins/treesitter.lua) dropped the
+    -- legacy API that Telescope 0.1.x's previewer relies on
+    -- (`nvim-treesitter.configs` and `ts_parsers.ft_to_lang`). That path throws
+    -- "attempt to call field 'ft_to_lang' (a nil value)" while highlighting
+    -- previews. Disable Telescope's built-in treesitter path and start core
+    -- treesitter ourselves via the previewer's filetype_hook. `opts.ft` is the
+    -- filetype Telescope already detected for the previewed file.
+    local function preview_treesitter_hook(_, bufnr, opts)
+      local ft = opts.ft
+      if ft and ft ~= "" then
+        local lang = vim.treesitter.language.get_lang(ft) or ft
+        pcall(vim.treesitter.start, bufnr, lang)
+      end
+      -- Return true so Telescope continues loading the preview contents.
+      return true
+    end
+
     telescope.setup({
       defaults = {
         file_ignore_patterns = { "%.git/", "node_modules/", "vendor/" },
+        preview = {
+          treesitter = false,
+          filetype_hook = preview_treesitter_hook,
+        },
       },
     })
     pcall(telescope.load_extension, "fzf")
