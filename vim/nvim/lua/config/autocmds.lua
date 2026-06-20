@@ -81,5 +81,7 @@ autocmd("FileType", {
     local listchars = vim.opt_global.listchars:get()
     listchars.tab = "  "
     vim.opt_local.listchars = listchars
+    vim.bo.tabstop = 2
+    vim.bo.expandtab = false
   end,
 })
