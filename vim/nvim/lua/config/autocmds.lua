@@ -77,11 +77,22 @@ autocmd("FileType", {
 autocmd("FileType", {
   group = augroup("GoListNoTab", { clear = true }),
   pattern = "go",
-  callback = function()
+  callback = function(args)
+    -- tabstop/expandtab are buffer-local: target args.buf directly so this is
+    -- correct even when FileType fires while another window (e.g. NvimTree) is
+    -- still the current window.
+    vim.bo[args.buf].tabstop = 2
+    vim.bo[args.buf].shiftwidth = 2
+    vim.bo[args.buf].expandtab = false
+
+    -- listchars is window-local; apply it to every window currently showing
+    -- this buffer rather than relying on the (possibly wrong) current window.
     local listchars = vim.opt_global.listchars:get()
     listchars.tab = "  "
-    vim.opt_local.listchars = listchars
-    vim.bo.tabstop = 2
-    vim.bo.expandtab = false
+    for _, win in ipairs(vim.fn.win_findbuf(args.buf)) do
+      vim.api.nvim_win_call(win, function()
+        vim.opt_local.listchars = listchars
+      end)
+    end
   end,
 })

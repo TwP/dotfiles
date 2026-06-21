@@ -3,6 +3,10 @@
 
 local opt = vim.opt
 
+-- Disable neovim's built-in EditorConfig support. Projet .editorconfig files
+-- will be ignored. Must be set before any file loads.
+vim.g.editorconfig = false
+
 -- moving around, searching and patterns
 opt.incsearch = true   -- incremental searching
 opt.ignorecase = true  -- searches are case insensitive...
