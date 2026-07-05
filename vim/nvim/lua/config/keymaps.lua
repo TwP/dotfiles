@@ -128,6 +128,44 @@ vim.api.nvim_create_user_command("HighlightLongLines", function(o)
   end
 end, { nargs = "?" })
 
+-- delete listed buffers that aren't shown in any window on any tabpage.
+-- With `hidden` on, buffers pile up after you switch away from them; this
+-- cleans up the ones you're no longer looking at. Special buffers (terminals,
+-- help, nvim-tree, etc.) and unlisted buffers are left alone. Modified buffers
+-- are skipped unless `!` is given.
+local function delete_hidden_buffers(force)
+  local visible = {}
+  for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+      visible[vim.api.nvim_win_get_buf(win)] = true
+    end
+  end
+
+  local deleted, skipped = 0, 0
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    local is_normal = vim.fn.buflisted(buf) == 1 and vim.bo[buf].buftype == ""
+    if is_normal and not visible[buf] then
+      if vim.bo[buf].modified and not force then
+        skipped = skipped + 1
+      elseif pcall(vim.api.nvim_buf_delete, buf, { force = force }) then
+        deleted = deleted + 1
+      end
+    end
+  end
+
+  local msg = string.format("Deleted %d hidden buffer%s", deleted, deleted == 1 and "" or "s")
+  if skipped > 0 then
+    msg = msg .. string.format(" (%d modified skipped, use ! to force)", skipped)
+  end
+  vim.notify(msg, vim.log.levels.INFO)
+end
+
+vim.api.nvim_create_user_command("BDeleteHidden", function(o)
+  delete_hidden_buffers(o.bang)
+end, { bang = true, desc = "Delete buffers not shown in any window/tab" })
+
+map("n", "<leader>bd", "<cmd>BDeleteHidden<cr>", { silent = true, desc = "Delete hidden buffers" })
+
 -- misc.vim: open the thing under the cursor with `open`
 local function open_thing_under_cursor()
   local view = vim.fn.winsaveview()
