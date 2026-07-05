@@ -38,6 +38,13 @@ return {
       -- Go: gopls installed globally via mise.
       vim.lsp.enable("gopls")
 
+      -- nvim-lspconfig ships a config for GitLab Duo (gitlab_duo), whose
+      -- filetypes include "go", "ruby", "python", etc. We never want its
+      -- AI-suggestion server attaching, so explicitly disable it. This is
+      -- defensive: nothing enables it today, but this guards against a stray
+      -- `:LspStart` or future change auto-launching it.
+      vim.lsp.enable("gitlab_duo", false)
+
       -- Lua server: teach it about the `vim` global so it stops warning.
       vim.lsp.config("lua_ls", {
         settings = {

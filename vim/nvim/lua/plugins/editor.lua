@@ -151,16 +151,17 @@ return {
     },
   },
 
-  -- fatih/vim-go -> keep it; pairs well with gopls for the go-specific commands.
-  -- gopls (configured in lsp.lua) handles definitions/completion; vim-go keeps
-  -- your :GoRun/:GoBuild/:GoTest workflow.
+  -- fatih/vim-go -> keep it for the :GoRun/:GoBuild/:GoTest workflow only.
+  -- The native LSP client (lsp.lua) owns gopls for definitions/completion/
+  -- diagnostics; vim-go's own gopls is disabled so we don't run two instances.
   {
     "fatih/vim-go",
     ft = "go",
     build = ":GoUpdateBinaries",
     init = function()
-      -- let the LSP client own these; avoid vim-go duplicating them
-      vim.g.go_gopls_enabled = 1
+      -- let the native LSP client own gopls; don't let vim-go start a second
+      -- gopls instance (avoids duplicate diagnostics/gutter signs).
+      vim.g.go_gopls_enabled = 0
       vim.g.go_code_completion_enabled = 0
       vim.g.go_def_mapping_enabled = 0
       vim.g.go_doc_keywordprg_enabled = 0
