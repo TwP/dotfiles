@@ -165,6 +165,15 @@ return {
       vim.g.go_code_completion_enabled = 0
       vim.g.go_def_mapping_enabled = 0
       vim.g.go_doc_keywordprg_enabled = 0
+
+      -- vim-go formats on save by default (go_fmt_autosave / go_imports_autosave),
+      -- but its formatter defaults are conditional on gopls being enabled: with
+      -- go_gopls_enabled = 0 above, they fall back to the standalone gofmt /
+      -- goimports binaries, which aren't installed. That fails on every save with
+      -- "could not find 'goimports'". Turn vim-go's save hook off; lsp.lua drives
+      -- formatting and organize-imports through gopls instead.
+      vim.g.go_fmt_autosave = 0
+      vim.g.go_imports_autosave = 0
     end,
     config = function()
       vim.api.nvim_create_autocmd("FileType", {

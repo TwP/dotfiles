@@ -116,6 +116,41 @@ return {
 
           -- Format the current buffer.
           bmap("<leader>f", function() vim.lsp.buf.format({ async = true }) end, "Format buffer")
+
+          -- Go: format and fix up imports on every save, the gofmt-on-save
+          -- workflow. vim-go used to own this, but its save hook is disabled
+          -- (see editor.lua) because it shells out to binaries we don't install.
+          -- gopls already advertises documentFormattingProvider and the
+          -- source.organizeImports code action, so drive both from here.
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name == "gopls" then
+            -- LspAttach can fire again for a buffer (:LspRestart, :edit), so drop
+            -- any hook already registered for *this* buffer first. Clearing by
+            -- buffer rather than by group leaves other Go buffers untouched.
+            local group = vim.api.nvim_create_augroup("UserGoFormatOnSave", { clear = false })
+            vim.api.nvim_clear_autocmds({ group = group, buffer = event.buf })
+
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = group,
+              buffer = event.buf,
+              desc = "gopls: organize imports and format",
+              callback = function()
+                -- Organize imports first: it returns a workspace edit, and
+                -- formatting afterwards would otherwise overwrite it.
+                local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+                params.context = { only = { "source.organizeImports" } }
+                local results = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+                for _, res in pairs(results or {}) do
+                  for _, action in pairs(res.result or {}) do
+                    if action.edit then
+                      vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+                    end
+                  end
+                end
+                vim.lsp.buf.format({ bufnr = event.buf, timeout_ms = 3000 })
+              end,
+            })
+          end
         end,
       })
 
