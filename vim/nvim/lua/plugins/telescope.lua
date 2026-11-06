@@ -34,6 +34,9 @@ return {
     },
 
     -- LSP-powered pickers: nicer than the default quickfix lists.
+    -- Inside the picker: <C-x> horizontal split, <C-v> vertical split, <C-t> new tab.
+    -- `grr` overrides Neovim's built-in LSP references mapping (quickfix list).
+    { "grr", "<cmd>Telescope lsp_references<cr>", desc = "References (Telescope)" },
     { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References (Telescope)" },
     { "<leader>ds", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
     { "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace symbols" },

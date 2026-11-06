@@ -95,8 +95,10 @@ return {
           -- More VSCode-style navigation:
           bmap("gD", vim.lsp.buf.declaration, "Go to declaration")
           bmap("gi", vim.lsp.buf.implementation, "Go to implementation")
-          bmap("gr", vim.lsp.buf.references, "List references") -- Shift+F12 equivalent
-          bmap("<S-F12>", vim.lsp.buf.references, "List references")
+          -- References: `gr` / `grr` are mapped globally to Telescope in
+          -- plugins/telescope.lua (so results open with <C-x>/<C-v>/<C-t>).
+          -- A buffer-local `gr` here would shadow that, so only F12 lives here.
+          bmap("<S-F12>", function() vim.cmd("Telescope lsp_references") end, "List references")
           bmap("gy", vim.lsp.buf.type_definition, "Go to type definition")
 
           -- Hover docs (like hovering the mouse in VSCode).
