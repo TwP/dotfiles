@@ -1,4 +1,6 @@
-# chezmoi config
+# chezmoi
+
+Something witty goes here!
 
 ## 🔁 Daily Workflow
 
