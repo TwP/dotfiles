@@ -1,0 +1,27 @@
+{{- $machine := get (dict "Vilya" "home" "Gelion" "work") .chezmoi.hostname -}}
+{{- if not $machine -}}
+{{-   $machine = promptChoiceOnce . "machine" "Which machine is this" (list "home" "work") -}}
+{{- end -}}
+
+[add]
+  # refuse to `chezmoi add` anything that looks like a secret (repo is public)
+  secrets = "error"
+
+[data]
+  machine = {{ $machine | quote }}
+  isWork  = {{ eq $machine "work" }}
+  isHome  = {{ eq $machine "home" }}
+{{- if eq $machine "work" }}
+  githubUser = "ionq_timpease"
+  email      = "tim.pease@ionq.co"
+  signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcK0TTzaZNxcOGCbfkX9Wl6nPSRyncjC2O1WzmOYug9"
+  dotfilesSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAHiYPoAaSGMeciY+KGOYelhCBU9WHFpeq0N3LIc+Hqe"
+  opAccount  = "GSCIJRPNA5D53M236TKP5Q42DE"
+  opVault    = "Employee"
+{{- else }}
+  githubUser = "TwP"
+  email      = "tim.pease@gmail.com"
+  signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+iZP4Ob0buMwtiqix2EVI0sEK+CkSyAnteVA9KlA5t"
+  opAccount  = "I5V7VGQ6TJCMXCSO7PBMQPGHL4"
+  opVault    = "Private"
+{{- end }}

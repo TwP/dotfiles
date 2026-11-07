@@ -1,0 +1,13 @@
+**/.DS_Store
+
+{{- if not .isWork }}
+.config/bash/ionq.bash
+.gitconfig-dotfiles
+.ssh/dotfiles_deploy.pub
+.ssh/dotfiles_signing.pub
+.ssh/github_ed.pub
+{{- end }}
+
+{{- if not .isHome }}
+# home-only files go here
+{{- end }}
