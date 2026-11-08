@@ -9,5 +9,5 @@
 {{- end }}
 
 {{- if not .isHome }}
-# home-only files go here
+.config/bash/eoi.bash
 {{- end }}
