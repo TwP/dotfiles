@@ -1,25 +1,5 @@
-[user]
-  name = Tim Pease
-  email = {{ .email }}
-  signingkey = {{ .signingKey }}
-
-[shell]
-  username = {{ .githubUser }}
-
-[github]
-  user = {{ .githubUser }}
-
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
-[commit]
-  gpgsign = true
-
-[tag]
-  gpgsign = true
+[include]
+  path = ~/.gitconfig-user
 
 {{- if .isWork }}
 
