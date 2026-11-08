@@ -1,46 +1,62 @@
 [
   {
-    "name": "Current Date & Time",
-    "text": "{date \"yyyy-MM-dd, HH:mm\"}"
+    "text": "{date \"yyyy-MM-dd\"}",
+    "name": "Current Date (ISO Format)"
   },
   {
-    "name": "Current Date (ISO Format)",
-    "text": "{date \"yyyy-MM-dd\"}"
+    "text": "¯\\_(ツ)_/¯",
+    "name": "Shrug"
   },
   {
-    "name": "Lorem Ipsum",
-    "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    "text": "◉_◉",
+    "name": "Astonished"
   },
   {
-    "name": "Astonished",
-    "text": "◉_◉"
+    "text": "{date \"yyyy-MM-dd, HH:mm\"}",
+    "name": "Current Date & Time"
   },
   {
-    "name": "Shrug",
-    "text": "¯\\_(ツ)_/¯"
+    "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    "name": "Lorem Ipsum"
   },
   {
-    "name": "º Degree",
-    "text": "º"
+    "text": "º",
+    "name": "º Degree"
   },
   {
-    "name": "⌘ Command",
-    "text": "⌘"
+    "text": "⌘",
+    "name": "⌘ Command"
   },
   {
-    "name": "⌃ Control",
-    "text": "⌃"
+    "text": "⌃",
+    "name": "⌃ Control"
   },
   {
-    "name": "‽ Interrobang",
-    "text": "‽"
+    "text": "‽",
+    "name": "‽ Interrobang"
   },
   {
-    "name": "⌥ Option",
-    "text": "⌥"
+    "text": "⌥",
+    "name": "⌥ Option"
   },
   {
-    "name": "⇧ Shift",
-    "text": "⇧"
+    "text": "⇧",
+    "name": "⇧ Shift"
+  },
+  {
+    "text": "❶",
+    "name": "❶ One"
+  },
+  {
+    "text": "❷",
+    "name": "❷ Two"
+  },
+  {
+    "text": "❸",
+    "name": "❸ Three"
+  },
+  {
+    "text": "❹",
+    "name": "❹ Four"
   }
 ]
