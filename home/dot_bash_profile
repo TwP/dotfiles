@@ -32,8 +32,8 @@ export BOOTSTRAP_DRIVE
 CURL_ROOT="$HOMEBREW_PREFIX/opt/curl"
 
 [ -d "$CURL_ROOT" ]       && PATH="$CURL_ROOT/bin:$PATH"
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$DOTS" ]            && PATH="$DOTS/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 export PATH
 
 EDITOR=$(type -P nvim || type -P vim || type -P vi || type -P nano)
