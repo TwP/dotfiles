@@ -1,6 +1,6 @@
 # chezmoi
 
-Something witty goes here!
+Can't think of anything witty
 
 ## 🔁 Daily Workflow
 
