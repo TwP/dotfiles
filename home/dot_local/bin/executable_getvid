@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+#/ Usage: getvid <url>
+#/
+#/   Use `yt-dlp` to download the video at the given <url> in best quality mp4
+#/   format. This works for youtube and twitch videos.
+#/
+#/   OPTIONS
+#/     -h, --help         Show this help message
+#/     -v, --verbose      Print script debug info
+#/
+#/   EXAMPLE:
+#/     getvid 'https://www.youtube.com/watch?v=RjbJwnUd3Pw'
+#/     getvid --help
+#/
+#------------------------------------------------------------------------------
+set -o errexit
+set -o nounset
+if [ "${TRACE:-0}" -eq "1" ]; then
+  set -o xtrace
+fi
+
+usage() {
+  grep "^#/" "$0" | cut -c 4-
+}
+
+parse_params() {
+  while :; do
+    case "${1:-}" in
+    -h | --help ) usage && exit ;;
+    -v | --verbose ) set -o xtrace ;;
+    *) break ;;
+    esac
+    shift
+  done
+
+  args=("$@")
+}
+
+parse_params "$@"
+
+if [ ${#args[@]} -eq 1 ]; then
+  exec yt-dlp --merge-output-format mp4 \
+    -f "bestvideo[ext=mp4][vcodec~='((he|a)vc|h26[45])']+bestaudio[ext=m4a]/best" \
+    -o '%(title)s.mp4' "${args[@]}"
+else
+  usage
+fi
+

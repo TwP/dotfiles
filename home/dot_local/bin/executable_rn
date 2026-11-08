@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+
+date "+%l:%M%p on %A, %B %e, %Y"
+echo
+cal -3
