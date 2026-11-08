@@ -85,26 +85,20 @@ cask "tableplus"
 cask "visual-studio-code"
 {{- end }}
 
-mas "GarageBand",           id: 682658836
-mas "iMovie",               id: 408981434
-mas "Keynote",              id: 409183694
-mas "Numbers",              id: 409203825
-mas "Pages",                id: 409201541
-mas "Tomito",               id: 1526042938
 {{- if .isHome }}
 mas "1Password for Safari", id: 1569813296
 mas "Audiobook Builder",    id: 1437681957
+mas "GarageBand",           id: 682658836
 mas 'Hand Mirror',          id: 1502839586
+mas "iMovie",               id: 408981434
 mas "Itsyhome",             id: 6758070650
 mas "Kagi for Safari",      id: 1622835804
+mas "Keynote",              id: 409183694
+mas "Numbers",              id: 409203825
 mas "Obsidian Web Clipper", id: 6720708363
+mas "Pages",                id: 409201541
 mas 'Things',               id: 904280696
-{{- else }}
-mas "Microsoft Excel",      id: 462058435
-mas "Microsoft OneNote",    id: 784801555
-mas "Microsoft Outlook",    id: 985367838
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word",       id: 462054704
+mas "Tomito",               id: 1526042938
 {{- end }}
 
 # vim: ft=ruby
