@@ -1,8 +1,6 @@
 # ~/.bash_profile
 # Executed by login shells
 
-# shortcut to this dotfiles path is $DOTS
-export DOTS="$HOME/.dotfiles"
 export SRC_PATH="$HOME/work"
 
 if [[ "$(/usr/bin/uname -m)" == "arm64" ]]; then
@@ -32,7 +30,6 @@ export BOOTSTRAP_DRIVE
 CURL_ROOT="$HOMEBREW_PREFIX/opt/curl"
 
 [ -d "$CURL_ROOT" ]       && PATH="$CURL_ROOT/bin:$PATH"
-[ -d "$DOTS" ]            && PATH="$DOTS/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 export PATH
 
@@ -58,10 +55,6 @@ if [ -f "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
 fi
 
 # bash configuration
-for file in "$DOTS"/*/*.bash; do
-  [ -e "$HOME/.config/bash/$(basename "$file")" ] && continue
-  [ -f "$file" ] && source "$file"
-done
 for file in "$HOME"/.config/bash/*.bash; do
   [ -f "$file" ] && source "$file"
 done
