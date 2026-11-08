@@ -1,0 +1,65 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agents": {
+    "plan": {
+      "color": "#6DAE81"
+    }
+  },
+  "permissions": [
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+    { "action": "external_directory", "resource": "~/go/pkg/mod/*", "effect": "allow" },
+    { "action": "edit", "resource": "~/go/pkg/mod/*", "effect": "deny" }
+  ],
+  "policies": [
+    { "action": "provider.use", "resource": "google-vertex", "effect": "deny" },
+    { "action": "provider.use", "resource": "opencode", "effect": "deny" }
+  ],
+  "mcp": {
+    "servers": {
+      "chrome-devtools": {
+        "type": "local",
+        "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics"]
+{{- if .isHome }}
+      }
+{{- else }}
+      },
+      "atlassian": {
+        "type": "local",
+        "command": ["uvx", "mcp-atlassian"],
+        "environment": {
+          "JIRA_URL": "https://ionq.atlassian.net",
+          "JIRA_USERNAME": "tim.pease@ionq.co",
+          "CONFLUENCE_URL": "https://ionq.atlassian.net/wiki",
+          "CONFLUENCE_USERNAME": "tim.pease@ionq.co"
+        }
+      },
+      "gcp-observability": {
+        "type": "local",
+        "command": ["npx", "-y", "@google-cloud/observability-mcp"],
+        "environment": {
+          "GOOGLE_APPLICATION_CREDENTIALS": "/Users/tim.pease/.config/gcloud/application_default_credentials.json"
+        }
+      },
+      "sentry": {
+        "type": "remote",
+        "url": "https://mcp.sentry.dev/mcp/ionq"
+      },
+      "cloud-atlas": {
+        "type": "remote",
+        "url": "https://cloud-atlas.sre.ionq.co/mcp"
+      },
+      "honeycomb": {
+        "type": "remote",
+        "url": "https://mcp.honeycomb.io/mcp"
+      },
+      "launchdarkly": {
+        "type": "remote",
+        "url": "https://mcp.launchdarkly.com/mcp"
+      }
+{{- end }}
+    }
+  },
+  "experimental": {
+    "todo": true
+  }
+}
