@@ -1,0 +1,14 @@
+# —————————————————————————————————————————————————————————
+#  Rendered by chezmoi from 1Password; do not edit by hand
+# —————————————————————————————————————————————————————————
+{{- if .isWork }}
+export JIRA_CONFIG_FILE="$HOME/.config/jira/config.yml"
+export JIRA_API_TOKEN={{ onepasswordRead (printf "op://%s/JIRA/credential" .opVault) .opAccount | squote }}
+export CONFLUENCE_API_TOKEN="$JIRA_API_TOKEN"
+export NPM_TOKEN={{ onepasswordRead (printf "op://%s/NPM/credential" .opVault) .opAccount | squote }}
+export SENTRY_ACCESS_TOKEN={{ onepasswordRead (printf "op://%s/Sentry/credential" .opVault) .opAccount | squote }}
+export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
+export GOOGLE_CLOUD_PROJECT="ionq-web"
+{{- else }}
+export HOMEBREW_GITHUB_API_TOKEN={{ onepasswordRead (printf "op://%s/github/Homebrew" .opVault) .opAccount | squote }}
+{{- end }}
