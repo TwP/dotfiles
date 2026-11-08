@@ -1,0 +1,11 @@
+# ~/.config/neovide/config.toml
+
+[font]
+normal = ["FiraCode Nerd Font"]
+size = 14
+hinting = "full"
+edging = "antialias"
+# edging = "subpixelantialias"
+
+[font.features]
+"FiraCode Nerd Font" = [ "-calt", "-liga" ]
