@@ -1,0 +1,110 @@
+# ——————————————————————————————————————————
+#  Rendered by chezmoi; do not edit by hand
+# ——————————————————————————————————————————
+brew "ack"
+brew "bash"
+brew "bash-completion@2"
+brew "btop"
+brew "chezmoi"
+brew "cmake"
+brew "curl"
+brew "difftastic"
+brew "fd"
+brew "ffmpeg"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "jq"
+brew "libyaml"
+brew "mas"
+brew "mise"
+brew "mtr"
+brew "neovim"
+brew "nmap"
+brew "pstree"
+brew "ripgrep"
+brew "rsync"
+brew "shellcheck"
+brew "starship"
+brew "tmux"
+brew "tree"
+brew "wget"
+brew "whosthere"
+brew "yq"
+brew "yt-dlp"
+{{- if .isHome }}
+brew "gnupg"
+brew "hugo"
+brew "syncthing", restart_service: :changed
+brew "wimlib"
+{{- else }}
+brew "git-filter-repo"
+brew "git-lfs"
+brew "cloud-sql-proxy"
+brew "cloudflared", restart_service: :changed
+brew "go-jira"
+brew "k9s"
+{{- end }}
+
+cask "1password-cli"
+cask "appcleaner"
+cask "audio-hijack"
+cask "dash"
+cask "ia-presenter"
+cask "iterm2"
+cask "loopback"
+cask 'monodraw'
+cask "moom"
+cask "neovide-app"
+cask "obsidian"
+cask "orbstack"
+cask "plex"
+cask "plexamp"
+cask "raycast"
+cask "soundsource"
+{{- if .isHome }}
+cask "1password"
+cask "balenaetcher"
+cask "calibre"
+cask "carbon-copy-cloner"
+cask "fastmail"
+cask 'google-chrome'
+cask "mullvad-vpn"
+cask "openmtp"
+cask "powerphotos"
+cask 'slack'
+cask "subler"
+cask 'vlc'
+cask "vuescan"
+cask 'wireshark-app'
+{{- else }}
+cask "dbeaver-community"
+cask "gcloud-cli"
+cask "okta-verify"
+cask "tableplus"
+cask "visual-studio-code"
+{{- end }}
+
+mas "GarageBand",           id: 682658836
+mas "iMovie",               id: 408981434
+mas "Keynote",              id: 409183694
+mas "Numbers",              id: 409203825
+mas "Pages",                id: 409201541
+mas "Tomito",               id: 1526042938
+{{- if .isHome }}
+mas "1Password for Safari", id: 1569813296
+mas "Audiobook Builder",    id: 1437681957
+mas 'Hand Mirror',          id: 1502839586
+mas "Itsyhome",             id: 6758070650
+mas "Kagi for Safari",      id: 1622835804
+mas "Obsidian Web Clipper", id: 6720708363
+mas 'Things',               id: 904280696
+{{- else }}
+mas "Microsoft Excel",      id: 462058435
+mas "Microsoft OneNote",    id: 784801555
+mas "Microsoft Outlook",    id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Word",       id: 462054704
+{{- end }}
+
+# vim: ft=ruby
