@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------------------
+# Fonts
+# -----------------------------------------------------------------------------
+
+# allow spaces in filenames
+OLD_IFS="$IFS"
+IFS=$'\n'
+
+FONT_PATH="${HOME}/Library/Fonts"
+
+if [[ -d "${BOOTSTRAP_DRIVE}/Fonts" && -x "${BOOTSTRAP_DRIVE}/Fonts" ]]; then
+  msg "Copying fonts into place"
+
+  FILES=(${BOOTSTRAP_DRIVE}/Fonts/*)
+
+  for file in "${FILES[@]}"; do
+    fontname=$(basename "$file")
+    if [ ! -f "${FONT_PATH}/$fontname" ]; then
+      msg "Adding: $fontname"
+      cp "$file" "${FONT_PATH}/"
+    fi
+  done
+fi
+
+# set the "internal field separator" back to its original value
+IFS="$OLD_IFS"
+
+# vim:ft=sh

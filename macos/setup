@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+#/ Usage: setup [options] <defaults_file ...>
+#/
+#/   Configure default settings for Mac OS X. The settings are found in the
+#/   `defaults` folder and they are broken down by domain into several files.
+#/   Please read and understand the files before blindly applying to your own
+#/   computer.
+#/
+#/   OPTIONS:
+#/     -c <computer-name>    Configure the computer name as done via "System Preferences → Sharing"
+#/     -h                    Show this message.
+#/
+#/   EXAMPLES:
+#/     setup
+#/     setup -c Compy
+#/     setup general finder
+#/     setup -c Compy dock
+#/
+# References
+# * https://github.com/herrbischoff/awesome-osx-command-line
+# * https://github.com/dstroot/.osx
+# * https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# * https://gist.github.com/garethrees/2470157
+# * http://rixstep.com/2/20060901,00.shtml
+# -----------------------------------------------------------------------------
+
+usage() {
+  grep '^#/' <"$0" | cut -c 4-
+}
+
+COMPUTER_NAME=""
+COMPUTER_UUID=$(ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \")
+
+# easy access to documents in iCloud Drive
+ICLOUD_DRIVE="${HOME}/Library/Mobile Documents/com~apple~CloudDocs"
+
+# easy access to documents in Google Drive
+GOOGLE_DRIVE="/Volumes/GoogleDrive/My Drive"
+
+BOOTSTRAP_DRIVE="${BOOTSTRAP_DRIVE:-""}"
+if [[ "${BOOTSTRAP_DRIVE}" == "" ]]; then
+  STRAP_PATH="strap"
+  if [[ -d "${ICLOUD_DRIVE}/${STRAP_PATH}" && -x "${ICLOUD_DRIVE}/${STRAP_PATH}" ]]; then
+    BOOTSTRAP_DRIVE="${ICLOUD_DRIVE}/${STRAP_PATH}"
+  elif [[ -d "${GOOGLE_DRIVE}/${STRAP_PATH}" && -x "${GOOGLE_DRIVE}/${STRAP_PATH}" ]]; then
+    BOOTSTRAP_DRIVE="${GOOGLE_DRIVE}/${STRAP_PATH}"
+  fi
+fi
+
+RELATIVE_PATH=$(dirname "$0")
+ABSOLUTE_PATH=$(cd "${RELATIVE_PATH}"; pwd)
+source "${RELATIVE_PATH}/colors.sh"
+
+DEFAULTS_PATH="${RELATIVE_PATH}/defaults"
+declare -a DEFAULTS
+
+while getopts ":c:h" opt; do
+  case $opt in
+    c)
+      COMPUTER_NAME=$OPTARG
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    \?)
+      red "Invalid option: -$OPTARG" >&2
+      usage
+      exit 1
+      ;;
+    :)
+      red "Option -$OPTARG requires an argument." >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))  # consume processed args
+
+# Output the program name
+msg "Running: $0"
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# process all defaults
+if [ $# -eq 0 ]; then
+  DEFAULTS="${DEFAULTS_PATH}/*"
+
+# or process the specified defaults
+else
+  for file in $@; do
+    DEFAULTS+=("${DEFAULTS_PATH}/$(basename $file)")
+  done
+fi
+
+for file in ${DEFAULTS[@]}; do
+  echo ""
+  blue  "==================================================="
+  white " Processing $(basename $file) configuration"
+  blue  "==================================================="
+  source $file
+done
+
+echo ""
+green "All Done!"
+red   "Note: some of these changes require a logout/restart to take effect."
+
+exit 0
+
+# vim:ft=sh
