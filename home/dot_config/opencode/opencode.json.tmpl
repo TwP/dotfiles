@@ -11,6 +11,7 @@
     { "action": "edit", "resource": "~/go/pkg/mod/*", "effect": "deny" }
   ],
   "policies": [
+    { "action": "provider.use", "resource": "amazon-bedrock", "effect": "deny" },
     { "action": "provider.use", "resource": "google-vertex", "effect": "deny" },
     { "action": "provider.use", "resource": "opencode", "effect": "deny" }
   ],
