@@ -10,7 +10,9 @@
   "session": {
     "sidebar": "auto",
     "scrollbar": true,
-    "thinking": "show"
+    "thinking": "show",
+    "markdown": "rendered",
+    "new_location": "launch"
   },
   "animations": true,
   "tabs": {
