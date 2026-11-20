@@ -33,7 +33,7 @@ function _csp() {
 
   case "$prev" in
     staging|prod|all)
-      COMPREPLY=( $(compgen -W "us eu all" -- "$cur") )
+      COMPREPLY=( $(compgen -W "us ch kr all" -- "$cur") )
       ;;
     *)
       COMPREPLY=( $(compgen -W "staging prod all" -- "$cur") )
