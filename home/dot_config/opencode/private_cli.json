@@ -12,10 +12,14 @@
     "scrollbar": true,
     "thinking": "show",
     "markdown": "rendered",
-    "new_location": "launch"
+    "new_location": "launch",
+    "verbosity": "high"
   },
   "animations": true,
   "tabs": {
     "mode": "off"
+  },
+  "debug": {
+    "devtools": false
   }
 }
