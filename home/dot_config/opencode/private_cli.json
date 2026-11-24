@@ -13,7 +13,7 @@
     "thinking": "show",
     "markdown": "rendered",
     "new_location": "launch",
-    "verbosity": "high"
+    "verbosity": "medium"
   },
   "animations": true,
   "tabs": {
