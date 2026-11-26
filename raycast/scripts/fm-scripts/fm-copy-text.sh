@@ -14,26 +14,20 @@
 # @raycast.author tim.pease
 set -euo pipefail
 
-tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/screen.XXXXXXXXXX")
+tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/fm-copy-text.XXXXXXXXXX")
+# bash runs the EXIT trap on normal exit, set -e failures, and fatal signals (TERM/HUP)
+trap 'rm -rf -- "$tmpdir"' EXIT
 f=$tmpdir/frame.png
 
-cleanup() {
-    rc=$?                    # must be the first statement
-    trap - EXIT INT TERM HUP # disarm, so a failure in cleanup can't recurse
-    rm -rf -- "$tmpdir"
-    exit "$rc"
-}
-
-trap cleanup EXIT
-# turn catchable signals into a normal exit so cleanup always runs
-for s in HUP INT TERM; do
-    trap "exit $((128 + $(kill -l "$s")))" "$s"
-done
-
 screencapture -i "$f"
-[ -s "$f" ] || exit 0
-perl -e 'alarm 40; exec @ARGV' fm respond --tool "ocr" --image "$f" \
-  -i "Print only what the getText tool returns with nothing added." \
-  "Use the getText tool." | pbcopy
+[[ -s $f ]] || exit 0   # selection cancelled
 
+# capture first so a failure or timeout doesn't clobber the clipboard
+text=$(perl -e 'alarm 40; exec @ARGV' fm respond --tool "ocr" --image "$f" \
+  --guardrails "permissive-content-transformations" \
+  -i "Print only what the getText tool returns with nothing added." \
+  "Use the getText tool.") || { echo "OCR failed"; exit 1; }
+[[ -n $text ]] || { echo "No text found"; exit 0; }
+
+printf '%s' "$text" | pbcopy
 echo "Text copied"
